@@ -1,0 +1,40 @@
+<!--pages/project/project.wxml-->
+<view class="topBox">
+	<view class="topbg">
+		<view class="container" style="padding-top:{{statusBarHeight+titleBarHeight}}px">
+			<view class="header" style="background:{{background}};color:{{topcolor}};z-index:{{zIndex}}">
+				<view class="status-bar" style="height:{{statusBarHeight}}px"></view>
+				<view class="title-bar" style="height:{{titleBarHeight}}px;line-height:{{titleBarHeight}}px">
+					<view class="callSis">
+						<image src="../icon/callSis.svg" style="fill:{{topcolor}}"></image>
+						<text class="evahospital">客服</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+  <view class="topvip" style="top:{{statusBarHeight+titleBarHeight+5}}px">
+      <view>
+        <image src="../icon/callSis.svg"></image>
+        <text>财富规划团队</text>
+      </view>
+      <view>
+        通过对您财富管理和目标深入了解，定制财富计划和投资策略
+      </view>
+  </view>
+  <view class="topyy"></view>
+</view>
+<view class="projectTitle">
+    <image class="projectTitleLf" src="../icon/left.svg"></image>
+    <view class="projectTitleMd">财富规划</view>
+    <image class="projectTitleRt" src="../icon/right.svg"></image>
+</view>
+<view class="projectIntro">运用严格科学的产品筛选策略，依托专业研发团队的研究资源及成果、由理财师团队严谨按照一定服务流程与方法，为您量身定制资产配置报告。</view>
+
+<image class="longPic" src="../icon/tu.png" mode="aspectFill"></image>
+<view class="kefu">
+  <image src="../icon/callSis.svg"></image>
+  <text>客服</text>
+</view>
+<view class="bottomButton" bindtap="loginWx">定制我的专属报告</view>

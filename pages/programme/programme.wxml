@@ -1,0 +1,33 @@
+<!--pages/programme/programme.wxml-->
+<view class="topbg">
+  <view class="name">王迪祁先生</view>
+  <view class="age">
+    <text>32岁</text>
+    <text>中高风险承受能力</text>
+  </view>
+  <view class="programmeDetail">
+    <view>
+      <text>20200715232</text><text>报告版本</text>
+    </view>
+    <view>
+      <text>2020-07-15</text><text>报告时间</text>
+    </view>
+  </view>
+
+
+  <view class="details">
+    <view class="navbar">
+        <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view>
+
+      </view>
+
+      <view class="detailContent">
+        <image lazy-load='true' mode='widthFix' src="../icon/one.png"></image>
+        <image lazy-load='true' mode='widthFix' src="../icon/two.png"></image>
+        <image lazy-load='true' mode='widthFix' src="../icon/three.png"></image>
+        <image lazy-load='true' mode='widthFix' src="../icon/four.png"></image>
+      </view>
+  </view>
+
+</view>
+<view class="askbg">报告咨询</view>

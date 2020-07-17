@@ -1,0 +1,33 @@
+<!--pages/assessment/assessment.wxml-->
+<view class="topBg">
+	<view class="topBgNum">
+		<text>1</text><text>/9</text>
+	</view>
+	<view class="que">您的职业？</view>
+	<view class="ans">
+		<view class="ansEve {{item.active}}" data-active='{{item.active}}' data-id='{{item.id}}' bindtap="changeAns" wx:for='{{answer}}'>{{item.detail}}</view>
+	</view>
+	<view class="btnSupply">提交</view>
+	<view class="lookDetail">
+		<view class="lookDetailEve">
+			<view class="round"></view>
+			<view>
+				<text>查看</text>
+				<navigator>《投资人须知》</navigator>
+				<navigator>《特别声明》</navigator>
+			</view>
+		</view>
+		<view class="lookDetailEve">
+			<view class="round"></view>
+			<view>
+				<text>中国税收居民指在中国境内有住所，或无住所但在境内居住满一年的个人，不包括香港/澳门/台湾地区的税收居民</text>
+			</view>
+		</view>
+		<view class="lookDetailEve">
+			<view class="round"></view>
+			<view style="margin-bottom:70rpx">
+				<text>非居民指非中国税收居民以外的个人</text>
+			</view>
+		</view>
+	</view>
+</view>

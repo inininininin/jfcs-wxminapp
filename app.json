@@ -1,13 +1,22 @@
 {
-  "pages":[
+  "pages": [
+    "pages/project/project",
+    "pages/programme/programme",
+    "pages/assessment/assessment",
+    "pages/authentication/authentication",
+    "pages/projects/projects",
+
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/components/navigationBar/navigationBar"
+    
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "default"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

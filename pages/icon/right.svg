@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="25px" viewBox="0 0 13 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>分组 2 copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="3.061617e-15%" id="linearGradient-1">
+            <stop stop-color="#FFE9A9" offset="0%"></stop>
+            <stop stop-color="#FFCF70" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="3.061617e-15%" id="linearGradient-2">
+            <stop stop-color="#9496A1" offset="0%"></stop>
+            <stop stop-color="#5B5D68" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-8-Copy-4" transform="translate(-482.000000, -528.000000)" fill-rule="nonzero">
+            <g id="分组-2-copy" transform="translate(489.000000, 540.000000) scale(-1, 1) translate(-489.000000, -540.000000) translate(481.000000, 526.000000)">
+                <path d="M8.00321368,16.043645 C9.68068088,16.0493314 11.0017738,4.61889064 10.9958755,2.87888629 C10.9899772,1.13888194 9.62533982,-0.276279963 7.94787263,-0.281966292 C6.27040543,-0.287652622 4.91533112,1.11828992 4.92122944,2.85829427 C4.92712776,4.59829862 6.32574649,16.0379587 8.00321368,16.043645 Z" id="椭圆形" fill="url(#linearGradient-1)" transform="translate(7.958553, 7.880832) rotate(-225.000000) translate(-7.958553, -7.880832) "></path>
+                <path d="M8.00321368,28.1517531 C9.68068088,28.1574395 11.0017738,16.7269987 10.9958755,14.9869944 C10.9899772,13.24699 9.62533982,11.8318281 7.94787263,11.8261418 C6.27040543,11.8204555 4.91533112,13.226398 4.92122944,14.9664024 C4.92712776,16.7064067 6.32574649,28.1460668 8.00321368,28.1517531 Z" id="椭圆形-copy-2" fill="url(#linearGradient-2)" transform="translate(7.958553, 19.988940) rotate(-225.000000) translate(-7.958553, -19.988940) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
