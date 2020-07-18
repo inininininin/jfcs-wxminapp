@@ -26,6 +26,11 @@ Page({
     var that=this
     console.log(e.detail.userInfo)
     if (e.detail.userInfo){
+      wx.showToast({
+        title: '登录中，请稍后',
+        icon:'none',
+        duration: 5000,
+      })
       //用户按了允许授权按钮
       
       wx.login({
@@ -100,6 +105,10 @@ Page({
 
     } else {
       //用户按了拒绝按钮
+      wx.showToast({
+        title: '登录失败',
+        icon:'none'
+      })
     }
   },
   /**

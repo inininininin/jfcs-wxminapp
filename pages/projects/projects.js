@@ -13,40 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this
-    wx.request({
-      url:app.globalData.url+ '/ke-fu-preset-question-list',
-      data:'order=asc&sort=orderNo',
-      method:'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      success:function(res){
-        if(res.data.code==0){
-          for(var i in res.data.data.itemList){
-            res.data.data.itemList[i].number=(parseInt(i)+1)
-          }
-          that.setData({
-            question:res.data.data.itemList
-          })
-        }else if(res.data.code==20){
-          wx.showToast({
-            title: '请先登录',
-            icon: 'none',
-            duration: 2000,
-            mask: true,
-            complete: function complete(res) {
-              setTimeout(function () {                          
-                  wx.navigateTo({
-                    url: '../login/login',
-                  })
-              }, 500);
-            }
-          });
-        }
-      }
-    })
+    // var that=this
+    this.getAns()
+    
   },
   reply(e){
     var that=this
@@ -265,6 +234,42 @@ Page({
     })
     
   },
+  getAns(){
+    var that=this
+    wx.request({
+      url:app.globalData.url+ '/ke-fu-preset-question-list',
+      data:'order=asc&sort=orderNo',
+      method:'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      success:function(res){
+        if(res.data.code==0){
+          for(var i in res.data.data.itemList){
+            res.data.data.itemList[i].number=(parseInt(i)+1)
+          }
+          that.setData({
+            question:res.data.data.itemList
+          })
+        }else if(res.data.code==20){
+          wx.showToast({
+            title: '请先登录',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+            complete: function complete(res) {
+              // setTimeout(function () {                          
+              //     wx.navigateTo({
+              //       url: '../login/login',
+              //     })
+              // }, 500);
+            }
+          });
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -277,6 +282,9 @@ Page({
    */
   onShow: function () {
     var that=this
+    if(!that.data.question){
+      this.getAns()
+    }
     wx.request({
       url: app.globalData.url + '/login-refresh',
       header: {

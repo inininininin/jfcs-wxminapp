@@ -1,4 +1,4 @@
-<view id='scrollHeight'>
+<view id='scrollHeight' style="padding-bottom:120rpx">
   <!--pages/projects/projects.wxml-->
 <view class="bigIntro">
  <view class="bigIntroBoxAvator">
