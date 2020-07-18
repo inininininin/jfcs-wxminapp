@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      // console.log(area)
   },
   onPageScroll(e){
     if(e.scrollTop>5){
@@ -243,7 +242,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(1)
     var that=this
     wx.request({
       url: app.globalData.url + '/login-refresh',
@@ -253,7 +251,6 @@ Page({
       },
       method: 'post',
       success: function (res) {
-        console.log(134)
           if(res.data.code==20){
             wx.showToast({
               title: '请先登录',
@@ -270,7 +267,6 @@ Page({
             });
           }else{
             app.globalData.userInfoDetail = res.data.data
-            console.log(res.data.data.realnameCertificationIs)
             that.setData({
               realnameCertificationIs:res.data.data.realnameCertificationIs
             })

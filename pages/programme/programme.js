@@ -68,7 +68,7 @@ Page({
           res.data.data.guiHuaFangAnImage=app.cover(res.data.data.guiHuaFangAnImage)
           res.data.data.guiHuaJianYiImage=app.cover(res.data.data.guiHuaJianYiImage)
           res.data.data.shiChangKuaiPingImage=app.cover(res.data.data.shiChangKuaiPingImage)
-          res.data.data.doneTime=res.data.data.doneTime.split('.')[0]
+          res.data.data.doneTime=res.data.data.doneTime.split(' ')[0]
           that.setData({
             paperDetail:res.data.data
           })

@@ -1,4 +1,5 @@
-<!--pages/projects/projects.wxml-->
+<view id='scrollHeight'>
+  <!--pages/projects/projects.wxml-->
 <view class="bigIntro">
  <view class="bigIntroBoxAvator">
       <image src="../icon/avator.svg"></image>
@@ -14,7 +15,7 @@
       </view>
       <view class="content">运用严格科学的产品筛选策略，依托专业研发团队的研究资源及成果、由理财师团队严谨按照一定服务流程与方法，为您量身定制资产配置报告。</view>
     </view>
-    <view class="bigIntroBoxBottom">定制我的专属报告</view>
+    <view class="bigIntroBoxBottom"  bindtap="onlyBg">定制我的专属报告</view>
   </view>
 </view>
 <view class="talkBox">
@@ -24,8 +25,23 @@
     </view>
     <view class="talkBoxBottom">我是嘉富财商~ 理财就找我，很高兴为您服务！</view>
 </view>
+<view class="question">
+  <view >
+    <text>常见问题：</text>
+    <text  wx:for='{{question}}' bindtap="reply"  data-reply='{{item.reply}}'>{{item.number}}.{{item.name}}</text>
+    <!-- <text>{{item.reply}}</text> -->
+  </view>
+</view>
 
+<view class="talkBoxThis" wx:for='{{answerList}}'>
+    <view class="talkBoxTopThis">
+      <view><image src="../icon/callSis.svg"></image></view>
+      <text>Hi～娜娜</text>
+    </view>
+    <view class="talkBoxBottomThis">{{item.answer}}</view>
+</view>
 
 <view class="tabbarBtn">
   <view><text>在这里写下您想说的话</text><image src="../icon/send.svg"></image></view>
+</view>
 </view>
