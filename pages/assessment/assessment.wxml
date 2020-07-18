@@ -1,14 +1,14 @@
 <!--pages/assessment/assessment.wxml-->
 <view class="topBg">
 	<view class="topBgNum">
-		<text>1</text><text>/9</text>
+		<text>{{ansNum}}</text><text>/{{ansLength}}</text>
 	</view>
-	<view class="que">您的职业？</view>
+	<view class="que">{{ansname}}</view>
 	<view class="ans">
-		<view class="ansEve {{item.active}}" data-active='{{item.active}}' data-id='{{item.id}}' bindtap="changeAns" wx:for='{{answer}}'>{{item.detail}}</view>
+		<view class="ansEve {{item.active}}" data-active='{{item.active}}' data-id='{{item.paperQuestionAnswerId}}' bindtap="changeAns" wx:for='{{answer}}' >{{item.content}}</view>
 	</view>
-	<view class="btnSupply">提交</view>
-	<view class="lookDetail">
+	<view class="btnSupply" bindtap="btnSupply" wx:if='{{ifShowEnd}}'>提交</view>
+	<view class="lookDetail" wx:if='{{ifShowEnd}}'>
 		<view class="lookDetailEve">
 			<view class="round"></view>
 			<view>

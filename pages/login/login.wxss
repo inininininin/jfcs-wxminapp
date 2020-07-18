@@ -1,0 +1,126 @@
+/* pages/login/login.wxss */
+.avator{
+  width: 108rpx;
+  height: 160rpx;
+  margin: 302rpx 321rpx 0;
+}
+.title{
+  font-size: 46rpx;
+  color: rgb(255,222,134);
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin: 45rpx auto 133rpx;
+}
+.loginWx:not([size='mini'])
+{
+  /* 修改宽高 */
+  width: 596rpx;
+  height: 90rpx;
+  /* margin: 39rpx 60rpx; */
+  /* line-height: 62rpx; */
+}
+.loginWx{
+  padding: 0;
+  width: 596rpx;
+  height: 90rpx;
+  margin: 0  77rpx 0;
+  background:linear-gradient(to right ,#ffd86f, #feeab6);
+  /* background: #17bb07; */
+  font-family: PingFangSc-Medium;
+  border-radius: 45rpx;
+  font-size: 34rpx;
+  line-height: 90rpx;
+  text-align: center;
+  color: rgb(15,15,13);
+}
+
+
+
+.popWindow {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+}
+
+.popWindow>view {
+  width: 640rpx;
+  height: 800rpx;
+  margin: 300rpx 55rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+/* .popWindow>view>text{
+  display: block;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: rgba(51, 51, 51, 1);
+} */
+.popWindow>view>view:nth-child(1) {
+  width: 600rpx;
+  height: 640rpx;
+  overflow-y: scroll;
+  margin: 0;
+  padding: 10rpx 20rpx;
+  color: rgba(115, 115, 115, 1);
+  font-size: 30rpx;
+  line-height: 38rpx;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.popWindow>view>view:nth-child(2) {
+  width: 100%;
+}
+.popWindow button:not([size='mini'])
+{
+  /* 修改宽高 */
+  height: 62rpx;
+  width: 200rpx;
+  margin: 39rpx 60rpx;
+  /* line-height: 62rpx; */
+}
+.popWindow button {
+  padding: 0;
+  width: 200rpx;
+  border-radius: 50rpx;
+  height: 62rpx !important;
+  line-height: 62rpx !important;
+  background: #fff;
+  display: inline-block;
+  border: 1rpx solid #cc3d49;
+  text-align: center;
+  font-size: 32rpx;
+  /* line-height: 40rpx; */
+  color: #cc3d49;
+  font-weight: 400;
+  margin: 39rpx 60rpx;
+  float: left;
+  display: inline-block;
+}
+
+.popWindow .agree {
+  background: #cc3d49;
+  border: 1rpx solid #fff;
+  color: #fff;
+}
+
+
+
+.version {
+  position: absolute;
+  width: 100%;
+  bottom: 20rpx;
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+  line-height: 30rpx;
+  left: 0;
+}

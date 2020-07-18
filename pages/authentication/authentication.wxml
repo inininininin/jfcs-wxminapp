@@ -43,13 +43,13 @@
 </view>
 <view class="authLine">
   <text>验证码：</text>
-  <input  class="yzCode" placeholder="请输入验证码" type="text" maxlength="12" placeholder-class="placeholderClass"></input>
-  <text wx:if='{{sendCode}}' class="sendCode" data-text='{{sendtext}}'  bindtap="sendCodeNo">获取验证码</text>
+  <input  class="yzCode" bindinput="yzCodeSure" placeholder="请输入验证码" type="text" maxlength="12" placeholder-class="placeholderClass"></input>
+  <text wx:if='{{sendCode}}' class="sendCode" data-text='{{sendtext}}'  bindtap="sendCodeNo">{{sendtext}}</text>
   <text wx:if='{{!sendCode}}' class="sendCode active" bindtap="sendCodeYes">获取验证码</text>
 </view>
 
 <view class="btn">
   <view  wx:if='{{supplyIf}}' bindtap="supplyNo" class="supplyBtn">提交认证</view>
   <view  wx:if='{{!supplyIf}}' bindtap="supplyYes" class="supplyBtn active">提交认证</view>
-  <view class="refuse">取消</view>
+  <view class="refuse" bindtap="refuse">取消</view>
 </view>

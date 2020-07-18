@@ -1,32 +1,160 @@
 // pages/assessment/assessment.js
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    answer:[{detail:'无固定职业',active:'active',id:1},{detail:'自由职业者',active:'',id:2},{detail:'离退休人员',active:'',id:3},{detail:'一般企业员工',active:'',id:4},{detail:'党政机关/事业单位员工',active:'',id:5}]
+    paperQuestionId:'',
+    questionList:[],
+    ifShowEnd:false,
+    ansname:'',
+    ansNum:'',
+    answer:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-  changeAns(e){
-    var id=e.currentTarget.dataset.id
-    console.log(e.currentTarget.dataset.id)
-    for(var i in this.data.answer){
-      if(this.data.answer[i].id==id){
-        this.data.answer[i].active='active'
-      }else{
-        this.data.answer[i].active=''
+    var that=this
+    that.setData({
+      ansLength:app.globalData.questionListLength
+    })
+      console.log(app.globalData.questionList, app.globalData.questionListNum,app.globalData.questionListLength)
+    for(var i in  app.globalData.questionList){
+      if(i==app.globalData.questionListNum){
+        console.log(app.globalData.questionListNum)
+        
+        if(app.globalData.questionListNum==app.globalData.questionListLength-1){
+          console.log(app.globalData.questionListNum)
+          that.setData({
+            // ifShowEnd:true
+          })
+        }
+        that.setData({
+          paperQuestionId:app.globalData.questionList[i].paperQuestionId,
+          ansname:app.globalData.questionList[i].name,
+          answer:app.globalData.questionList[i].answer,
+          ansNum:app.globalData.questionListNum+1,
+          // ifShowEnd:false
+        })
+        return
       }
     }
-    this.setData({
-      answer: this.data.answer
+  },
+  
+  changeAns(e){
+    var that=this
+    var id=e.currentTarget.dataset.id
+    console.log(e.currentTarget.dataset.id)
+    for(var i in that.data.answer){
+      if(that.data.answer[i].paperQuestionAnswerId==id){
+        that.data.answer[i].active='active'
+      }else{
+        that.data.answer[i].active=''
+      }
+    }
+    that.setData({
+      answer:that.data.answer
     })
+    wx.request({
+      url:app.globalData.url+ '/do-paper-question',
+      method:'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      data:'paperQuestionId='+that.data.paperQuestionId+"&paperQuestionAnswerId="+id+'&doPaperId='+app.globalData.doPaperId,
+      success:function(res){
+        if(res.data.codeMsg){
+          wx.showToast({
+            title: res.data.codeMsg,
+            icon: 'none',
+          });
+        }else if(res.data.code==20){
+          wx.showToast({
+            title: '请先登录',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+            complete: function complete(res) {
+              setTimeout(function () {                          
+                  wx.navigateTo({
+                    url: '../login/login',
+                  })
+              }, 500);
+            }
+          });
+        }else if(res.data.code==0){
+          if(that.data.ansNum==that.data.ansLength){
+            that.setData({
+              ifShowEnd:true
+            })
+          }else{
+            app.globalData.questionListNum=that.data.ansNum
+            wx.showToast({
+              title: '下一题',
+              icon: 'none',
+              duration: 2000,
+              mask: true,
+              complete: function complete(res) {
+                setTimeout(function () {                          
+                  wx.navigateTo({
+                    url: '../assessment/assessment',
+                  })
+                }, 1000);
+              }
+            });
+          }
+        }  
+      }
+    })
+    
+    
+    
+    // this.setData({
+    //   answer: this.data.answer
+    // })
+  },
+  btnSupply(e){
+    wx.request({
+    url:app.globalData.url+ '/done-paper',
+    method:'post',
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      'cookie': wx.getStorageSync('cookie')
+    },
+    data:'doPaperId='+app.globalData.doPaperId+"&paperId="+app.globalData.paperId,
+    success:function(res){
+      if(res.data.codeMsg){
+        wx.showToast({
+          title: res.data.codeMsg,
+          icon: 'none',
+        });
+      }else if(res.data.code==20){
+        wx.showToast({
+          title: '请先登录',
+          icon: 'none',
+          duration: 2000,
+          mask: true,
+          complete: function complete(res) {
+            setTimeout(function () {                          
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+            }, 500);
+          }
+        });
+      }else if(res.data.code==0){
+        wx.navigateTo({
+          url: '../programme/programme',
+        })
+      }
+    }
+  }) 
+  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

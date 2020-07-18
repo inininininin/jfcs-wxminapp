@@ -90,7 +90,7 @@ page {
 }
 
 .btn .active {
-  background: linear-gradient(#ffb31e, #ff813a);
+  background: linear-gradient(to right ,#ffb31e, #ff813a);
   color: #ffffff;
 }
 

@@ -49,10 +49,36 @@ App({
         vm.globalData.titleBarHeight = 0
       }
     })
+    wx.request({
+      url: vm.globalData.url + '/wxminapp/area.json',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      method: 'get',
+      success: function (res) {
+        vm.globalData.areaJson=res.data
+      }
+    })
+  },
+  cover(_cover){
+    var that=this
+    if(_cover&&_cover.slice(0,1)!='h'){
+      _cover=that.globalData.url+_cover
+    }
+    return _cover
   },
   globalData: {
     userInfo: null,
     statusBarHeight:'',
     titleBarHeight:'',
+    url:'http://192.168.2.32:10080',
+    version:'2020.0717.1718',
+    areaJson:'',
+    paperId:'',
+    doPaperId:'',
+    questionList:[],
+    questionListNum:'',
+    questionListLength:'',
   }
 })

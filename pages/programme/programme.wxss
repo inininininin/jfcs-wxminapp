@@ -5,7 +5,7 @@ page{
 .topbg{
   width: 750rpx;
   height: 388rpx;
-  opacity: 0.5;
+  /* opacity: 0.5; */
   background: #5f4e4e;
   box-sizing: border-box;
 }
@@ -47,6 +47,7 @@ line-height: 42rpx;
   border-right: 2rpx solid #999999;
 }
 .programmeDetail>view text{
+  padding: 0 30rpx;
   display: block;
 height: 33rpx;
 opacity: 0.9;

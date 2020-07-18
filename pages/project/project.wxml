@@ -37,4 +37,4 @@
   <image src="../icon/callSis.svg"></image>
   <text>客服</text>
 </view>
-<view class="bottomButton" bindtap="loginWx">定制我的专属报告</view>
+<view class="bottomButton" bindtap="onlyBg">定制我的专属报告</view>

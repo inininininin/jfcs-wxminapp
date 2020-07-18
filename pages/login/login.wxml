@@ -1,0 +1,25 @@
+<!--pages/login/login.wxml-->
+<view>  
+  <image class="avator" src="../icon/logoLogin.svg"></image>
+  <text class="title">嘉富财商高端客户尊享</text>
+  	<button class="loginWx"  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">微信账号快捷登录</button>
+<!-- <view bindtap="loginWx" class="loginWx">微信账号快捷登录</view> -->
+
+<view class="popWindow" wx:if='{{showIs}}'>
+	<view>
+		<!-- <text>微信授权登录</text> -->
+		<view>
+			<import src="../../wxParse/wxParse.wxml" />
+			<view class="wxParse">
+				<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+			</view>
+
+		</view>
+		<view>
+			<button class="refuse" bindtap="refuse">不同意</button>
+			<button class="agree" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">同意</button>
+		</view>
+	</view>
+</view>
+<text class="version" bindtap="version">ver : {{version}}</text>
+</view>
