@@ -27,7 +27,7 @@ z-index: 2;
 .bigIntroBoxTop{
   width: 686rpx;
 height: 530rpx;
-background: url(http://39.99.246.175:81/jfcs/wxminapp/VIPbj.png) no-repeat;
+/* background: url(http://39.99.246.175:81/jfcs/wxminapp/VIPbj.png) no-repeat; */
 background-size: 100% 100%;
 border-radius: 20px 20px 0px 0px;
 }
@@ -140,10 +140,10 @@ box-sizing: border-box;
  height: 32rpx;
  margin: 9rpx 9rpx 8rpx 9rpx;
 }
-.talkBoxTop >view image{
+/* .talkBoxTop >view image{
   filter: drop-shadow(#0F0F0D 80px 0);
   transform: translateX(-80px);
-}
+} */
 .talkBoxTop text{
   float: left;
 /* height: 48rpx; */
@@ -174,14 +174,23 @@ line-height: 37rpx;
   left: 0;
   background: #ffffff;
 }
-.tabbarBtn>view{
+.tabbarBtn>button:not([size='mini']){
+  padding: 0;
+  width: 678rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #f5f5f5;
+border-radius: 30px;
+margin: 20rpx 36rpx;
+}
+.tabbarBtn>button::after{
   width: 678rpx;
 height: 60rpx;
 background: #f5f5f5;
 border-radius: 30px;
 margin: 20rpx 36rpx;
 }
-.tabbarBtn>view text{
+.tabbarBtn>button text{
 font-size: 26rpx;
 font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
@@ -191,7 +200,7 @@ line-height: 60rpx;
 letter-spacing: -1rpx;
 margin-left: 30rpx;
 }
-.tabbarBtn>view image{
+.tabbarBtn>button image{
   width: 60rpx;
   height: 60rpx;
   float: right;
@@ -258,10 +267,10 @@ box-sizing: border-box;
  height: 32rpx;
  margin: 9rpx 9rpx 8rpx 9rpx;
 }
-.talkBoxTopThis >view image{
+/* .talkBoxTopThis >view image{
   filter: drop-shadow(#0F0F0D 80px 0);
   transform: translateX(-80px);
-}
+} */
 .talkBoxTopThis text{
   float: left;
 height: 48rpx;

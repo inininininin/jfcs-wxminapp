@@ -19,6 +19,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      background:app.globalData.url+'wxminapp/topbg.png',
+      
+    })
   },
   onPageScroll(e){
     if(e.scrollTop>5){
@@ -120,7 +124,7 @@ Page({
               wx.setStorageSync('questionList', JSON.stringify(res.data.data.itemList))
 
               wx.navigateTo({
-                url: '../assessment/assessment',
+                url: '../assess/assess',
               })
             }
         }

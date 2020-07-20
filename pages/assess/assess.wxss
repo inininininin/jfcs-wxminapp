@@ -1,0 +1,136 @@
+/* pages/assess/assess.wxss */
+.topBg{
+  width: 750rpx;
+  height:479rpx;
+}
+.topBgNum{
+  /* height: 100rpx; */
+  vertical-align: bottom;
+}
+.topBgNum text:nth-child(1){
+  /* width: 57rpx; */
+height: 100rpx;
+font-size: 100rpx;
+font-family: Roboto, Roboto-Regular;
+font-weight: 400;
+text-align: center;
+color: #ffa900;
+line-height: 100rpx;
+margin-top: 43rpx;
+margin-left: 40rpx;
+display: inline-block;
+}
+.topBgNum text:nth-child(2){
+  display: inline-block;
+  width: 36rpx;
+height: 38rpx;
+font-size: 32rpx;
+font-family: Roboto, Roboto-Regular;
+font-weight: 400;
+text-align: center;
+color: #666666;
+line-height: 38rpx;
+letter-spacing: 5rpx;
+margin-left: 7rpx;
+}
+.que{
+  margin-top: 20rppx;
+  /* margin-left: 40rpx; */
+  padding: 10rpx 40rpx;
+  box-sizing: border-box;
+/* height: 70rpx; */
+font-size: 50rpx;
+font-family: PingFangSC, PingFangSC-Regular;
+font-weight: 400;
+color: #ffa900;
+line-height: 70rpx;
+}
+.ans{
+  width: 670rpx;
+  margin: 50rpx 40rpx 0;
+}
+.ansEve{
+  box-sizing: border-box;
+  padding: 30rpx 38rpx;
+  min-height: 100rpx;
+  line-height: 40rpx;
+  /* line-height: 100rpx; */
+  margin-bottom: 30rpx;
+  font-size: 32rpx;
+  color: #333333;
+  width: 670rpx;
+/* height: 100rpx; */
+background: #ffffff;
+border-radius: 6rpx;
+box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(0,0,0,0.06); 
+}
+.ans .active{
+background: #ffe9bd;
+}
+
+/* 提交按钮 */
+.btnSupply{
+  clear: both;
+  width: 670rpx;
+height: 100rpx;
+background: linear-gradient(to right ,#ffb31e, #ff813a) ;
+border-radius: 50rpx;
+box-shadow: 0rpx 2rpx 24rpx 0rpx rgba(0,0,0,0.06); 
+margin: 150rpx 40rpx 50rpx;
+font-size: 40rpx;
+font-family: PingFangSC, PingFangSC-Regular;
+font-weight: 400;
+text-align: center;
+color: #ffffff;
+line-height: 100rpx;
+}
+
+/* 查看须知 */
+.lookDetail{
+  width: 670rpx;
+  margin: 0 40rpx;
+}
+.round{
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  border: 0;
+  background: #999999;
+  float: left;
+  margin-top: 45rpx;
+}
+.lookDetailEve{
+  display: block;
+  font-size: 26rpx;
+  color: #999999;
+  line-height: 37rpx;
+  
+}
+.lookDetailEve view{
+  display: inline-block;
+}
+.lookDetailEve>view:last-child{
+  margin-top: 30rpx;
+  width: 654rpx;
+  margin-left: 10rpx;
+  float: left;
+}
+.lookDetailEve navigator{
+  display: inline-block;
+  color: #333333;
+}
+
+.rightIcon{
+  width: 16rpx;
+  height: 26rpx;
+  float: right;
+  /* margin-right: 30rpx; */
+  margin-top: 7rpx;
+}
+
+.ansEve .picker{
+  height:100% !important;
+  width:100% !important;
+  padding: 30rpx !important;
+  box-sizing: border-box !important;
+}

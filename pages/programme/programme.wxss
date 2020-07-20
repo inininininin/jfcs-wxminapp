@@ -1,4 +1,56 @@
 /* pages/programme/programme.wxss */
+.container {
+  box-sizing: border-box;
+  position: relative;
+  padding: 0 !important;
+  background: #EDEDED;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #EDEDED;
+  z-index: 2;
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.1);
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+}
+
+.title-bar>view {
+  height: 60rpx;
+  width: 460rpx;
+  background: #fff;
+  border-radius: 30rpx;
+  float: left;
+  line-height: 60rpx;
+  vertical-align: middle;
+  margin-left: 10rpx;
+}
+
+.back {
+  width: 18rpx;
+  height: 30rpx;
+  display: inline-block;
+  padding: 20rpx;
+  margin-left: 12rpx;
+}
+
+.evahospital {
+  width: 610rpx;
+  text-align: center;
+  opacity: 1;
+  font-size: 36rpx;
+  font-family: PingFangSC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  letter-spacing: 0rpx;
+}
+
+
 page{
   background: #F5F5F5;
 }
@@ -114,11 +166,11 @@ margin:0 32rpx 24rpx;
   margin-bottom: 100rpx;
 }
 
-
 .askbg{
   position: fixed;
   bottom: 0;
   left: 0;
+  margin: 0;
   width: 750rpx;
 height: 100rpx;
 background: #feeab6;
@@ -128,5 +180,47 @@ font-weight: 400;
 text-align: center;
 color: #0f0f0d;
 line-height: 100rpx;
+
 }
 
+
+.askbg button:not([size='mini']){
+  width: 750rpx;
+  height: 100rpx;
+  background: #feeab6;
+  margin: 0;
+  font-size: 36rpx;
+  font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 400;
+  text-align: center;
+  color: #0f0f0d;
+  line-height: 100rpx;
+  padding: 0;
+}
+
+/* 背景资料 */
+.detailContentOne{
+  width: 686rpx;
+  margin: 0 32rpx 24rpx;
+  border-radius: 10rpx;
+  background: #ffffff;
+  padding: 40rpx 24rpx 60rpx;
+  box-shadow:0 2rpx 14rpx 0 rgba(0,0,0,0.06) ;
+  box-sizing: border-box;
+  border: 0;
+}
+.detailContentOne>text{
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: rgba(51, 51, 51, 1);
+  display: block;
+  margin-bottom: 20rpx;
+}
+.detailContentOne>view{
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+  line-height: 48rpx;
+}
+.detailContentOne>view text:nth-child(1){
+  color: rgb(66,66,66);
+}

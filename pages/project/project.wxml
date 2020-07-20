@@ -2,7 +2,7 @@
 <view class="topBox">
 	<view class="topbg">
 		<view class="container" style="padding-top:{{statusBarHeight+titleBarHeight}}px">
-			<view class="header" style="background:{{background}};color:{{topcolor}};z-index:{{zIndex}}">
+			<view class="header" style="background:url({{background}});color:{{topcolor}};z-index:{{zIndex}}">
 				<view class="status-bar" style="height:{{statusBarHeight}}px"></view>
 				<view class="title-bar" style="height:{{titleBarHeight}}px;line-height:{{titleBarHeight}}px">
 					<view class="callSis">

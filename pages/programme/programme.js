@@ -1,87 +1,149 @@
 // pages/programme/programme.js
-var app=getApp()
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    navbar: ['背景资料', '市场快评', '规划方案','规划建议'],
+    navbar: ['背景资料', '市场快评', '规划方案', '规划建议'],
     currentTab: 0,
-    paperDetail:[],
-    realname:'',
+    paperDetail: [],
+    realname: '',
+    doPaperId: '',
+    statusBarHeight: app.globalData.statusBarHeight,
+    titleBarHeight: app.globalData.titleBarHeight,
+    navtitle: '财富规划方案',
+    picList: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this
+    var that = this
+    that.setData({
+      keGuiHuaZiChan:app.globalData.userInfoDetail.keGuiHuaZiChan||'',
+      caiFuGuiHuaMuBiao:app.globalData.userInfoDetail.caiFuGuiHuaMuBiao||'',
+      caiFuGuiHuaNianXian:app.globalData.userInfoDetail.caiFuGuiHuaNianXian||'',
+      jiaTingShouZhiZhuangKuang:app.globalData.userInfoDetail.jiaTingShouZhiZhuangKuang||'',
+    })
     var sex
-    if(app.globalData.userInfoDetail.sex==1){
-      sex='男'
-    }else if(app.globalData.userInfoDetail.sex==2){
-      sex='女'
-    }else{
-      sex=''
+    if (app.globalData.userInfoDetail.sex == 1) {
+      sex = '男'
+    } else if (app.globalData.userInfoDetail.sex == 2) {
+      sex = '女'
+    } else {
+      sex = ''
     }
-    if(app.globalData.userInfoDetail.age!=''&&app.globalData.userInfoDetail.age!=null&&app.globalData.userInfoDetail.age!=undefined){
-      var age =app.globalData.userInfoDetail.age
+    if (app.globalData.userInfoDetail.age != '' && app.globalData.userInfoDetail.age != null && app.globalData.userInfoDetail.age != undefined) {
+      var age = app.globalData.userInfoDetail.age
     }
-    if(app.globalData.userInfoDetail.realname!=''&&app.globalData.userInfoDetail.realname!=null&&app.globalData.userInfoDetail.realname!=undefined){
-      var realname =app.globalData.userInfoDetail.realname
+    if (app.globalData.userInfoDetail.realname != '' && app.globalData.userInfoDetail.realname != null && app.globalData.userInfoDetail.realname != undefined) {
+      var realname = app.globalData.userInfoDetail.realname
     }
     that.setData({
-      age:age,
-      realname:realname,
-      sex:sex,
+      age: age,
+      realname: realname,
+      sex: sex,
     })
     console.log(123123)
     wx.request({
-      url:app.globalData.url+ '/get-last-done-do-paper',
-      method:'get',
+      url: app.globalData.url + '/get-questionnaire-result',
+      method: 'get',
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         'cookie': wx.getStorageSync('cookie')
       },
-      success:function(res){
-        if(res.data.codeMsg){
+      success: function (res) {
+        if (res.data.codeMsg) {
           wx.showToast({
             title: res.data.codeMsg,
             icon: 'none',
           });
-        }else if(res.data.code==20){
+        } else if (res.data.code == 20) {
           wx.showToast({
             title: '请先登录',
             icon: 'none',
             duration: 2000,
             mask: true,
             complete: function complete(res) {
-              setTimeout(function () {                          
-                  wx.navigateTo({
-                    url: '../login/login',
-                  })
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../login/login',
+                })
               }, 500);
             }
           });
-        }else if(res.data.code==0){
-          res.data.data.guiHuaFangAnImage=app.cover(res.data.data.guiHuaFangAnImage)
-          res.data.data.guiHuaJianYiImage=app.cover(res.data.data.guiHuaJianYiImage)
-          res.data.data.shiChangKuaiPingImage=app.cover(res.data.data.shiChangKuaiPingImage)
-          res.data.data.doneTime=res.data.data.doneTime.split(' ')[0]
+        } else if (res.data.code == 0) {
+          if (res.data.data.score1 < 40) {
+            res.data.data.resultName = '低风险承受能力'
+          } else if (40 <= res.data.data.score1 < 60) {
+            res.data.data.resultName = '中等风险承受能力'
+          } else if (60 <= res.data.data.score1 <= 79) {
+            res.data.data.resultName = '中高风险承受能力'
+          } else {
+            res.data.data.resultName = '高风险承受能力'
+          }
+          if (res.data.data.score2 < 40) {
+            res.data.data.resultName1 = '保守型'
+          } else if (40 <= res.data.data.score2 < 60) {
+            res.data.data.resultName1 = '稳健型'
+          } else if (60 <= res.data.data.score2 <= 79) {
+            res.data.data.resultName1 = '积极型'
+          } else {
+            res.data.data.resultName1 = '冒险型'
+          }
+            if (res.data.data.resultPic1) {
+              res.data.data.resultPic1 = app.cover(res.data.data.resultPic1)
+            }
+          if (res.data.data.resultPic2) {
+            res.data.data.resultPic2 = app.cover(res.data.data.resultPic2)
+          }
+          if (res.data.data.resultPic3) {
+            res.data.data.resultPic3 = app.cover(res.data.data.resultPic3)
+          }
+
+
+          res.data.data.questionnaireTime = res.data.data.questionnaireTime.split(' ')[0]
+
+          that.data.picList.push(res.data.data.resultPic1)
+          that.data.picList.push(res.data.data.resultPic2)
+          that.data.picList.push(res.data.data.resultPic3)
           that.setData({
-            paperDetail:res.data.data
+            doPaperId: res.data.data.questionnaireTime.split('-')[0] + res.data.data.questionnaireTime.split('-')[1] + res.data.data.questionnaireTime.split('-')[2].split(' ')[0],
+            // doPaperId:res.data.data.doPaperId.substring(0,15),
+            paperDetail: res.data.data,
+            // questionList:res.data.data.questionList,
           })
-          console.log(that.data.paperDetail)
-        }  
+          // console.log(that.data.paperDetail)
+        }
       }
     })
   },
+  lookPic(e) {
+    wx.previewImage({
+      current: e.currentTarget.dataset.url, // 当前显示图片的http链接
+      urls: [e.currentTarget.dataset.url] // 需要预览的图片http链接列表
+    })
+  },
+  lookPicAll(e) {
+    wx.previewImage({
+      current: e.currentTarget.dataset.url, // 当前显示图片的http链接
+      urls: this.data.picList // 需要预览的图片http链接列表
+    })
+  },
+
   navbarTap: function (e) {
     this.setData({
       currentTab: e.currentTarget.dataset.idx,
     })
-    
+
+  },
+  backHistory(e) {
+    wx.reLaunch({
+      url: '../projects/projects',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

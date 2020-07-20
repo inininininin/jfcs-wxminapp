@@ -1,12 +1,13 @@
 // pages/projects/projects.js
-var app=getApp()
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    answerList:[],
+    answerList: [],
+    bigIntroBoxTopBg: ''
   },
 
   /**
@@ -15,14 +16,18 @@ Page({
   onLoad: function (options) {
     // var that=this
     this.getAns()
-    
+
+    this.setData({
+      bigIntroBoxTopBg: app.globalData.url + '/wxminapp/VIPbj.png'
+    })
+    console.log(app.globalData.url + '/wxminapp/VIPbj.png')
   },
-  reply(e){
-    var that=this
-    var answer=e.currentTarget.dataset.reply
-    that.data.answerList.push({'answer':answer})
+  reply(e) {
+    var that = this
+    var answer = e.currentTarget.dataset.reply
+    that.data.answerList.push({ 'answer': answer })
     that.setData({
-      answerList:that.data.answerList
+      answerList: that.data.answerList
     })
 
     var query = wx.createSelectorQuery();
@@ -36,7 +41,7 @@ Page({
         duration: 300,
       })
     })
-  
+
   },
   // 微信登录
   loginWx: function () {
@@ -46,213 +51,279 @@ Page({
     })
   },
 
-  startPaper(paperId){
-    var that=this
+  startPaper(paperId) {
+    var that = this
     wx.request({
-      url:app.globalData.url+ '/start-paper',
-      method:'post',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          'cookie': wx.getStorageSync('cookie')
-        },
-        data:'paperId='+paperId,
-        success:function(res){
-          if(res.data.codeMsg){
-            wx.showToast({
-              title: res.data.codeMsg,
-              icon: 'none',
-            });
-          }else if(res.data.code==20){
-            wx.showToast({
-              title: '请先登录',
-              icon: 'none',
-              duration: 2000,
-              mask: true,
-              complete: function complete(res) {
-                setTimeout(function () {                          
-                    wx.navigateTo({
-                      url: '../login/login',
-                    })
-                }, 500);
-              }
-            });
-          }else if(res.data.code==0){
-            app.globalData.doPaperId=res.data.data.doPaperId
-              // that.doPaperId(res.data.data.doPaperId)
-            }
-        }
-    })
-  },
-  doPaperId(paperId){
-    var that=this
-    wx.request({
-      url:app.globalData.url+ '/paper-question-list',
-      method:'post',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          'cookie': wx.getStorageSync('cookie'),
-        },
-        data:'paperId='+paperId+"&order=asc&sort=orderNo",
-        success:function(res){
-          if(res.data.codeMsg){
-            wx.showToast({
-              title: res.data.codeMsg,
-              icon: 'none',
-            });
-          }else if(res.data.code==20){
-            wx.showToast({
-              title: '请先登录',
-              icon: 'none',
-              duration: 2000,
-              mask: true,
-              complete: function complete(res) {
-                setTimeout(function () {                          
-                    wx.navigateTo({
-                      url: '../login/login',
-                    })
-                }, 500);
-              }
-            });
-          }else if(res.data.code==0){
-              app.globalData.questionList=res.data.data.itemList
-              app.globalData.questionListNum=0
-              app.globalData.questionListLength=res.data.data.itemList.length
-              that.setData({
-                questionList:res.data.data.itemList
-              })
-              wx.setStorageSync('questionList', JSON.stringify(res.data.data.itemList))
-
-              wx.navigateTo({
-                url: '../assessment/assessment',
-              })
-            }
-        }
-    })
-  },
-  getPaper(){
-    var that=this
-    wx.request({
-      url: app.globalData.url+'/get-paper',
-      method:'get',
+      url: app.globalData.url + '/start-paper',
+      method: 'post',
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         'cookie': wx.getStorageSync('cookie')
       },
-      success:function(res){
-        if(res.data.codeMsg){
+      data: 'paperId=' + paperId,
+      success: function (res) {
+        if (res.data.codeMsg) {
           wx.showToast({
             title: res.data.codeMsg,
             icon: 'none',
           });
-        }else if(res.data.code==20){
+        } else if (res.data.code == 20) {
           wx.showToast({
             title: '请先登录',
             icon: 'none',
             duration: 2000,
             mask: true,
             complete: function complete(res) {
-              setTimeout(function () {                          
-                  wx.navigateTo({
-                    url: '../login/login',
-                  })
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../login/login',
+                })
               }, 500);
             }
           });
-        }else if(res.data.code==0){
-          app.globalData.paperId=res.data.data.paperId
-            that.startPaper(res.data.data.paperId)
-            that.doPaperId(res.data.data.paperId)
-        }  
+        } else if (res.data.code == 0) {
+          app.globalData.doPaperId = res.data.data.doPaperId
+          // that.doPaperId(res.data.data.doPaperId)
+        }
       }
     })
   },
-  onlyBg(e){
-    var that=this
+  doPaperId(paperId) {
+    var that = this
+    wx.request({
+      url: app.globalData.url + '/paper-question-list',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie'),
+      },
+      data: 'paperId=' + paperId + "&order=asc&sort=orderNo",
+      success: function (res) {
+        if (res.data.codeMsg) {
+          wx.showToast({
+            title: res.data.codeMsg,
+            icon: 'none',
+          });
+        } else if (res.data.code == 20) {
+          wx.showToast({
+            title: '请先登录',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+            complete: function complete(res) {
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+              }, 500);
+            }
+          });
+        } else if (res.data.code == 0) {
+          // app.globalData.questionList=res.data.data.itemList
+          // app.globalData.questionListNum=0
+          // app.globalData.questionListLength=res.data.data.itemList.length
+          that.setData({
+            questionList: res.data.data.itemList
+          })
+          wx.setStorageSync('questionList', JSON.stringify(res.data.data.itemList))
+
+          wx.navigateTo({
+            url: '../assess/assess',
+          })
+        }
+      }
+    })
+  },
+  getPaper() {
+    var that = this
+    wx.request({
+      url: app.globalData.url + '/get-paper',
+      method: 'get',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      success: function (res) {
+        if (res.data.codeMsg) {
+          wx.showToast({
+            title: res.data.codeMsg,
+            icon: 'none',
+          });
+        } else if (res.data.code == 20) {
+          wx.showToast({
+            title: '请先登录',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+            complete: function complete(res) {
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+              }, 500);
+            }
+          });
+        } else if (res.data.code == 0) {
+          app.globalData.paperId = res.data.data.paperId
+          that.startPaper(res.data.data.paperId)
+          that.doPaperId(res.data.data.paperId)
+        }
+      }
+    })
+  },
+  onlyBg(e) {
+    var that = this
+    app.globalData.questionListNum=0
     wx.showToast({
       title: '请稍等',
       icon:'loading',
       duration:10000
     })
-    wx.request({
-      url:app.globalData.url+ '/get-last-done-do-paper',
-      method:'get',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      success:function(res){
-        if(res.data.codeMsg){
+    // app.globalData.userInfoDetail
+    var timer = setInterval(function () {
+      if (app.globalData.userInfoDetail.realnameCertificationIs == 1) {
+        if(app.globalData.userInfoDetail.beiJingZiLiaoIs==0){
+          clearInterval(timer);
           wx.showToast({
-            title: res.data.codeMsg,
-            icon: 'none',
-          });
-        }else if(res.data.code==20){
-          wx.showToast({
-            title: '请先登录',
+            title: '请稍等',
             icon: 'none',
             duration: 2000,
             mask: true,
             complete: function complete(res) {
-              setTimeout(function () {                          
-                  wx.navigateTo({
-                    url: '../login/login',
-                  })
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../information/information',
+                })
               }, 500);
             }
           });
-        }else if(res.data.code==0){
-          if(res.data.data.doPaperId){
-            wx.navigateTo({
-              url: '../programme/programme',
-            })
-          }else{
-            var timer = setInterval(function () {
-              if(that.data.realnameCertificationIs==0){
-                clearInterval(timer);
-                wx.showToast({
-                  title: '请先实名认证',
-                  icon: 'none',
-                  duration: 2000,
-                  mask: true,
-                  complete: function complete(res) {
-                    setTimeout(function () {                          
-                      wx.navigateTo({
-                        url: '../authentication/authentication',
-                      })
-                    }, 500);
-                  }
-                });
-              }else if(that.data.realnameCertificationIs==1){
-                clearInterval(timer);
-                that.getPaper()
-                
-              }
+        }else if (app.globalData.userInfoDetail.questionnaireIs == 0) {
+          clearInterval(timer);
+          wx.showToast({
+            title: '请稍等',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+            complete: function complete(res) {
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../assess/assess',
+                })
+              }, 500);
+            }
+          });
+        } else {
+          clearInterval(timer);
+          wx.navigateTo({
+            url: '../programme/programme',
+          })
+        }
+      } else if (app.globalData.userInfoDetail.realnameCertificationIs == 0) {
+        clearInterval(timer);
+        wx.showToast({
+          title: '请先实名认证',
+          icon: 'none',
+          duration: 2000,
+          mask: true,
+          complete: function complete(res) {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '../authentication/authentication',
+              })
             }, 500);
           }
-        }  
+        });
       }
-    })
-    
+
+    },500)
+
+
+    // 备份留着
+    // wx.showToast({
+    //   title: '请稍等',
+    //   icon:'loading',
+    //   duration:10000
+    // })
+    // wx.request({
+    //   url:app.globalData.url+ '/get-last-done-do-paper',
+    //   method:'get',
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     'cookie': wx.getStorageSync('cookie')
+    //   },
+    //   success:function(res){
+    //     if(res.data.codeMsg){
+    //       wx.showToast({
+    //         title: res.data.codeMsg,
+    //         icon: 'none',
+    //       });
+    //     }else if(res.data.code==20){
+    //       wx.showToast({
+    //         title: '请先登录',
+    //         icon: 'none',
+    //         duration: 2000,
+    //         mask: true,
+    //         complete: function complete(res) {
+    //           setTimeout(function () {                          
+    //               wx.navigateTo({
+    //                 url: '../login/login',
+    //               })
+    //           }, 500);
+    //         }
+    //       });
+    //     }else if(res.data.code==0){
+    //       if(res.data.data.doPaperId){
+    //         wx.navigateTo({
+    //           url: '../programme/programme',
+    //         })
+    //       }else{
+    //         var timer = setInterval(function () {
+    //           if(that.data.realnameCertificationIs==0){
+    //             clearInterval(timer);
+    //             wx.showToast({
+    //               title: '请先实名认证',
+    //               icon: 'none',
+    //               duration: 2000,
+    //               mask: true,
+    //               complete: function complete(res) {
+    //                 setTimeout(function () {                          
+    //                   wx.navigateTo({
+    //                     url: '../authentication/authentication',
+    //                   })
+    //                 }, 500);
+    //               }
+    //             });
+    //           }else if(that.data.realnameCertificationIs==1){
+    //             clearInterval(timer);
+    //             that.getPaper()
+
+    //           }
+    //         }, 500);
+    //       }
+    //     }  
+    //   }
+    // })
+    // 到这都留
   },
-  getAns(){
-    var that=this
+  getAns() {
+    var that = this
     wx.request({
-      url:app.globalData.url+ '/ke-fu-preset-question-list',
-      data:'order=asc&sort=orderNo',
-      method:'post',
+      url: app.globalData.url + '/ke-fu-preset-question-list',
+      data: 'order=asc&sort=orderNo',
+      method: 'post',
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         'cookie': wx.getStorageSync('cookie')
       },
-      success:function(res){
-        if(res.data.code==0){
-          for(var i in res.data.data.itemList){
-            res.data.data.itemList[i].number=(parseInt(i)+1)
+      success: function (res) {
+        if (res.data.code == 0) {
+          for (var i in res.data.data.itemList) {
+            res.data.data.itemList[i].number = (parseInt(i) + 1)
           }
           that.setData({
-            question:res.data.data.itemList
+            question: res.data.data.itemList
           })
-        }else if(res.data.code==20){
+        } else if (res.data.code == 20) {
           wx.showToast({
             title: '请先登录',
             icon: 'none',
@@ -281,10 +352,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that=this
-    if(!that.data.question){
-      this.getAns()
-    }
+    var that = this
+    // if (!that.data.question) {
+    //   this.getAns()
+    // }
     wx.request({
       url: app.globalData.url + '/login-refresh',
       header: {
@@ -293,26 +364,26 @@ Page({
       },
       method: 'post',
       success: function (res) {
-          if(res.data.code==20){
-            wx.showToast({
-              title: '请先登录',
-              icon: 'none',
-              duration: 2000,
-              mask: true,
-              complete: function complete(res) {
-                setTimeout(function () {                          
-                    wx.navigateTo({
-                      url: '../login/login',
-                    })
-                }, 500);
-              }
-            });
-          }else{
-            app.globalData.userInfoDetail = res.data.data
-            that.setData({
-              realnameCertificationIs:res.data.data.realnameCertificationIs
-            })
-          }
+        if (res.data.code == 20) {
+          wx.showToast({
+            title: '请先登录',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+            complete: function complete(res) {
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+              }, 500);
+            }
+          });
+        } else {
+          app.globalData.userInfoDetail = res.data.data
+          that.setData({
+            realnameCertificationIs: res.data.data.realnameCertificationIs
+          })
+        }
       }
     })
   },

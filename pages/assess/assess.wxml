@@ -1,0 +1,44 @@
+<!--pages/assess/assess.wxml-->
+<view class="topBg" style="background:url({{bigIntroBoxTopBg}}) no-repeat">
+	<view class="topBgNum">
+		<text>{{ansNum}}</text><text>/{{ansLength}}</text>
+	</view>
+	<view class="que">{{ansname}}</view>
+	<view class="ans" wx:if='{{ansNum==01}}'>
+		 <picker class="ansEve " bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="padding:0;">
+    <view class="picker" >
+    	{{array[index]}}岁
+
+				<image class="rightIcon" src="../icon/right.png"></image>
+    </view>
+		
+  </picker>
+	</view>
+	<view class="ans" wx:if='{{ansNum!=01}}'>
+		<view class="ansEve {{item.active}}" data-active='{{item.active}}' data-score='{{item.score}}' data-content='{{item.content}}' bindtap="changeAns" wx:for='{{answer}}' >{{item.content}}</view>
+	
+	</view>
+	<view class="btnSupply" bindtap="btnSupply" wx:if='{{ifShowEnd}}'>提交</view>
+	<view class="lookDetail" wx:if='{{ifShowEnd}}'>
+		<view class="lookDetailEve">
+			<view class="round"></view>
+			<view>
+				<text>查看</text>
+				<navigator url="../webview/webview?href={{userProtocol}}">《用户协议》</navigator>
+				<!-- <navigator>《特别声明》</navigator> -->
+			</view>
+		</view>
+		<view class="lookDetailEve">
+			<view class="round"></view>
+			<view>
+				<text>中国税收居民指在中国境内有住所，或无住所但在境内居住满一年的个人，不包括香港/澳门/台湾地区的税收居民</text>
+			</view>
+		</view>
+		<view class="lookDetailEve">
+			<view class="round"></view>
+			<view style="margin-bottom:70rpx">
+				<text>非居民指非中国税收居民以外的个人</text>
+			</view>
+		</view>
+	</view>
+</view>

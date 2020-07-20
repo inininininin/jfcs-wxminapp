@@ -1,0 +1,44 @@
+<!--pages/authentication/authentication.wxml-->
+<view class="authLine" style="margin-top:20rpx">
+	<text>可规划资产：</text>
+	<picker class="ansEve " bindchange="keGuiHuaZiChan" value="{{index}}" range="{{array}}" style="padding:0;">
+		<view class="picker">
+			{{array[index]}}
+			<!-- <image class="rightIcon" src="../icon/right.png"></image> -->
+		</view>
+	</picker>
+	<!-- <input bindinput="zcSure" placeholder="请输入可规划资产" type="text" maxlength="12" placeholder-class="placeholderClass"></input> -->
+</view>
+<view class="authLine" style="margin-top:20rpx">
+	<text>财富规划目标：</text>
+		<picker class="ansEve " bindchange="caiFuGuiHuaMuBiao" value="{{index1}}" range="{{array1}}" style="padding:0;">
+		<view class="picker">
+			{{array1[index1]}}
+			<!-- <image class="rightIcon" src="../icon/right.png"></image> -->
+		</view>
+	</picker>
+</view>
+<view class="authLine" style="margin-top:20rpx">
+	<text>财富规划年限：</text>
+		<picker class="ansEve " bindchange="caiFuGuiHuaNianXian" value="{{index2}}" range="{{array2}}" style="padding:0;">
+		<view class="picker">
+			{{array2[index2]}}
+			<!-- <image class="rightIcon" src="../icon/right.png"></image> -->
+		</view>
+	</picker>
+</view>
+<view class="authLine" style="margin-top:20rpx">
+	<text>家庭收支状况：</text>
+		<picker class="ansEve " bindchange="jiaTingShouZhiZhuangKuang" value="{{index3}}" range="{{array3}}" style="padding:0;">
+		<view class="picker">
+			{{array3[index3]}}
+			<!-- <image class="rightIcon" src="../icon/right.png"></image> -->
+		</view>
+	</picker>
+</view>
+
+<view class="btn">
+	<view wx:if='{{supplyIf}}' bindtap="supplyNo" class="supplyBtn">提交</view>
+	<view wx:if='{{!supplyIf}}' bindtap="supplyYes" class="supplyBtn active">提交</view>
+	<view class="refuse" bindtap="refuse">跳过</view>
+</view>

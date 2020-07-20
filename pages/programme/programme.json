@@ -1,4 +1,5 @@
 {
+  "navigationStyle":"custom",
   "usingComponents": {},
   "navigationBarTitleText": "财富规划方案",
   "navigationBarTextStyle": "black",

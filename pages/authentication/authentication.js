@@ -1,5 +1,5 @@
 // pages/authentication/authentication.js
-import { multiArray, objectMultiArray } from '../../pickerLinkage.js'
+// import { multiArray, objectMultiArray } from '../../pickerLinkage.js'
 var app=getApp()
 Page({
 
@@ -8,6 +8,7 @@ Page({
    */
   data: {
     sendCode: true,
+    phoneIf:false,
     sendtext: '获取验证码',
     time: 60,
     supplyIf: true,
@@ -15,9 +16,6 @@ Page({
       { value: '1', name: '男'},
       { value: '2', name: '女' },
     ],
-    multiIndex: [0, 0],
-    multiArray: multiArray,
-    objectMultiArray: objectMultiArray,
     picker:true,
     name:'',
     phone:'',
@@ -28,13 +26,34 @@ Page({
     area1Name:'',
     area2Id:'',
     area2Name:'',
+    region: ['北京省', '北京市', '东城区'],
+    customItem: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log(app.globalData.areaJson)
+    this.setData({
+      multiArray:app.globalData.areaJson
+    })
+  },
+  bindRegionChange: function (e) {
+    this.setData({
+      picker:false
+    })
+   
+    this.setData({
+      region: e.detail.value,
+      area1Id:e.detail.code[2].substring(0,2),
+      area2Id:e.detail.code[2].substring(0,4),
+      area3Id:e.detail.code[2],
+      area1Name:e.detail.value[0],
+      area2Name:e.detail.value[1],
+      area3Name:e.detail.value[2],
+    })
+    this.makeSureOk()
   },
   refuse(e){
     wx.navigateBack()
@@ -69,42 +88,7 @@ Page({
     })
   },
 
-  bindMultiPickerChange: function (e) {
-    console.log(e)
-    this.setData({
-      "multiIndex[0]": e.detail.value[0],
-      "multiIndex[1]": e.detail.value[1],
-     area1Id:e.detail.value[0],
-     area1Name:multiArray[0][e.detail.value[0]],
-     area2Id:e.detail.value[1],
-     area2Name:multiArray[e.detail.value[1]],
-     })
-    console.log(multiArray[0][e.detail.value[0]],multiArray[1][e.detail.value[1]])
-    this.makeSureOk()
-  },
-  bindMultiPickerColumnChange: function (e) {
-    console.log(e)
-    var that=this
-    var list
-    that.setData({
-      picker:false
-    })
-    switch (e.detail.column) {
-      case 0: list = []
-        for (var i = 0; i < that.data.objectMultiArray.length; i++) {
-          if (that.data.objectMultiArray[i].parid == that.data.objectMultiArray[e.detail.value].regid) {
-            list.push(that.data.objectMultiArray[i].regname)
-          }
-        }
-        that.setData({
-          "multiArray[1]": list,
-          "multiIndex[0]": e.detail.value, "multiIndex[1]": 0
-        })
-        console.log(list)
-    }
-    console.log(e.detail.value)
-    this.makeSureOk()
-  },
+  
   nameSure(e){
     this.setData({
       name:e.detail.value
@@ -196,7 +180,7 @@ sendCodeYes(e) {
 // 确认表格是否填写完整
 makeSureOk(e){
   console.log(this.data.name,this.data.phone,this.data.smsvcode,this.data.sex,this.data.age,this.data.area1Id,this.data.area2Id,this.data.area1Name,this.data.area2Name)
-  if(this.data.name!=''&&this.data.phone!=''&&this.data.phone.length>=11&&this.data.smsvcode!=''&&this.data.sex!=''&&this.data.age!=''&&this.data.area1Id!=''&&this.data.area1Name!=''&&this.data.area2Id!=''&&this.data.area2Name!=''){
+  if(this.data.name!=''&&this.data.phone!=''&&this.data.sex!=''&&this.data.age!=''&&this.data.area1Id!=''&&this.data.area1Name!=''&&this.data.area2Id!=''&&this.data.area2Name!=''&&this.data.area3Id!=''&&this.data.area3Name!=''){
       console.log(2)
       this.setData({
         supplyIf:false
@@ -205,166 +189,214 @@ makeSureOk(e){
 },
   // 提交认证
   supplyYes(e){
+   
     var that=this
-    wx.request({
-      url: app.globalData.url+'/update-my-realname-info',
-      data:'realname='+that.data.name+'&phone='+that.data.phone+'&smsvcode='+that.data.smsvcode+'&sex='+that.data.sex+'&age='+that.data.age
-      +'&area1Id='+that.data.area1Id+'&area1Name='+that.data.area1Name+'&area2Id='+that.data.area2Id+'&area2Name='+that.data.area2Name,
-      method:'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      success:function(res){
-        if(res.data.code==0){
-          wx.showToast({
-            title: '认证中,请稍等',
-            icon:'none',
-            duration:20000
+    if(that.data.area1Id==''){
+      wx.showToast({
+        title: '请选择地区',
+        icon:'none',
+      })
+      return
+    }
+    wx.showToast({
+      title: '请稍等',
+      icon:'none',
+      duration:5000
+    })
+    // wx.login({
+    //   success(res) {
+    //     var jscode = res.code
+        wx.request({
+          url: app.globalData.url+'/update-my-realname-info',
+          data:'realname='+that.data.name+'&age='+that.data.age+'&sex='+that.data.sex
+          +'&area1Id='+that.data.area1Id+'&area1Name='+that.data.area1Name+'&area2Id='+that.data.area2Id+'&area2Name='+that.data.area2Name+'&area3Id='+that.data.area3Id+'&area3Name='+that.data.area3Name+'&wxMinappIv='+that.data.iv+'&wxMinAppEncryptedDataOfPhoneNumber='+that.data.encryptedData,//+'&jscode='+jscode,
+          method:'post',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            'cookie': wx.getStorageSync('cookie')
+          },
+          success:function(res){
+            if(res.data.code==0){
+              wx.showToast({
+                title: '认证中,请稍等',
+                icon:'none',
+                duration:20000
+              })
+              wx.request({
+                url: app.globalData.url + '/login-refresh',
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                  'cookie': wx.getStorageSync('cookie')
+                },
+                method: 'post',
+                success: function (res) {
+                  wx.hideToast()
+                  if (res.data.code == 0) {
+                    app.globalData.userInfoDetail = res.data.data
+                    if(res.data.data.beiJingZiLiaoIs==0){
+                      wx.reLaunch({
+                        url: '../information/information',
+                      })
+                    }else if(res.data.data.questionnaireIs==0){
+                     
+                      wx.reLaunch({
+                        url: '../assess/assess',
+                      })
+                    }else{
+                      wx.reLaunch({
+                        url: '../programme/programme',
+                      })
+                    }
+                   
+                  } else {
+                    wx.showToast({
+                      title: res.data.codeMsg,
+                      icon: 'none'
+                    })
+                  }
+                }
+              })
+            }else if(res.data.code==20){
+              wx.showToast({
+                title: '请先登录',
+                icon: 'none',
+                duration: 2000,
+                mask: true,
+                complete: function complete(res) {
+                  setTimeout(function () {                          
+                      wx.navigateTo({
+                        url: '../login/login',
+                      })
+                  }, 500);
+                }
+              });
+            }
+          }
+        })
+    //   }
+    // })
+    
+  },
+
+
+  getPhoneNumber(e) {
+    var that=this
+    console.log(e.detail.iv)
+    wx.showToast({
+      title: '授权中，请稍后',
+      icon:'none',
+      duration:100000
+    })
+    that.setData({
+      encryptedData:encodeURIComponent(e.detail.encryptedData),
+      iv:encodeURIComponent(e.detail.iv)
+    })
+    // wx.login({
+    //     success(res) {
+    //       var jscode = res.code
+          wx.request({
+            url: app.globalData.url + '/get-wx-minapp-phone',
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              'cookie': wx.getStorageSync('cookie')
+            },
+            data:'wxMinAppEncryptedDataOfPhoneNumber='+encodeURIComponent(e.detail.encryptedData)+'&wxMinappIv='+encodeURIComponent(e.detail.iv),//+'&jscode='+jscode,
+            method: 'post',
+            success: function (res) {
+              wx.hideToast()
+              if (res.data.code == 0) {
+                that.setData({
+                  phone:res.data.data.phone
+                })
+                that.makeSureOk()
+              } else {
+                wx.showToast({
+                  title: res.data.codeMsg,
+                  icon: 'none'
+                })
+              }
+            }
           })
-          that.getPaper()
-          // wx.navigateTo({
-          //   url: '../assessment/assessment',
-          // })
-        }else if(res.data.code==20){
-          wx.showToast({
-            title: '请先登录',
-            icon: 'none',
-            duration: 2000,
-            mask: true,
-            complete: function complete(res) {
-              setTimeout(function () {                          
-                  wx.navigateTo({
-                    url: '../login/login',
-                  })
-              }, 500);
-            }
-          });
-        }
-      }
-    })
-  },
+        // }
+      // })
+   
+    // wx.login({
+    //   success(res) {
+    //     var code = res.code
+    //     wx.request({
+    //       url: app.globalData.url + '/user/login-by-wxminapp',
+    //       header: {
+    //         "Content-Type": "application/x-www-form-urlencoded",
+    //       },
+    //       method: 'post',
+    //       data: {
+    //         wsJsCode: code,
+    //         loginHospitalId: wx.getStorageSync('loginHospitalId'),
+    //         wxMinappencryptedDataOfPhoneNumber: e.detail.encryptedData || '',
+    //         wxMinappIv: e.detail.iv || '',
+    //       },
+    //       success: function (res) {
+    //         wx.hideToast()
+    //         if (res.data.code == 0) {
+
+    //           wx.setStorageSync('cookie', res.header['Set-Cookie'])
+    //           wx.request({
+    //             url: app.globalData.url + '/user/login-refresh',
+    //             header: {
+    //               "Content-Type": "application/x-www-form-urlencoded",
+    //               'cookie': wx.getStorageSync('cookie')
+    //             },
+    //             method: 'post',
+    //             success: function (res) {
+    //               wx.hideToast()
+    //               if (res.data.code == 0) {
+    //                 app.globalData.userInfoDetail = res.data.data
+    //                 wx.setStorageSync('loginHospitalId', res.data.data.hospitalId)
+    //                 wx.setStorageSync('loginHpitalName', res.data.data.hospitalName)
+    //                 wx.setStorageSync('codeType', that.data.type)
+    //                 wx.setStorageSync('withoutLogin', false)
+    //                 wx.showToast({
+    //                   title: '登录成功',
+    //                   icon: 'none',
+    //                   duration: 2000,
+    //                   mask: true,
+    //                   complete: function complete(res) {
+    //                     setTimeout(function () {                          
+    //                       if (that.data.fromType == 1) {
+    //                         wx.setStorageSync('fromTab', 1)
+    //                         wx.switchTab({
+    //                           url: '../index/index',
+    //                         })
+    //                         wx.setStorageSync('historyUrl', that.data.backUrl)
+    //                       } else {
+    //                         wx.switchTab({
+    //                           url: '../index/index',
+    //                         })
+    //                       }
+    //                     }, 500);
+    //                   }
+    //                 });
+
+    //               } else {
+    //                 wx.showToast({
+    //                   title: res.data.codeMsg,
+    //                   icon: 'none'
+    //                 })
+    //               }
+    //             }
+    //           })
 
 
-  startPaper(paperId){
-    var that=this
-    wx.request({
-      url:app.globalData.url+ '/start-paper',
-      method:'post',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          'cookie': wx.getStorageSync('cookie')
-        },
-        data:'paperId='+paperId,
-        success:function(res){
-          if(res.data.codeMsg){
-            wx.showToast({
-              title: res.data.codeMsg,
-              icon: 'none',
-            });
-          }else if(res.data.code==20){
-            wx.showToast({
-              title: '请先登录',
-              icon: 'none',
-              duration: 2000,
-              mask: true,
-              complete: function complete(res) {
-                setTimeout(function () {                          
-                    wx.navigateTo({
-                      url: '../login/login',
-                    })
-                }, 500);
-              }
-            });
-          }else if(res.data.code==0){
-            app.globalData.doPaperId=res.data.data.doPaperId
-              // that.doPaperId(res.data.data.doPaperId)
-            }
-        }
-    })
-  },
-  doPaperId(paperId){
-    var that=this
-    wx.request({
-      url:app.globalData.url+ '/paper-question-list',
-      method:'post',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          'cookie': wx.getStorageSync('cookie'),
-        },
-        data:'paperId='+paperId+"&order=asc&sort=orderNo",
-        success:function(res){
-          if(res.data.codeMsg){
-            wx.showToast({
-              title: res.data.codeMsg,
-              icon: 'none',
-            });
-          }else if(res.data.code==20){
-            wx.showToast({
-              title: '请先登录',
-              icon: 'none',
-              duration: 2000,
-              mask: true,
-              complete: function complete(res) {
-                setTimeout(function () {                          
-                    wx.navigateTo({
-                      url: '../login/login',
-                    })
-                }, 500);
-              }
-            });
-          }else if(res.data.code==0){
-              app.globalData.questionList=res.data.data.itemList
-              app.globalData.questionListNum=0
-              app.globalData.questionListLength=res.data.data.itemList.length
-              that.setData({
-                questionList:res.data.data.itemList
-              })
-              wx.setStorageSync('questionList', JSON.stringify(res.data.data.itemList))
-
-              wx.navigateTo({
-                url: '../assessment/assessment',
-              })
-            }
-        }
-    })
-  },
-  getPaper(){
-    var that=this
-    wx.request({
-      url: app.globalData.url+'/get-paper',
-      method:'get',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      success:function(res){
-        if(res.data.codeMsg){
-          wx.showToast({
-            title: res.data.codeMsg,
-            icon: 'none',
-          });
-        }else if(res.data.code==20){
-          wx.showToast({
-            title: '请先登录',
-            icon: 'none',
-            duration: 2000,
-            mask: true,
-            complete: function complete(res) {
-              setTimeout(function () {                          
-                  wx.navigateTo({
-                    url: '../login/login',
-                  })
-              }, 500);
-            }
-          });
-        }else if(res.data.code==0){
-          app.globalData.paperId=res.data.data.paperId
-            that.startPaper(res.data.data.paperId)
-            that.doPaperId(res.data.data.paperId)
-        }  
-      }
-    })
+    //         } else {
+    //           wx.showToast({
+    //             title: res.data.codeMsg,
+    //             icon: 'none'
+    //           })
+    //         }
+    //       }
+    //     })
+    //   }
+    // })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,16 +1,20 @@
 {
   "pages": [
+    
     "pages/projects/projects",
+    "pages/information/information",
+    "pages/authentication/authentication",
+    "pages/assess/assess",
     "pages/project/project",
     "pages/login/login",
     "pages/programme/programme",
+    "pages/webview/webview",
     "pages/assessment/assessment",
-    "pages/authentication/authentication",
     
     "pages/index/index",
     "pages/logs/logs",
     "pages/components/navigationBar/navigationBar"
-
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
