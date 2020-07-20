@@ -23,6 +23,7 @@ Page({
   onLoad: function (options) {
     var that = this
     that.setData({
+      backgroundUrl:app.globalData.url+'/wxminapp/blackbg.png',
       keGuiHuaZiChan:app.globalData.userInfoDetail.keGuiHuaZiChan||'',
       caiFuGuiHuaMuBiao:app.globalData.userInfoDetail.caiFuGuiHuaMuBiao||'',
       caiFuGuiHuaNianXian:app.globalData.userInfoDetail.caiFuGuiHuaNianXian||'',

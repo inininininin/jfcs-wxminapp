@@ -8,7 +8,7 @@
     </view>
   </view>
 </view>
-<view class="topbg" style='margin-top:{{statusBarHeight+titleBarHeight}}px'>
+<view class="topbg" style='margin-top:{{statusBarHeight+titleBarHeight}}px;background:url({{backgroundUrl}}) no-repeat'>
   <view class="name">{{realname}}</view>
   <view class="age">
     <text wx:if='{{age}}'>{{age}}</text>
