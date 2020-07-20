@@ -104,14 +104,17 @@ Page({
             res.data.data.resultPic3 = app.cover(res.data.data.resultPic3)
           }
 
-
+          console.log(res.data.data.questionnaireTime)
+          console.log(res.data.data.questionnaireTime.split('-')[2])
+          res.data.data.doPaperId=res.data.data.questionnaireTime.split('-')[0] + res.data.data.questionnaireTime.split('-')[1] + res.data.data.questionnaireTime.split('-')[2].split(' ')[0]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[0]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[1]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[2].split('.')[0]
           res.data.data.questionnaireTime = res.data.data.questionnaireTime.split(' ')[0]
 
           that.data.picList.push(res.data.data.resultPic1)
           that.data.picList.push(res.data.data.resultPic2)
           that.data.picList.push(res.data.data.resultPic3)
+          
           that.setData({
-            doPaperId: res.data.data.questionnaireTime.split('-')[0] + res.data.data.questionnaireTime.split('-')[1] + res.data.data.questionnaireTime.split('-')[2].split(' ')[0],
+            doPaperId: res.data.data.doPaperId,
             // doPaperId:res.data.data.doPaperId.substring(0,15),
             paperDetail: res.data.data,
             // questionList:res.data.data.questionList,
