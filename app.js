@@ -59,21 +59,22 @@ App({
       },
       method: 'get',
       success: function (res) {
-        vm.globalData.areaJson=res.data
+        console.log(res.data.data.userProtocol)
+        vm.globalData.userProtocol='https://test.inininininin.com'+res.data.data.userProtocol
       }
     })
 
-    wx.request({
-      url: vm.globalData.url + '/wxminapp/area.json',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      method: 'get',
-      success: function (res) {
-        vm.globalData.userProtocol=res.data.userProtocol
-      }
-    })
+    // wx.request({
+    //   url: vm.globalData.url + '/wxminapp/area.json',
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     'cookie': wx.getStorageSync('cookie')
+    //   },
+    //   method: 'get',
+    //   success: function (res) {
+    //     vm.globalData.areaJson=res.data
+    //   }
+    // })
   },
   cover(_cover){
     var that=this

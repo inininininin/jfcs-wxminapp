@@ -35,6 +35,7 @@ Page({
    */
   onLoad: function (options) {
     var that=this
+    console.log(app.globalData.userProtocol)
     that.setData({
       userProtocol:app.globalData.userProtocol,
       ansLength:app.globalData.questionListLength,
