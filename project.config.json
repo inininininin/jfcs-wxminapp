@@ -13,11 +13,12 @@
 		"autoAudits": false,
 		"coverView": true,
 		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false
+		"scopeDataCheck": false,
+		"useCompilerModule": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.11.3",
-	"appid": "wxfcc3d2cb630063a9",
+	"appid": "wx913710f43f8c3728",
 	"projectname": "jfcs-wxminapp",
 	"debugOptions": {
 		"hidedInDevtools": []

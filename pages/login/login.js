@@ -62,7 +62,7 @@ Page({
                   success: function (res) {
                     wx.hideToast()
                     if (res.data.code == 0) {
-
+                      debugger
                       app.globalData.userInfoDetail = res.data.data
                       // wx.setStorageSync('loginHospitalId', res.data.data.hospitalId)
                       // wx.setStorageSync('loginHpitalName', res.data.data.hospitalName)

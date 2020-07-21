@@ -1,5 +1,6 @@
 //app.js
 App({
+  version:'20.0721.1441',
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -86,6 +87,7 @@ App({
     userInfoDetail:[],
     statusBarHeight:'',
     titleBarHeight:'',
+    domain:'https://test.inininininin.com',
     url:'https://test.inininininin.com/jfcs',
     version:'2020.0717.1718',
     areaJson:'',

@@ -356,36 +356,72 @@ Page({
     // if (!that.data.question) {
     //   this.getAns()
     // }
-    wx.request({
-      url: app.globalData.url + '/login-refresh',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      method: 'post',
-      success: function (res) {
-        if (res.data.code == 20) {
-          wx.showToast({
-            title: '请先登录',
-            icon: 'none',
-            duration: 2000,
-            mask: true,
-            complete: function complete(res) {
-              setTimeout(function () {
-                wx.navigateTo({
-                  url: '../login/login',
-                })
-              }, 500);
-            }
-          });
-        } else {
-          app.globalData.userInfoDetail = res.data.data
-          that.setData({
-            realnameCertificationIs: res.data.data.realnameCertificationIs
-          })
-        }
-      }
+debugger
+wx.checkSession({
+  success () {
+    //session_key 未过期，并且在本生命周期一直有效
+  },
+  fail () {
+    // session_key 已经失效，需要重新执行登录流程
+    wx.navigateTo({
+      url: '../login/login',
     })
+    
+  }
+})
+
+wx.request({
+  url: app.globalData.url + '/login-refresh',
+  header: {
+    "Content-Type": "application/x-www-form-urlencoded",
+    'cookie': wx.getStorageSync('cookie')
+  },
+  method: 'post',
+  success: function (res) {
+    wx.hideToast()
+    if (res.data.code == 0) {
+      debugger
+      app.globalData.userInfoDetail = res.data.data
+    } else {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
+  }
+})
+
+
+    // wx.request({
+    //   url: app.globalData.url + '/login-refresh',
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     'cookie': wx.getStorageSync('cookie')
+    //   },
+    //   method: 'post',
+    //   success: function (res) {
+    //     if (res.data.code == 20) {
+    //       wx.showToast({
+    //         title: '请先登录',
+    //         icon: 'none',
+    //         duration: 2000,
+    //         mask: true,
+    //         complete: function complete(res) {
+    //           setTimeout(function () {
+    //             wx.navigateTo({
+    //               url: '../login/login',
+    //             })
+    //           }, 500);
+    //         }
+    //       });
+    //     } else {
+    //       app.globalData.userInfoDetail = res.data.data
+    //       that.setData({
+    //         realnameCertificationIs: res.data.data.realnameCertificationIs
+    //       })
+    //     }
+    //   }
+    // })
+
   },
 
   /**
