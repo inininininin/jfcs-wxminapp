@@ -18,7 +18,7 @@ Page({
   onLoad: function (options) {
     var href = options.href
     this.setData({
-      href:decodeURIComponent(href),
+      href:'https://test.inininininin.com/oss/jfcs/20200721150545431155334759819171.html'//decodeURIComponent(href),
     })
   },
 
