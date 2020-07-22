@@ -60,21 +60,33 @@ App({
       },
       method: 'get',
       success: function (res) {
-        vm.globalData.areaJson=res.data
+        vm.globalData.userProtocol='https://test.inininininin.com'+res.data.data.userProtocol
       }
     })
-
     wx.request({
-      url: vm.globalData.url + '/wxminapp/area.json',
+      url: vm.globalData.url + '/config-info?name=example',
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         'cookie': wx.getStorageSync('cookie')
       },
       method: 'get',
       success: function (res) {
-        vm.globalData.userProtocol=res.data.userProtocol
+        if(res.data.data.example!=''&&res.data.data.example!=null&&res.data.data.example!=undefined){
+          vm.globalData.example='https://test.inininininin.com'+res.data.data.example
+        }
       }
     })
+    // wx.request({
+    //   url: vm.globalData.url + '/wxminapp/area.json',
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     'cookie': wx.getStorageSync('cookie')
+    //   },
+    //   method: 'get',
+    //   success: function (res) {
+    //     vm.globalData.areaJson=res.data
+    //   }
+    // })
   },
   cover(_cover){
     var that=this
@@ -92,6 +104,7 @@ App({
     url:'https://test.inininininin.com/jfcs',
     version:'2020.0717.1718',
     areaJson:'',
+    example:'',
     userProtocol:'',
     paperId:'',
     doPaperId:'',

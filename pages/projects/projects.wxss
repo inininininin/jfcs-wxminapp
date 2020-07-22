@@ -5,15 +5,15 @@ page{
 }
 .bigIntro{
   width: 750rpx;
-  height: 721rpx;
+  height: 791rpx;
   position: relative;
 }
 .bigIntroBox{
   position: absolute;
-  bottom: 0;
+  bottom: 0rpx;
   left: 32rpx;
   width: 686rpx;
-  height: 614rpx;
+  height: 684rpx;
   border-radius: 20rpx;
 }
 .bigIntroBoxAvator image{
@@ -34,7 +34,7 @@ border-radius: 20px 20px 0px 0px;
 .bigIntroBoxBottom{
   width: 686rpx;
 height: 84rpx;
-background: #0f0f0d;
+background: #ffffff;
 border-radius: 0px 0px 20rpx 20rpx;
 font-size: 32rpx;
 font-family: PingFangSC, PingFangSC-Regular;
@@ -294,4 +294,45 @@ text-align: left;
 color: #666666;
 line-height: 37rpx;
 word-break:break-all;word-wrap:break-word
+}
+
+.lookFg{
+  width: 686rpx;
+height: 60rpx;
+background: #ffffff;
+border-radius: 20rpx;
+margin:10rpx 0 50rpx;
+font-size: 26rpx;
+font-family: PingFangSC, PingFangSC-Regular;
+font-weight: 400;
+text-align: center;
+color: #666666;
+line-height: 60rpx;
+}
+.projectTitleLfEve{
+  position: absolute;
+  bottom: 38rpx;
+  left: 34rpx;
+  width: 20rpx;
+  height: 50rpx;
+}
+.projectTitleRtEve{
+  position: absolute;
+  bottom: 38rpx;
+  right: 34rpx;
+  width: 20rpx;
+  height: 50rpx;
+}
+.projectTitleLfThis {
+  width: 56rpx;
+  height: 19rpx;
+  display: inline-block;
+  animation: twinkle 0.5s infinite alternate;
+}
+
+.projectTitleRtThis {
+  width: 56rpx;
+  height: 19rpx;
+  display: inline-block;
+  animation: twinkle 0.5s infinite alternate;
 }
