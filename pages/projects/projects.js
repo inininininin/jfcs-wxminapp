@@ -638,10 +638,19 @@ wx.request({
 
   },
 lookFg(e){
-  wx.previewImage({
-    current: app.globalData.example, // 当前显示图片的http链接
-    urls: [app.globalData.example] // 需要预览的图片http链接列表
-  })
+  if(app.globalData.example==''||app.globalData.example==null||app.globalData.example==undefined){
+    wx.showToast({
+              title: '当前暂无范稿',
+              icon: 'none',
+              duration: 2000,
+            });
+  }else{
+    wx.previewImage({
+      current: app.globalData.example, // 当前显示图片的http链接
+      urls: [app.globalData.example] // 需要预览的图片http链接列表
+    })
+  }
+  
 },
   /**
    * 生命周期函数--监听页面隐藏

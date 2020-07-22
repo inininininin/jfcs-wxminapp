@@ -70,7 +70,9 @@ App({
       },
       method: 'get',
       success: function (res) {
-        vm.globalData.example='https://test.inininininin.com'+res.data.data.example
+        if(res.data.data.example!=''&&res.data.data.example!=null&&res.data.data.example!=undefined){
+          vm.globalData.example='https://test.inininininin.com'+res.data.data.example
+        }
       }
     })
     // wx.request({
@@ -101,6 +103,7 @@ App({
     url:'https://test.inininininin.com/jfcs',
     version:'2020.0717.1718',
     areaJson:'',
+    example:'',
     userProtocol:'',
     paperId:'',
     doPaperId:'',
