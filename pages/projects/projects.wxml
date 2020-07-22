@@ -20,7 +20,7 @@
       <view class="projectTitleMd" style="color:#F27500;margin:0 39rpx;" bindtap="onlyBg">定制我的专属报告</view>
       <image class="projectTitleRtThis" src="../icon/shuang2.svg"></image>
     </view>
-    <view class="lookFg">
+    <view class="lookFg" bindtap="lookFg">
       <image class="projectTitleLfEve" src="../icon/xian.svg"></image>
       <text>查看范稿</text>  
       <image class="projectTitleRtEve" src="../icon/xian.svg"></image> 

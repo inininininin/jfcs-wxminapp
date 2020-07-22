@@ -59,11 +59,20 @@ App({
       },
       method: 'get',
       success: function (res) {
-        console.log(res.data.data.userProtocol)
         vm.globalData.userProtocol='https://test.inininininin.com'+res.data.data.userProtocol
       }
     })
-
+    wx.request({
+      url: vm.globalData.url + '/config-info?name=example',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      method: 'get',
+      success: function (res) {
+        vm.globalData.example='https://test.inininininin.com'+res.data.data.example
+      }
+    })
     // wx.request({
     //   url: vm.globalData.url + '/wxminapp/area.json',
     //   header: {
