@@ -1,0 +1,60 @@
+<view id='scrollHeight' style="padding-bottom:120rpx">
+  <!--pages/projects/projects.wxml-->
+<view class="bigIntro">
+ <view class="bigIntroBoxAvator">
+      <image src="../icon/avator.svg"></image>
+    </view>
+  <view class="bigIntroBox">
+    <view class="bigIntroBoxTop" style="background:url({{bigIntroBoxTopBg}}) no-repeat">
+      <view class="title">财富规划团队</view>
+      <view class="intro">通过对您财富管理和目标深入了解，定制财富计划和投资策略</view>
+      <view class="projectTitle">
+        <image class="projectTitleLf" src="../icon/zuo.svg"></image>
+        <view class="projectTitleMd">我们如何为您做专属财富规划</view>
+        <image class="projectTitleRt" src="../icon/you.svg"></image>
+      </view>
+      <view class="content">运用严格科学的产品筛选策略，依托专业研发团队的研究资源及成果、由理财师团队严谨按照一定服务流程与方法，为您量身定制资产配置报告。</view>
+    </view>
+    <view class="bigIntroBoxBottom" style="margin-top:20rpx" bindtap="onlyBg">
+      <image class="projectTitleLfThis" src="../icon/shuang1.svg"></image>
+      <view class="projectTitleMd" style="margin:0 39rpx;" bindtap="onlyBg">定制我的专属报告</view>
+      <image class="projectTitleRtThis" src="../icon/shuang2.svg"></image>
+    </view>
+    <view class="lookFg" bindtap="lookFg" style="margin-top:20rpx">
+      <!-- <image class="projectTitleLfEve" src="../icon/xian.svg"></image> -->
+      <text>查看范稿</text>  
+      <!-- <image class="projectTitleRtEve" src="../icon/xian.svg"></image>  -->
+      
+    </view>
+   
+    <!-- <view class="bigIntroBoxBottom"  bindtap="onlyBg">定制我的专属报告</view> -->
+  </view>
+</view>
+<view class="talkBox">
+    <view class="talkBoxTop">
+      <view><image src="../icon/callSis2.svg"></image></view>
+      <text>Hi～娜娜</text>
+    </view>
+    <view class="talkBoxBottom">我是嘉富财商~ 理财就找我，很高兴为您服务！</view>
+</view>
+<view class="question">
+  <view >
+    <text>常见问题：</text>
+    <text  wx:for='{{question}}' bindtap="reply"  data-reply='{{item.reply}}'>{{item.number}}.{{item.name}}</text>
+    <!-- <text>{{item.reply}}</text> -->
+  </view>
+</view>
+
+<view class="talkBoxThis" wx:for='{{answerList}}'>
+    <view class="talkBoxTopThis">
+      <view><image src="../icon/callSis2.svg"></image></view>
+      <text>Hi～娜娜</text>
+    </view>
+    <view class="talkBoxBottomThis">{{item.answer}}</view>
+</view>
+
+<view class="tabbarBtn">
+  <button open-type="contact" bindcontact="handleContact"><text>在这里写下您想说的话</text><image src="../icon/send.svg"></image></button>
+  <!-- <view></view> -->
+</view>
+</view>
