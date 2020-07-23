@@ -144,6 +144,7 @@ Page({
     })
 
   },
+  
   backHistory(e) {
     wx.reLaunch({
       url: '../projects/projects',
