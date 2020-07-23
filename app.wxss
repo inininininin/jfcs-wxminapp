@@ -65,3 +65,14 @@ button::after{
   /* background: rgba(0,0,0,0.5); */
   z-index: 3;
 }
+
+
+/* 闪动动效 */
+@keyframes twinkle {
+  0%{
+      opacity:.0.8;
+  }
+  100%{
+      opacity:0;
+  }
+}

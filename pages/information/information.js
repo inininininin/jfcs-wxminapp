@@ -102,9 +102,46 @@ Page({
   },
 
 refuse(e){
-  wx.navigateTo({
-    url: '../assess/assess',
+  wx.showToast({
+    title: '请稍等',
+          icon: 'none',
+          duration:5000
   })
+  wx.request({
+    url: app.globalData.url + '/login-refresh',
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      'cookie': wx.getStorageSync('cookie')
+    },
+    method: 'post',
+    success: function (res) {
+      wx.hideToast()
+      if (res.data.code == 0) {
+          app.globalData.userInfoDetail = res.data.data
+          // that.getPaper()
+          // if(res.data.data.beiJingZiLiaoIs==0){
+          //   wx.reLaunch({
+          //     url: '../information/information',
+          //   })
+          // }else
+           if(res.data.data.questionnaireIs==0){
+            wx.reLaunch({
+              url: '../assess/assess',
+            })
+          }else{
+            wx.reLaunch({
+              url: '../programme/programme',
+            })
+          }
+      } else {
+        wx.showToast({
+          title: res.data.codeMsg,
+          icon: 'none'
+        })
+      }
+    }
+  })
+  
 },
   // 确认表格是否填写完整
   makeSureOk(e) {

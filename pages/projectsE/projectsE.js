@@ -7,7 +7,8 @@ Page({
    */
   data: {
     answerList: [],
-    bigIntroBoxTopBg: ''
+    bigIntroBoxTopBg: '',
+    showThisBg:true,
   },
 
   /**
@@ -172,13 +173,18 @@ Page({
     })
   },
   onlyBg(e) {
+    console.log(12312)
     var that = this
+    that.setData({
+      showThisBg:false
+    })
     app.globalData.questionListNum=0
     wx.showToast({
       title: '请稍等',
       icon:'loading',
-      duration:10000
+      duration:10000,
     })
+    
     // app.globalData.userInfoDetail
     var timer = setInterval(function () {
       if (app.globalData.userInfoDetail.realnameCertificationIs == 1) {
@@ -356,6 +362,9 @@ Page({
     // if (!that.data.question) {
     //   this.getAns()
     // }
+    that.setData({
+      showThisBg:true,
+    })
     app.globalData.questionList=[{
       "name": "您的年龄是？",
       "answer": [{
@@ -570,7 +579,7 @@ Page({
         "score": 2
       }]
     }]
-debugger
+
 wx.checkSession({
   success () {
     //session_key 未过期，并且在本生命周期一直有效
@@ -594,7 +603,6 @@ wx.request({
   success: function (res) {
     wx.hideToast()
     if (res.data.code == 0) {
-      debugger
       app.globalData.userInfoDetail = res.data.data
     } else {
       wx.navigateTo({

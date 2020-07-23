@@ -5,7 +5,7 @@ page{
 }
 .bigIntro{
   width: 750rpx;
-  height: 791rpx;
+  height: 707rpx;
   position: relative;
 }
 .bigIntroBox{
@@ -13,12 +13,12 @@ page{
   bottom: 0rpx;
   left: 32rpx;
   width: 686rpx;
-  height: 684rpx;
+  height: 620rpx;
   border-radius: 20rpx;
 }
 .bigIntroBoxAvator image{
   position: absolute;
-  top: 50rpx;
+  top: 30rpx;
   left: 318rpx;
   width: 114rpx;
 height: 114rpx;
@@ -26,46 +26,49 @@ z-index: 2;
 }
 .bigIntroBoxTop{
   width: 686rpx;
-height: 530rpx;
-/* background: url(http://39.99.246.175:81/jfcs/wxminapp/VIPbj.png) no-repeat; */
-background-size: 100% 100%;
-border-radius: 20px 20px 0px 0px;
+height: 452rpx;
+background: #bfdeff;
+border-radius: 30rpx 30rpx 10rpx 10rpx;
+box-shadow: 1rpx 1rpx 5rpx 0rpx rgba(124,125,126,0.3); 
+
 }
 .bigIntroBoxBottom{
+  border-radius: 20rpx;
+  box-shadow: 1px 2px 2px 0px rgba(115,148,185,0.6); 
+
   width: 686rpx;
-height: 84rpx;
-background: #ffffff;
-border-radius: 0px 0px 20rpx 20rpx;
+height:64rpx;
 font-size: 32rpx;
 font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 text-align: center;
-color: #ffe2aa;
-line-height: 84rpx;
+color: #ffffff !important;
+line-height: 64rpx;
+background: linear-gradient(89deg,#6baffa 0%, #3a90f0 100%);
 }
 
 .title{
   padding-top: 87rpx;
-height: 53rpx;
+height: 38rpx;
 font-size: 38rpx;
 font-family: PingFangSC, PingFangSC-Medium;
 font-weight: 500;
 text-align: left;
 color: #464751;
-line-height: 53rpx;
+line-height: 38rpx;
 text-align: center;
 }
 .intro{
   width: 600rpx;
 /* height: 74rpx; */
 font-size: 26rpx;
+line-height: 30rpx;
 font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 text-align: center;
 color: #666666;
-line-height: 37rpx;
 margin-left: 43rpx;
-margin-top: 30rpx;
+margin-top: 22rpx;
 }
 .content{
   width: 600rpx;
@@ -84,7 +87,7 @@ margin-left: 43rpx;
   height: 45rpx;
   vertical-align: middle;
   text-align: center;
-  margin: 50rpx 0 30rpx;
+  margin: 40rpx 0 24rpx;
 }
 
 .projectTitleLf {
@@ -107,7 +110,7 @@ margin-left: 43rpx;
   font-family: PingFangSC, PingFangSC-Medium;
   font-weight: 500;
   text-align: left;
-  color: #333333;
+  /* color: #333333; */
   line-height: 45rpx;
 }
 .talkBox{
@@ -297,16 +300,17 @@ word-break:break-all;word-wrap:break-word
 }
 
 .lookFg{
+  background: linear-gradient(89deg,#6baffa 0%, #3a90f0 100%);
   width: 686rpx;
 height: 60rpx;
-background: #ffffff;
+/* background: #ffffff; */
 border-radius: 20rpx;
 margin:10rpx 0 50rpx;
 font-size: 26rpx;
 font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 text-align: center;
-color: #666666;
+color: #ffffff;
 line-height: 60rpx;
 }
 .projectTitleLfEve{

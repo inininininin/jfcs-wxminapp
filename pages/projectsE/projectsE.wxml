@@ -15,15 +15,20 @@
       </view>
       <view class="content">运用严格科学的产品筛选策略，依托专业研发团队的研究资源及成果、由理财师团队严谨按照一定服务流程与方法，为您量身定制资产配置报告。</view>
     </view>
-    <view class="bigIntroBoxBottom"  bindtap="onlyBg">
+    <view wx:if='{{showThisBg}}' class="bigIntroBoxBottom" style="margin-top:20rpx" bindtap="onlyBg">
       <image class="projectTitleLfThis" src="../icon/shuang1.svg"></image>
-      <view class="projectTitleMd" style="color:#F27500;margin:0 39rpx;" bindtap="onlyBg">定制我的专属报告</view>
+      <view  class="projectTitleMd" style="margin:0 39rpx;">定制我的专属报告</view>
       <image class="projectTitleRtThis" src="../icon/shuang2.svg"></image>
     </view>
-    <view class="lookFg" bindtap="lookFg">
-      <image class="projectTitleLfEve" src="../icon/xian.svg"></image>
+    <view wx:if='{{!showThisBg}}'  class="bigIntroBoxBottom" style="margin-top:20rpx">
+      <image class="projectTitleLfThis" src="../icon/shuang1.svg"></image>
+      <view  class="projectTitleMd" style="margin:0 39rpx;">定制我的专属报告</view>
+      <image class="projectTitleRtThis" src="../icon/shuang2.svg"></image>
+    </view>
+    <view class="lookFg" bindtap="lookFg" style="margin-top:20rpx">
+      <!-- <image class="projectTitleLfEve" src="../icon/xian.svg"></image> -->
       <text>查看范稿</text>  
-      <image class="projectTitleRtEve" src="../icon/xian.svg"></image> 
+      <!-- <image class="projectTitleRtEve" src="../icon/xian.svg"></image>  -->
       
     </view>
    
