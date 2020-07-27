@@ -106,12 +106,19 @@ margin-left: 43rpx;
   display: inline-block;
  margin: 0 20rpx;
   height: 45rpx;
-  font-size: 32rpx;
+  font-size: 34rpx;
   font-family: PingFangSC, PingFangSC-Medium;
   font-weight: 500;
   text-align: left;
   /* color: #333333; */
   line-height: 45rpx;
+}
+.yy{
+
+  text-shadow: 3rpx 3rpx 3rpx #546e6f !important;
+}
+.yyNN{
+  text-shadow: 1rpx 1rpx  1px #546e6f !important;
 }
 .talkBox{
   width: 686rpx;
@@ -307,7 +314,7 @@ height: 64rpx;
 /* background: #ffffff; */
 border-radius: 20rpx;
 margin:10rpx 0 50rpx;
-font-size: 26rpx;
+font-size: 34rpx;
 font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 text-align: center;
@@ -330,7 +337,7 @@ line-height: 64rpx;
 }
 .projectTitleLfThis {
   width: 56rpx;
-  height: 19rpx;
+  height: 22rpx;
   display: inline-block;
   /* animation: twinkle 0.5s infinite alternate; */
 }
