@@ -23,11 +23,11 @@
     <view wx:if='{{!showThisBg}}'  class="bigIntroBoxBottom" style="margin-top:20rpx">
       <image class="projectTitleLfThis" src="../icon/jiantou1.svg"></image>
       <view  class="projectTitleMd yy" style="margin:0 39rpx;">定制我的专属报告</view>
-      <image class="projectTitleRtThis" src="../icon/youjian.svg"></image>
+      <!-- <image class="projectTitleRtThis" src="../icon/youjian.svg"></image> -->
     </view>
     <view class="lookFg" bindtap="lookFg" style="margin-top:20rpx">
       <!-- <image class="projectTitleLfEve" src="../icon/xian.svg"></image> -->
-      <text class="yy">查看范稿</text>  
+      <text class="yy">查 看 范 稿</text>  
       <!-- <image class="projectTitleRtEve" src="../icon/xian.svg"></image>  -->
       
     </view>
@@ -38,7 +38,7 @@
 <view class="talkBox">
     <view class="talkBoxTop">
       <view><image src="../icon/callSis2.svg"></image></view>
-      <text class="yyNN">Hi～娜娜</text>
+      <text class="">Hi～娜娜</text>
     </view>
     <view class="talkBoxBottom">我是嘉富财商~ 理财就找我，很高兴为您服务！</view>
 </view>
@@ -53,7 +53,7 @@
 <view class="talkBoxThis" wx:for='{{answerList}}'>
     <view class="talkBoxTopThis">
       <view><image src="../icon/callSis2.svg"></image></view>
-      <text  class="yyNN">Hi～娜娜</text>
+      <text  class="">Hi～娜娜</text>
     </view>
     <view class="talkBoxBottomThis">{{item.answer}}</view>
 </view>
