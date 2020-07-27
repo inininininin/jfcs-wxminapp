@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/projectsE/projectsE",
     "pages/projects/projects",
     "pages/information/information",
     "pages/authentication/authentication",
@@ -12,6 +13,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/components/navigationBar/navigationBar"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
