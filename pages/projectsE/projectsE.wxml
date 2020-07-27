@@ -11,14 +11,14 @@
       <view class="projectTitle">
         <image class="projectTitleLf" src="../icon/zuo.svg"></image>
         <view class="projectTitleMd">我们如何为您做专属财富规划</view>
-        <image class="projectTitleRt" src="../icon/you.svg"></image>
+        <!-- <image class="projectTitleRt" src="../icon/you.svg"></image> -->
       </view>
       <view class="content">运用严格科学的产品筛选策略，依托专业研发团队的研究资源及成果、由理财师团队严谨按照一定服务流程与方法，为您量身定制资产配置报告。</view>
     </view>
     <view wx:if='{{showThisBg}}' class="bigIntroBoxBottom" style="margin-top:20rpx" bindtap="onlyBg">
       <image class="projectTitleLfThis" src="../icon/zuojian.svg"></image>
       <view  class="projectTitleMd" style="margin:0 39rpx;">定制我的专属报告</view>
-      <image class="projectTitleRtThis" src="../icon/youjian.svg"></image>
+      <!-- <image class="projectTitleRtThis" src="../icon/youjian.svg"></image> -->
     </view>
     <view wx:if='{{!showThisBg}}'  class="bigIntroBoxBottom" style="margin-top:20rpx">
       <image class="projectTitleLfThis" src="../icon/zuojian.svg"></image>

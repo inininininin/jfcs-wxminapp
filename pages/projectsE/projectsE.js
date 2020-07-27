@@ -19,7 +19,7 @@ Page({
     this.getAns()
 
     this.setData({
-      bigIntroBoxTopBg: app.globalData.url + '/wxminapp/VIP.png'
+      bigIntroBoxTopBg: app.globalData.url + '/wxminapp/VIPEve.png'
     })
   },
   reply(e) {

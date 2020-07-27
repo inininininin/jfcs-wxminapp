@@ -300,9 +300,10 @@ word-break:break-all;word-wrap:break-word
 }
 
 .lookFg{
+  box-shadow: 1px 2px 2px 0px rgba(115,148,185,0.6); 
   background: linear-gradient(89deg,#6baffa 0%, #3a90f0 100%);
   width: 686rpx;
-height: 60rpx;
+height: 64rpx;
 /* background: #ffffff; */
 border-radius: 20rpx;
 margin:10rpx 0 50rpx;
@@ -311,7 +312,7 @@ font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 text-align: center;
 color: #ffffff;
-line-height: 60rpx;
+line-height: 64rpx;
 }
 .projectTitleLfEve{
   position: absolute;
@@ -331,7 +332,7 @@ line-height: 60rpx;
   width: 56rpx;
   height: 19rpx;
   display: inline-block;
-  animation: twinkle 0.5s infinite alternate;
+  /* animation: twinkle 0.5s infinite alternate; */
 }
 
 .projectTitleRtThis {
