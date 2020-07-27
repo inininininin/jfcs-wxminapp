@@ -19,9 +19,8 @@ Page({
     this.getAns()
 
     this.setData({
-      bigIntroBoxTopBg: app.globalData.url + '/wxminapp/VIPbj.png'
+      bigIntroBoxTopBg: app.globalData.url + '/wxminapp/VIP.png'
     })
-    console.log(app.globalData.url + '/wxminapp/VIPbj.png')
   },
   reply(e) {
     var that = this
