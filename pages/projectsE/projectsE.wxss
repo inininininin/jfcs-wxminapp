@@ -28,7 +28,7 @@ z-index: 2;
   width: 686rpx;
 height: 452rpx;
 background: #bfdeff;
-border-radius: 30rpx 30rpx 10rpx 10rpx;
+border-radius: 30rpx 30rpx 12rpx 12rpx;
 box-shadow: 1rpx 1rpx 5rpx 0rpx rgba(124,125,126,0.3); 
 }
 .bigIntroBoxBottom{
@@ -43,6 +43,7 @@ text-align: center;
 color: #ffffff !important;
 line-height: 64rpx;
 background: linear-gradient(89deg,#6baffa 0%, #3a90f0 100%);
+position: relative;
 }
 
 .title{
@@ -110,6 +111,22 @@ margin-left: 43rpx;
   text-align: left;
   /* color: #333333; */
   line-height: 45rpx;
+}
+.projectTitleMdEve{
+  position: absolute;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: 0 !important;
+  line-height: 64rpx;
+}
+.projectTitleLfThisEve{
+  position: absolute;
+  /* font-size: 16rpx; */
+  left: 120rpx;
+  top: 21rpx ;
 }
 .yy{
 
@@ -254,7 +271,7 @@ background: #ffffff;
 border-radius: 20rpx;
 margin: 20rpx 32rpx 20rpx;
 box-sizing: border-box;
-box-shadow: 1px 1px 5px 0px rgba(124,125,126,0.3);
+box-shadow: 1rpx 1rpx 5rpx 0rpx rgba(124,125,126,0.3);
 }
 .talkBoxTopThis{
   width: 100%;
@@ -307,7 +324,7 @@ word-break:break-all;word-wrap:break-word
 }
 
 .lookFg{
-  box-shadow: 1px 2px 2px 0px rgba(115,148,185,0.6); 
+  box-shadow: 1rpx 2rpx 2rpx 0rpx rgba(115,148,185,0.6); 
   background: linear-gradient(89deg,#6baffa 0%, #3a90f0 100%);
   width: 686rpx;
 height: 64rpx;
@@ -320,7 +337,12 @@ font-weight: 400;
 text-align: center;
 color: #ffffff;
 line-height: 64rpx;
-box-shadow: 1px 2px 2px 0px rgba(115,148,185,0.6); 
+}
+.lookFg view{
+  font-size: 34rpx;
+font-family: PingFangSC, PingFangSC-Medium;
+font-weight: 500;
+
 }
 .projectTitleLfEve{
   position: absolute;
@@ -338,7 +360,7 @@ box-shadow: 1px 2px 2px 0px rgba(115,148,185,0.6);
 }
 .projectTitleLfThis {
   width: 56rpx;
-  height: 22rpx;
+  height: 26rpx;
   display: inline-block;
   /* animation: twinkle 0.5s infinite alternate; */
 }
