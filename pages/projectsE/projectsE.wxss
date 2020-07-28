@@ -440,8 +440,8 @@ font-weight: 500;
   margin: 9rpx  22rpx 0;
   display: block;
   /* color: #333333; */
-  filter: drop-shadow(#333333 80px 0);
-transform: translateX(-80px);
+  /* filter: drop-shadow(#333333 80px 0);
+transform: translateX(-80px); */
 }
 .concatPeople text{
   display: block;
