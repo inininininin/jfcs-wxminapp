@@ -8,7 +8,7 @@ Page({
   data: {
     answerList: [],
     bigIntroBoxTopBg: '',
-    showThisBg:true,
+    showThisBg: true,
   },
 
   /**
@@ -22,10 +22,83 @@ Page({
       bigIntroBoxTopBg: app.globalData.url + '/wxminapp/VIPEve.png'
     })
   },
+  sendMsg(e) {
+    this.setData({
+      sendMsg: e.detail.value
+    })
+  },
+  sendMsgAll(e) {
+    var that = this
+    wx.request({
+      url: app.globalData.url + '/chat/send',
+      method: 'post',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      data: 'content=' + that.data.sendMsg,
+      success: function (res) {
+        if (res.data.codeMsg) {
+          wx.showToast({
+            title: res.data.codeMsg,
+            icon: 'none',
+          });
+        } else if (res.data.code == 20) {
+          wx.showToast({
+            title: '请先登录',
+            icon: 'none',
+            duration: 2000,
+            mask: true,
+            complete: function complete(res) {
+              setTimeout(function () {
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+              }, 500);
+            }
+          });
+        } else if (res.data.code == 0) {
+          if( res.data.data.replyContent==null|| res.data.data.replyContent==undefined|| res.data.data.replyContent==''){
+            that.setData({
+              replyContent: '请转人工客服'
+            })
+            that.data.answerList.push({ 'answer': '请转人工客服', 'question': that.data.sendMsg })
+            that.setData({
+              answerList: that.data.answerList,
+              sendMsg: '',
+            })
+          }else{
+            that.setData({
+              replyContent: res.data.data.replyContent
+            })
+            that.data.answerList.push({ 'answer': res.data.data.replyContent, 'question': that.data.sendMsg })
+            that.setData({
+              answerList: that.data.answerList,
+              sendMsg: '',
+            })
+          }
+          
+          var query = wx.createSelectorQuery();
+          //选择id
+          query.select('#scrollHeight').boundingClientRect()
+          query.exec(function (res) {
+            //res就是 所有标签为myText的元素的信息 的数组
+            //取高度
+            wx.pageScrollTo({
+              scrollTop: res[0].height,
+              duration: 300,
+            })
+          })
+        }
+      }
+    })
+
+  },
   reply(e) {
     var that = this
     var answer = e.currentTarget.dataset.reply
-    that.data.answerList.push({ 'answer': answer })
+    var question = e.currentTarget.dataset.question
+    that.data.answerList.push({ 'answer': answer, 'question': question })
     that.setData({
       answerList: that.data.answerList
     })
@@ -175,19 +248,19 @@ Page({
     console.log(12312)
     var that = this
     that.setData({
-      showThisBg:false
+      showThisBg: false
     })
-    app.globalData.questionListNum=0
+    app.globalData.questionListNum = 0
     wx.showToast({
       title: '请稍等',
-      icon:'loading',
-      duration:10000,
+      icon: 'loading',
+      duration: 10000,
     })
-    
+
     // app.globalData.userInfoDetail
     var timer = setInterval(function () {
       if (app.globalData.userInfoDetail.realnameCertificationIs == 1) {
-        if(app.globalData.userInfoDetail.beiJingZiLiaoIs==0){
+        if (app.globalData.userInfoDetail.beiJingZiLiaoIs == 0) {
           clearInterval(timer);
           wx.showToast({
             title: '请稍等',
@@ -202,7 +275,7 @@ Page({
               }, 500);
             }
           });
-        }else if (app.globalData.userInfoDetail.questionnaireIs == 0) {
+        } else if (app.globalData.userInfoDetail.questionnaireIs == 0) {
           clearInterval(timer);
           wx.showToast({
             title: '请稍等',
@@ -240,7 +313,7 @@ Page({
         });
       }
 
-    },500)
+    }, 500)
 
 
     // 备份留着
@@ -362,9 +435,9 @@ Page({
     //   this.getAns()
     // }
     that.setData({
-      showThisBg:true,
+      showThisBg: true,
     })
-    app.globalData.questionList=[{
+    app.globalData.questionList = [{
       "name": "您的年龄是？",
       "answer": [{
         "content": "25岁以下",
@@ -382,7 +455,7 @@ Page({
         "content": "60岁以上",
         "score": 2
       }]
-    },{
+    }, {
       "name": "您的就业情况是？",
       "answer": [{
         "content": "公务员或教师",
@@ -418,7 +491,7 @@ Page({
         "content": "单薪养3代",
         "score": 2
       }]
-    },{
+    }, {
       "name": "您的置业情况是？",
       "answer": [{
         "content": "有投资房产",
@@ -436,7 +509,7 @@ Page({
         "content": "无房",
         "score": 2
       }]
-    },{
+    }, {
       "name": "您的投资经验是？",
       "answer": [{
         "content": "10年以上",
@@ -454,7 +527,7 @@ Page({
         "content": "无",
         "score": 2
       }]
-    },{
+    }, {
       "name": "您的投资知识是？",
       "answer": [{
         "content": "持有专业执照",
@@ -472,7 +545,7 @@ Page({
         "content": "全无",
         "score": 2
       }]
-    },{
+    }, {
       "name": "您能够忍受的亏损为 %？",
       "answer": [{
         "content": "不能忍受任何亏损",
@@ -487,7 +560,7 @@ Page({
         "content": "20%以上",
         "score": 40
       }]
-    },{
+    }, {
       "name": "您理财的首要考虑因素是？",
       "answer": [{
         "content": "赚差价",
@@ -505,7 +578,7 @@ Page({
         "content": "保本保息",
         "score": 2
       }]
-    },{
+    }, {
       "name": "如果亏损，您的认赔动作是？",
       "answer": [{
         "content": "立刻止损",
@@ -523,7 +596,7 @@ Page({
         "content": "继续加码",
         "score": 2
       }]
-    },{
+    }, {
       "name": "如果赔钱了，您的心理是？",
       "answer": [{
         "content": "学习经验",
@@ -541,7 +614,7 @@ Page({
         "content": "夜不能眠",
         "score": 2
       }]
-    },{
+    }, {
       "name": "您希望持有的理财产品最重要的特点是？",
       "answer": [{
         "content": "赚钱获利",
@@ -559,7 +632,7 @@ Page({
         "content": "安全性",
         "score": 2
       }]
-    },{
+    }, {
       "name": "你理财避免的工具是？",
       "answer": [{
         "content": "无",
@@ -579,37 +652,37 @@ Page({
       }]
     }]
 
-wx.checkSession({
-  success () {
-    //session_key 未过期，并且在本生命周期一直有效
-  },
-  fail () {
-    // session_key 已经失效，需要重新执行登录流程
-    wx.navigateTo({
-      url: '../login/login',
-    })
-    
-  }
-})
+    wx.checkSession({
+      success() {
+        //session_key 未过期，并且在本生命周期一直有效
+      },
+      fail() {
+        // session_key 已经失效，需要重新执行登录流程
+        wx.navigateTo({
+          url: '../login/login',
+        })
 
-wx.request({
-  url: app.globalData.url + '/login-refresh',
-  header: {
-    "Content-Type": "application/x-www-form-urlencoded",
-    'cookie': wx.getStorageSync('cookie')
-  },
-  method: 'post',
-  success: function (res) {
-    wx.hideToast()
-    if (res.data.code == 0) {
-      app.globalData.userInfoDetail = res.data.data
-    } else {
-      wx.navigateTo({
-        url: '../login/login',
-      })
-    }
-  }
-})
+      }
+    })
+
+    wx.request({
+      url: app.globalData.url + '/login-refresh',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      method: 'post',
+      success: function (res) {
+        wx.hideToast()
+        if (res.data.code == 0) {
+          app.globalData.userInfoDetail = res.data.data
+        } else {
+          wx.navigateTo({
+            url: '../login/login',
+          })
+        }
+      }
+    })
 
 
     // wx.request({
@@ -644,21 +717,21 @@ wx.request({
     // })
 
   },
-lookFg(e){
-  if(app.globalData.example==''||app.globalData.example==null||app.globalData.example==undefined){
-    wx.showToast({
-              title: '当前暂无范稿',
-              icon: 'none',
-              duration: 2000,
-            });
-  }else{
-    wx.previewImage({
-      current: app.globalData.example, // 当前显示图片的http链接
-      urls: [app.globalData.example] // 需要预览的图片http链接列表
-    })
-  }
-  
-},
+  lookFg(e) {
+    if (app.globalData.example == '' || app.globalData.example == null || app.globalData.example == undefined) {
+      wx.showToast({
+        title: '当前暂无范稿',
+        icon: 'none',
+        duration: 2000,
+      });
+    } else {
+      wx.previewImage({
+        current: app.globalData.example, // 当前显示图片的http链接
+        urls: [app.globalData.example] // 需要预览的图片http链接列表
+      })
+    }
+
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
