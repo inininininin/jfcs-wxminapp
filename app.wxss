@@ -50,6 +50,9 @@
   overflow: hidden;
   word-break:break-all;word-wrap:break-word
 }
+.huanhang{
+  word-break:break-all;word-wrap:break-word
+}
 button::after{
   border: none;
 }
