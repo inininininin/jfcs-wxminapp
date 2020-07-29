@@ -38,7 +38,50 @@ Page({
     this.setData({
       multiArray:app.globalData.areaJson
     })
-   
+    wx.login({
+      success: res => {
+        console.log(res.code)
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: vm.globalData.url + '/refresh-wx-session-key',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          method: 'post',
+          data: {
+            jscode: res.code,
+          },
+          success: function (res) {
+            wx.hideToast()
+            if (res.data.code == 0) {
+              // wx.setStorageSync('cookie', res.header['Set-Cookie'])
+            
+            } else if (res.data.code == 20) {
+              wx.showToast({
+                title: '请先登录',
+                icon: 'none',
+                duration: 2000,
+                mask: true,
+                complete: function complete(res) {
+                  setTimeout(function () {                          
+                      wx.navigateTo({
+                        url: '../login/login',
+                      })
+                  }, 500);
+                }
+              })
+            }else{
+              wx.showToast({
+                title: res.data.codeMsg,
+                icon: 'none',
+                duration: 2000,
+               
+              })
+            }
+          }
+        })
+      }
+    })
   },
   bindRegionChange: function (e) {
     this.setData({

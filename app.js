@@ -27,10 +27,26 @@ App({
             if (res.data.code == 0) {
               // wx.setStorageSync('cookie', res.header['Set-Cookie'])
             
-            } else {
+            } else if (res.data.code == 20) {
+              wx.showToast({
+                title: '请先登录',
+                icon: 'none',
+                duration: 2000,
+                mask: true,
+                complete: function complete(res) {
+                  setTimeout(function () {                          
+                      wx.navigateTo({
+                        url: '../login/login',
+                      })
+                  }, 500);
+                }
+              })
+            }else{
               wx.showToast({
                 title: res.data.codeMsg,
-                icon: 'none'
+                icon: 'none',
+                duration: 2000,
+               
               })
             }
           }
