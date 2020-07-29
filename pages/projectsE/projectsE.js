@@ -36,69 +36,78 @@ Page({
   },
   sendMsgAll(e) {
     var that = this
-    wx.request({
-      url: app.globalData.url + '/chat/send',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      data: 'content=' + that.data.sendMsg,
-      success: function (res) {
-        if (res.data.codeMsg) {
-          wx.showToast({
-            title: res.data.codeMsg,
-            icon: 'none',
-          });
-        } else if (res.data.code == 20) {
-          wx.showToast({
-            title: '请先登录',
-            icon: 'none',
-            duration: 2000,
-            mask: true,
-            complete: function complete(res) {
-              setTimeout(function () {
-                wx.navigateTo({
-                  url: '../login/login',
-                })
-              }, 500);
+    if(that.data.sendMsg==''||that.data.sendMsg==null||that.data.sendMsg==undefined){
+      wx.showToast({
+        title: '请写下想说的话',
+        icon: 'none',
+        duration: 2000,
+      });
+    }else{
+      wx.request({
+        url: app.globalData.url + '/chat/send',
+        method: 'post',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          'cookie': wx.getStorageSync('cookie')
+        },
+        data: 'content=' + that.data.sendMsg,
+        success: function (res) {
+          if (res.data.codeMsg) {
+            wx.showToast({
+              title: res.data.codeMsg,
+              icon: 'none',
+            });
+          } else if (res.data.code == 20) {
+            wx.showToast({
+              title: '请先登录',
+              icon: 'none',
+              duration: 2000,
+              mask: true,
+              complete: function complete(res) {
+                setTimeout(function () {
+                  wx.navigateTo({
+                    url: '../login/login',
+                  })
+                }, 500);
+              }
+            });
+          } else if (res.data.code == 0) {
+            if( res.data.data.replyContent==null|| res.data.data.replyContent==undefined|| res.data.data.replyContent==''){
+              that.setData({
+                replyContent: '请转人工客服'
+              })
+              that.data.answerList.push({ 'answer': '请转人工客服', 'question': that.data.sendMsg })
+              that.setData({
+                answerList: that.data.answerList,
+                sendMsg: '',
+              })
+            }else{
+              that.setData({
+                replyContent: res.data.data.replyContent
+              })
+              that.data.answerList.push({ 'answer': res.data.data.replyContent, 'question': that.data.sendMsg })
+              that.setData({
+                answerList: that.data.answerList,
+                sendMsg: '',
+              })
             }
-          });
-        } else if (res.data.code == 0) {
-          if( res.data.data.replyContent==null|| res.data.data.replyContent==undefined|| res.data.data.replyContent==''){
-            that.setData({
-              replyContent: '请转人工客服'
-            })
-            that.data.answerList.push({ 'answer': '请转人工客服', 'question': that.data.sendMsg })
-            that.setData({
-              answerList: that.data.answerList,
-              sendMsg: '',
-            })
-          }else{
-            that.setData({
-              replyContent: res.data.data.replyContent
-            })
-            that.data.answerList.push({ 'answer': res.data.data.replyContent, 'question': that.data.sendMsg })
-            that.setData({
-              answerList: that.data.answerList,
-              sendMsg: '',
+            
+            var query = wx.createSelectorQuery();
+            //选择id
+            query.select('#scrollHeight').boundingClientRect()
+            query.exec(function (res) {
+              //res就是 所有标签为myText的元素的信息 的数组
+              //取高度
+              wx.pageScrollTo({
+                scrollTop: res[0].height,
+                duration: 300,
+              })
             })
           }
-          
-          var query = wx.createSelectorQuery();
-          //选择id
-          query.select('#scrollHeight').boundingClientRect()
-          query.exec(function (res) {
-            //res就是 所有标签为myText的元素的信息 的数组
-            //取高度
-            wx.pageScrollTo({
-              scrollTop: res[0].height,
-              duration: 300,
-            })
-          })
         }
-      }
-    })
+      })
+    }
+    
 
   },
   reply(e) {
