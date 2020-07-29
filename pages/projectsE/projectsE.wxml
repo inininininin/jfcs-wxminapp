@@ -63,8 +63,10 @@
 </view> 
 <view class="concatPeople">
   <button open-type="contact" bindcontact="handleContact">
-    <image src="../icon/callSis2.svg"></image>
-    <text>人工</text>
+    <view>
+      <image src="../icon/callSis2.svg"></image>
+    </view>
+    <text>转人工客服</text>
   </button>
 </view>
 <!-- <view class="kefu">
