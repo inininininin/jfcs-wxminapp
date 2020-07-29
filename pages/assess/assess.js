@@ -156,19 +156,22 @@ Page({
             })
           }else{
             app.globalData.questionListNum=that.data.ansNum
-            wx.showToast({
-              title: '下一题',
-              icon: 'none',
-              duration: 2000,
-              mask: true,
-              complete: function complete(res) {
-                setTimeout(function () {                          
-                  wx.redirectTo({
-                    url: '../assess/assess',
-                  })
-                }, 1000);
-              }
-            });
+            wx.redirectTo({
+              url: '../assess/assess',
+            })
+            // wx.showToast({
+            //   title: '下一题',
+            //   icon: 'none',
+            //   duration: 2000,
+            //   mask: true,
+            //   complete: function complete(res) {
+            //     setTimeout(function () {                          
+            //       wx.redirectTo({
+            //         url: '../assess/assess',
+            //       })
+            //     }, 1000);
+            //   }
+            // });
           }
         }  
       }
