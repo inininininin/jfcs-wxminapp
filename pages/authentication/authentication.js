@@ -38,6 +38,51 @@ Page({
     this.setData({
       multiArray:app.globalData.areaJson
     })
+    wx.login({
+      success: res => {
+        console.log(res.code)
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: vm.globalData.url + '/refresh-wx-session-key',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            'cookie': wx.getStorageSync('cookie')
+          },
+          method: 'post',
+          data: {
+            jscode: res.code,
+          },
+          success: function (res) {
+            wx.hideToast()
+            if (res.data.code == 0) {
+              // wx.setStorageSync('cookie', res.header['Set-Cookie'])
+            
+            } else if (res.data.code == 20) {
+              wx.showToast({
+                title: '请先登录',
+                icon: 'none',
+                duration: 2000,
+                mask: true,
+                complete: function complete(res) {
+                  setTimeout(function () {                          
+                      wx.navigateTo({
+                        url: '../login/login',
+                      })
+                  }, 500);
+                }
+              })
+            }else{
+              wx.showToast({
+                title: res.data.codeMsg,
+                icon: 'none',
+                duration: 2000,
+               
+              })
+            }
+          }
+        })
+      }
+    })
   },
   bindRegionChange: function (e) {
     this.setData({
@@ -280,43 +325,55 @@ makeSureOk(e){
 
 
   getPhoneNumber(e) {
+ 
     var that=this
+    console.log(e.detail)
     console.log(e.detail.iv)
     wx.showToast({
       title: '授权中，请稍后',
       icon:'none',
-      duration:100000
+      duration:1000
     })
     that.setData({
       encryptedData:encodeURIComponent(e.detail.encryptedData),
       iv:encodeURIComponent(e.detail.iv)
     })
+
+    if(e.detail.encryptedData!=null&&e.detail.encryptedData!=''&&e.detail.encryptedData!=undefined){
+      wx.request({
+        url: app.globalData.url + '/get-wx-minapp-phone',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          'cookie': wx.getStorageSync('cookie')
+        },
+        data:'wxMinAppEncryptedDataOfPhoneNumber='+encodeURIComponent(e.detail.encryptedData)+'&wxMinappIv='+encodeURIComponent(e.detail.iv),//+'&jscode='+jscode,
+        method: 'post',
+        success: function (res) {
+          wx.hideToast()
+          if (res.data.code == 0) {
+            that.setData({
+              phone:res.data.data.phone
+            })
+            that.makeSureOk()
+          } else {
+            wx.showToast({
+              title: res.data.codeMsg,
+              icon: 'none'
+            })
+          }
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '获取失败请重试',
+        icon:'none',
+        duration:1000
+      })
+    }
     // wx.login({
     //     success(res) {
     //       var jscode = res.code
-          wx.request({
-            url: app.globalData.url + '/get-wx-minapp-phone',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              'cookie': wx.getStorageSync('cookie')
-            },
-            data:'wxMinAppEncryptedDataOfPhoneNumber='+encodeURIComponent(e.detail.encryptedData)+'&wxMinappIv='+encodeURIComponent(e.detail.iv),//+'&jscode='+jscode,
-            method: 'post',
-            success: function (res) {
-              wx.hideToast()
-              if (res.data.code == 0) {
-                that.setData({
-                  phone:res.data.data.phone
-                })
-                that.makeSureOk()
-              } else {
-                wx.showToast({
-                  title: res.data.codeMsg,
-                  icon: 'none'
-                })
-              }
-            }
-          })
+        
         // }
       // })
    

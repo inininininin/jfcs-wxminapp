@@ -22,6 +22,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    console.log(options)
     that.setData({
       backgroundUrl:app.globalData.url+'/wxminapp/blackbg.png',
       keGuiHuaZiChan:app.globalData.userInfoDetail.keGuiHuaZiChan||'',
@@ -50,14 +51,15 @@ Page({
     })
     console.log(123123)
     wx.request({
-      url: app.globalData.url + '/get-questionnaire-result',
-      method: 'get',
+      url: app.globalData.url + '/get-user-questionnaire-result',
+      method: 'post',
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
+        // 'cookie': wx.getStorageSync('cookie')
       },
+      data:'userId=20200729115550725496281648819489',//+options.id,
       success: function (res) {
-        console.log(console.log(res))
+        console.log(res)
         if (res.data.codeMsg) {
           wx.showToast({
             title: res.data.codeMsg,
@@ -110,7 +112,12 @@ Page({
           console.log(res.data.data.questionnaireTime.split('-')[2])
           res.data.data.doPaperId=res.data.data.questionnaireTime.split('-')[0] + res.data.data.questionnaireTime.split('-')[1] + res.data.data.questionnaireTime.split('-')[2].split(' ')[0]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[0]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[1]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[2].split('.')[0]
           res.data.data.questionnaireTime = res.data.data.questionnaireTime.split(' ')[0]
-
+          // if(res.data.data.sex==1){
+          //   res.data.data.sex='男'
+          // }else{
+          //   res.data.data.sex='女'
+          // }
+          res.data.data.sex=res.data.data.sex==1?'男':'女'
           that.data.picList.push(res.data.data.resultPic1)
           that.data.picList.push(res.data.data.resultPic2)
           that.data.picList.push(res.data.data.resultPic3)
@@ -197,16 +204,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    console.log(121321111)
-    var path = '/pages/projectsE/projectsE?isShare=1&id='+app.globalData.userInfoDetail.userId;
-    return {
-      title: '欢迎使用嘉富财商小程序', 
-      path: path, 
-      // imageUrl:app.globalData.url+ '/wxminapp/VIPEve.png',
-      success: function (res) {
-      },
-      fail: function (res) {
-      },
-    }
+      
   }
 })

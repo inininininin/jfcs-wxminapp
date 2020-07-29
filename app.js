@@ -7,11 +7,51 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    
+    const vm = this
     // 登录
     wx.login({
       success: res => {
+        console.log(res.code)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: vm.globalData.url + '/refresh-wx-session-key',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            'cookie': wx.getStorageSync('cookie')
+          },
+          method: 'post',
+          data: {
+            jscode: res.code,
+          },
+          success: function (res) {
+            wx.hideToast()
+            if (res.data.code == 0) {
+              // wx.setStorageSync('cookie', res.header['Set-Cookie'])
+            
+            } else if (res.data.code == 20) {
+              wx.showToast({
+                title: '请先登录',
+                icon: 'none',
+                duration: 2000,
+                mask: true,
+                complete: function complete(res) {
+                  setTimeout(function () {                          
+                      wx.navigateTo({
+                        url: '../login/login',
+                      })
+                  }, 500);
+                }
+              })
+            }else{
+              wx.showToast({
+                title: res.data.codeMsg,
+                icon: 'none',
+                duration: 2000,
+               
+              })
+            }
+          }
+        })
       }
     })
     // 获取用户信息
@@ -57,7 +97,7 @@ App({
     updateManager.onUpdateFailed(function () {
       // 新版本下载失败
     })
-    const vm = this
+    
     wx.getSystemInfo({
       success: function (res) {
         let totalTopHeight = 68

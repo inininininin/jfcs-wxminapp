@@ -12,8 +12,8 @@
     "pages/assessment/assessment",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/components/navigationBar/navigationBar"
-    
+    "pages/components/navigationBar/navigationBar",
+    "pages/programmeShare/programmeShare"
   ],
   "window": {
     "backgroundTextStyle": "light",
