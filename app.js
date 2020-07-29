@@ -17,6 +17,7 @@ App({
           url: vm.globalData.url + '/refresh-wx-session-key',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
+            'cookie': wx.getStorageSync('cookie')
           },
           method: 'post',
           data: {
