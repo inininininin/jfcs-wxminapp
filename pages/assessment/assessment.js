@@ -94,19 +94,22 @@ Page({
             })
           }else{
             app.globalData.questionListNum=that.data.ansNum
-            wx.showToast({
-              title: '下一题',
-              icon: 'none',
-              duration: 2000,
-              mask: true,
-              complete: function complete(res) {
-                setTimeout(function () {                          
-                  wx.navigateTo({
-                    url: '../assessment/assessment',
-                  })
-                }, 1000);
-              }
-            });
+            wx.navigateTo({
+              url: '../assessment/assessment',
+            })
+            // wx.showToast({
+            //   title: '下一题',
+            //   icon: 'none',
+            //   duration: 2000,
+            //   mask: true,
+            //   complete: function complete(res) {
+            //     setTimeout(function () {                          
+            //       wx.navigateTo({
+            //         url: '../assessment/assessment',
+            //       })
+            //     }, 1000);
+            //   }
+            // });
           }
         }  
       }
