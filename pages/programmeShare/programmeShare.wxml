@@ -1,0 +1,67 @@
+<!--pages/programme/programme.wxml-->
+<view class="container" style="padding-top:{{statusBarHeight+titleBarHeight}}px">
+  <view class="header" style="background:{{background}}">
+    <view class="status-bar" style="height:{{statusBarHeight}}px"></view>
+    <view class="title-bar" style="height:{{titleBarHeight}}px">
+      <image  mode="aspectFill" lazy-load="true" class="back" bindtap="backHistory" src="../icon/backArrow.png"></image>
+      <text class="evahospital">{{navtitle}}</text>
+    </view>
+  </view>
+</view>
+<view class="topbg" style='margin-top:{{statusBarHeight+titleBarHeight}}px;background:url({{backgroundUrl}}) no-repeat;background-size: cover;background-position: center;'>
+  <view class="name">{{paperDetail.realname}}</view>
+  <view class="age">
+    <text wx:if='{{paperDetail.age}}'>{{paperDetail.age}}</text>
+    <text  wx:if='{{paperDetail.sex}}'>{{paperDetail.sex}}</text>
+    <text  wx:if='{{paperDetail.resultName}}'>{{paperDetail.resultName1+"-"+paperDetail.resultName}}</text>
+  </view>
+  <view class="programmeDetail">
+    <view>
+      <text class="lineOne">{{doPaperId}}</text><text>报告版本</text>
+    </view>
+    <view>
+      <text class="lineOne">{{paperDetail.questionnaireTime}}</text><text>报告时间</text>
+    </view>
+  </view>
+
+
+  <view class="details">
+    <view class="navbar">
+        <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view>
+
+      </view>
+      <view class="detailContent"  wx:if='{{currentTab==0}}' >
+        <view class="detailContentOne">
+          <text>背景资料</text>
+          <view>
+            <text>可规划资产：</text><text>{{paperDetail.keGuiHuaZiChan}}</text>
+          </view>
+          <view>
+            <text>财富规划目标：</text><text>{{paperDetail.caiFuGuiHuaMuBiao}}</text>
+          </view>
+          <view>
+            <text>财富规划年限：</text><text>{{paperDetail.caiFuGuiHuaNianXian}}</text>
+          </view>
+          <view>
+            <text>家庭收支状况：</text><text>{{paperDetail.jiaTingShouZhiZhuangKuang}}</text>
+          </view>
+        </view>
+        <!-- <image lazy-load='true' mode='widthFix' src="../icon/one.png"></image> -->
+         <image  lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic1}}' mode='widthFix' src="{{paperDetail.resultPic1}}"></image>
+        <image  lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic2}}' mode='widthFix' src="{{paperDetail.resultPic2}}"></image>
+        <image  lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic3}}' mode='widthFix' src="{{paperDetail.resultPic3}}"></image>
+      </view>
+      <view class="detailContent" wx:if='{{currentTab!=0}}'>
+        
+        <image  wx:if='{{currentTab==1}}'  bindtap="lookPic" data-url='{{paperDetail.resultPic1}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic1}}"></image>
+        <image  wx:if='{{currentTab==2}}' bindtap="lookPic" data-url='{{paperDetail.resultPic2}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic2}}"></image>
+        <image  wx:if='{{currentTab==3}}' bindtap="lookPic" data-url='{{paperDetail.resultPic3}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic3}}"></image>
+      </view>
+  </view>
+
+</view>
+<view  class="askbg">
+  <button  open-type="contact" bindcontact="handleContact">报告咨询</button>
+</view>
+
+<!-- <view class="askbg">报告咨询</view> -->
