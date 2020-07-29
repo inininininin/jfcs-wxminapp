@@ -57,7 +57,7 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded",
         // 'cookie': wx.getStorageSync('cookie')
       },
-      data:'userId=20200729115550725496281648819489',//+options.id,
+      data:'userId='+options.id,
       success: function (res) {
         console.log(res)
         if (res.data.codeMsg) {

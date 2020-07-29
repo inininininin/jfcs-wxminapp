@@ -482,3 +482,7 @@ letter-spacing: 0rpx;
   /* border-radius: 45rpx; */
   margin:0;
 }
+
+.answerBoxList >.answerQueBox:last-child .talkBoxThis{
+  margin-bottom: 150rpx;
+}
