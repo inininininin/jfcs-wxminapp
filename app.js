@@ -25,7 +25,7 @@ App({
           success: function (res) {
             wx.hideToast()
             if (res.data.code == 0) {
-              wx.setStorageSync('cookie', res.header['Set-Cookie'])
+              // wx.setStorageSync('cookie', res.header['Set-Cookie'])
             
             } else {
               wx.showToast({
