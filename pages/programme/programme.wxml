@@ -65,3 +65,56 @@
 </view>
 
 <!-- <view class="askbg">报告咨询</view> -->
+
+<!-- 分享 -->
+<view class='popwindow' style='display:{{close}}'>
+	<view>
+		<view>
+			<view class='title'>请选择分享平台</view>
+			<view class='shareteam'>
+				<!-- <view>
+              <image  mode="aspectFill"  bindtap='sharewx' class='wx' src='../../img/weixin@2x.png'></image>
+              <button open-type='share'>分享到微信</button>
+            </view> -->
+				<button open-type='share'>
+					<image  mode="aspectFill"  bindtap='sharewx' class='wx' src='../icon/weixin@2x.png'></image>
+					<text>分享到微信</text>
+				</button>
+				<!-- bindtap='shareIs' -->
+				<button  bindtap='sharepyq'>
+              <image  mode="aspectFill"  class='pyq' src='../icon/pengyouquan@2x.png'></image>
+              <text>分享到朋友圈</text>
+            </button>
+
+				<!-- <button>
+              <image  mode="aspectFill"  bindtap='shareWb' class='wb' src='../../img/weibo@2x.png'></image>
+              <text>分享到微博</text>
+            </button> -->
+			</view>
+		</view>
+		<view bindtap='close'>取消</view>
+	</view>
+</view>
+
+<view class='shareFont'  bindtap='share'>
+	<view>
+		<image  mode="aspectFill"  class='share' src='../icon/share.png'></image>
+	</view>
+	<!-- <view>
+		<image  mode="aspectFill"  class='font' bindtap='changefont' src='../icon/share.png'></image>
+	</view> -->
+</view>
+
+
+
+<!-- 画布大小按需定制 这里我按照背景图的尺寸定的  -->
+<view class="canvasShow" wx-if='{{canvasShow}}'   style="opacity:1;border-bottom:1px solid #e5e5e5" bindtap="closeCanvas">
+<canvas canvas-id='canvas'   style='width:{{windowW}}px;height:{{windowW}}px;margin-top:{{windowTop}}px;border:2rpx solid #e5e5e5' catchlongtap="saveCanvas"></canvas>
+	<button type='primary' size='mini' bindtap='saveIs'>保存分享图</button>
+</view>
+
+<!-- 预览区域  -->
+<view hidden='{{hidden}}' class='preview'>
+	<image  mode="aspectFill"  src='{{prurl}}' mode='widthFix'></image>
+	<button type='primary' size='mini' bindtap='saveIs'>保存分享图</button>
+</view>

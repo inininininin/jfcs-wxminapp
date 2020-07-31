@@ -225,3 +225,253 @@ line-height: 100rpx;
 .detailContentOne>view text:nth-child(1){
   color: rgb(66,66,66);
 }
+
+/* 分享朋友圈 */
+
+.popwindow{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  background: rgba(0,0,0,0.5);
+ 
+}
+.popwindow>view{
+  position: absolute;bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 380rpx;
+  background: rgb(231,231,237);
+}
+.popwindow>view>view:nth-child(1){
+  width: 750rpx;
+  height: 270rpx;
+  background: #fff;
+}
+.popwindow>view>view:nth-child(2){
+  height: 100rpx;
+  margin-top: 10rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #000;
+  font-size: 36rpx;
+  background: #fff;
+}
+.popwindow .title{
+  margin: 0;
+  font-size: 28rpx;
+  color: rgb(51,51,51);
+  line-height: 120rpx;
+  text-align: center;
+}
+.shareteam button:not([size='mini']) {
+  width: auto;
+}
+.shareteam>button{
+    width: 375rpx;
+  text-align: center;
+  display: inline-block;
+  line-height: none !important;
+  margin: 0;
+  padding: 0;
+}
+.shareteam>view{
+  width: 250rpx;
+  text-align: center;
+  display: inline-block;
+}
+/* .shareteam>view button{
+   display: block; 
+   font-size: 24rpx;
+   font-family:PingFangSC-Regular;
+font-weight:400;
+color:rgba(51,51,51,1);
+line-height:33rpx;
+margin-top: 26rpx;
+} */
+.shareteam>button text{
+   display: block; 
+   font-size: 24rpx;
+   font-family:PingFangSC-Regular;
+font-weight:400;
+color:rgba(51,51,51,1);
+line-height:33rpx;
+margin-top: 26rpx;
+}
+.shareteam>view text{
+   display: block; 
+   font-size: 24rpx;
+   font-family:PingFangSC-Regular;
+font-weight:400;
+color:rgba(51,51,51,1);
+line-height:33rpx;
+margin-top: 26rpx;
+}
+.wx{
+  width: 44rpx;
+  height: 40rpx;
+  vertical-align: bottom;
+  float: left;
+  margin: 0 165.5rpx 26rpx;
+}
+.pyq{
+  width: 42rpx;
+  height: 44rpx;
+  vertical-align: bottom;
+   float: left;
+  margin: 0 166.5rpx 22rpx;
+}
+.wb{
+  width: 52rpx;
+  height: 44rpx;
+  vertical-align: bottom;
+   float: left;
+  margin: 0 99rpx 26rpx;
+}
+
+.shareFont{
+  background: #fff;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 130rpx;
+  z-index: 2;
+  box-shadow: 2rpx 4rpx 12rpx #e5e5e5;
+}
+.shareFont>view{
+  width: 130rpx;
+  height:80rpx;
+}
+.share{
+  width: 38rpx;
+  height: 38rpx;
+  float: left;
+  /* margin-top: -8rpx; */
+margin-left: 21rpx;
+}
+.font{
+  width: 40rpx;
+  height: 34rpx;
+   float: left;
+  /* margin-top: -8rpx; */
+margin-left: 45rpx;
+}
+.shareFont>view{
+  text-align: center;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-right: 4rpx solid #e5e5e5;
+  margin-top: 21rpx;
+}
+.shareFont>view:last-child{
+  border-right: 0;
+}
+
+button::after {
+
+  border: none;
+  line-height: none;padding: 0;
+  margin: 0;
+  height: 108rpx !important;
+      }
+
+      button {
+
+  background-color: #fff;
+  height: 108rpx !important;
+padding: 0;
+     }
+
+
+
+
+     /* canvas{
+  position: fixed;
+  top: 0;
+  left: 400px;
+} */
+.shareIs{
+  position: absolute;
+  bottom: 100rpx;
+  width: 70%;
+  left: 15%;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.preview {
+  width: 100%;
+  height: 100%;
+  /* background: rgba(0,0,0,.9); */
+  background: #fff;
+  position: absolute;
+  z-index: 2000;
+  top: 0;
+  left: 0
+}
+.preview image{
+  width: 90%;
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  z-index: 2003;
+  border: 1px solid #ccc;
+  /* box-shadow: 100 10 10 rgba(0,0,0,0.8) */
+}
+.preview button{
+  width: 40%;
+  position: absolute;
+  bottom: 150rpx;
+  left: 30%;
+  
+}
+
+.canvasShow{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:750rpx;
+  height:100%;
+  z-index: 999;
+  background: #fff;
+  overflow: hidden;
+  /* background: rgba(0,0,0,1); */
+  /* opacity:1 */
+}
+canvas{
+  position: fixed;
+  top: 200rpx;
+  left: 0;
+  z-index: 1000;
+  opacity:1;
+  border-top:1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+.canvasShow>button{
+  padding: 0 !important;
+  width: 200rpx !important;
+  height: 80rpx !important;
+  border-radius: 5rpx !important;
+  background: #fff !important;
+  color: #333 !important;
+  font-size: 30rpx !important;
+  line-height: 80rpx !important;
+  text-align: center !important;
+  margin: 30rpx 275rpx 0 !important;
+  background:#1890FF !important;
+  color: #fff !important;
+}
+.readShare{
+  line-height: 40rpx;
+  font-size: 28rpx;
+  margin: 15rpx 32rpx;
+  color: #999999;
+}
+.readShare text:last-child{
+  display: inline-block;
+  margin-left: 40rpx;
+}

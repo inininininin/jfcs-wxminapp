@@ -15,6 +15,10 @@ Page({
     titleBarHeight: app.globalData.titleBarHeight,
     navtitle: '财富规划方案',
     picList: [],
+    close:'none',
+    imglist:[],
+    canvasShow:false,
+    hidden: true,
   },
 
   /**
@@ -22,6 +26,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    // that.sys();
+    
     that.setData({
       backgroundUrl:app.globalData.url+'/wxminapp/blackbg.png',
       keGuiHuaZiChan:app.globalData.userInfoDetail.keGuiHuaZiChan||'',
@@ -119,6 +125,7 @@ Page({
             doPaperId: res.data.data.doPaperId,
             // doPaperId:res.data.data.doPaperId.substring(0,15),
             paperDetail: res.data.data,
+            list:res.data.data,
             // questionList:res.data.data.questionList,
           })
           // console.log(that.data.paperDetail)
@@ -151,6 +158,89 @@ Page({
       url: '../projectsE/projectsE',
     })
   },
+
+  // 分享朋友圈的那些事
+   // 方法
+   share: function(e) {
+    this.setData({
+      close: 'block'
+    })
+  },
+  close: function(e) {
+    this.setData({
+      close: 'none'
+    })
+  },
+
+  sharepyq(e) {
+    this.setData({
+      close: 'none'
+    })
+    wx.navigateTo({
+      url: '../canvas/canvas',
+    })
+    // var that = this
+    // if(that.data.imglist){
+    //   wx.showToast({
+    //     title: '请稍等',
+    //     icon:'none'
+    //   })
+    //   // wx.request({
+    //   //   url: app.globalData.url +'/c2/share?articleId=' + that.data.id,
+    //   //   method: 'get',
+    //   //   header: {
+    //   //     "Content-Type": "application/x-www-form-urlencoded",
+    //   //     'cookie': app.globalData.cookie
+    //   //   },
+    //   //   success: function (res) {
+    //   //   }
+    //   // })
+    //   // that.setData({
+    //   //   pyqewm: app.globalData.url + '/wxminqrcode?path=pages/programmeShare/programmeShare?id=' + that.data.id + '&width=200'
+    //   // })
+    //   // if(!that.data.avatorShare){
+    //     that.setData({
+    //       canvasShow:true
+    //     })
+    //     that.lookCode()
+    //   // }else{
+    //   //   wx.previewImage({
+    //   //     urls: [that.data.urls],
+    //   //   })
+    //   // }
+    
+    // }else{
+    //   wx.showToast({
+    //     title: '请稍等',
+    //     icon:'none'
+    //   })
+    //   setTimeout(function(){
+    //     if(that.data.imglist){
+    //       // wx.request({
+    //       //   url: app.globalData.url +'/c2/share?articleId=' + that.data.id,
+    //       //   method: 'get',
+    //       //   header: {
+    //       //     "Content-Type": "application/x-www-form-urlencoded",
+    //       //     'cookie': app.globalData.cookie
+    //       //   },
+    //       //   success: function (res) {
+    //       //     wx.hideToast({})
+    //       //   }
+    //       // })
+    //         that.setData({
+    //           canvasShow:true
+    //         })
+    //         that.lookCode()
+    //     }else{
+    //       wx.showToast({
+    //         title: '生成失败,请稍后重试',
+    //         icon:'none'
+    //       })
+    //     }
+    //   },1500)
+    // }
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

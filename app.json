@@ -1,6 +1,8 @@
 {
   "pages": [
+    
     "pages/projectsE/projectsE",
+    "pages/demo/demo",
     "pages/projects/projects",
     "pages/information/information",
     "pages/authentication/authentication",
@@ -13,7 +15,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/components/navigationBar/navigationBar",
-    "pages/programmeShare/programmeShare"
+    "pages/programmeShare/programmeShare",
+    "pages/canvas/canvas"
   ],
   "window": {
     "backgroundTextStyle": "light",
