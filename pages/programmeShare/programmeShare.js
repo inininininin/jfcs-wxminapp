@@ -22,34 +22,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    console.log(options)
     that.setData({
       backgroundUrl:app.globalData.url+'/wxminapp/blackbg.png',
-      keGuiHuaZiChan:app.globalData.userInfoDetail.keGuiHuaZiChan||'',
-      caiFuGuiHuaMuBiao:app.globalData.userInfoDetail.caiFuGuiHuaMuBiao||'',
-      caiFuGuiHuaNianXian:app.globalData.userInfoDetail.caiFuGuiHuaNianXian||'',
-      jiaTingShouZhiZhuangKuang:app.globalData.userInfoDetail.jiaTingShouZhiZhuangKuang||'',
     })
-    var sex
-    if (app.globalData.userInfoDetail.sex == 1) {
-      sex = '男'
-    } else if (app.globalData.userInfoDetail.sex == 2) {
-      sex = '女'
-    } else {
-      sex = ''
-    }
-    if (app.globalData.userInfoDetail.age != '' && app.globalData.userInfoDetail.age != null && app.globalData.userInfoDetail.age != undefined) {
-      var age = app.globalData.userInfoDetail.age
-    }
-    if (app.globalData.userInfoDetail.realname != '' && app.globalData.userInfoDetail.realname != null && app.globalData.userInfoDetail.realname != undefined) {
-      var realname = app.globalData.userInfoDetail.realname
-    }
-    that.setData({
-      age: age,
-      realname: realname,
-      sex: sex,
-    })
-    console.log(123123)
     wx.request({
       url: app.globalData.url + '/get-user-questionnaire-result',
       method: 'post',

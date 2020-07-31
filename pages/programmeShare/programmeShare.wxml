@@ -9,18 +9,18 @@
   </view>
 </view>
 <view class="topbg" style='margin-top:{{statusBarHeight+titleBarHeight}}px;background:url({{backgroundUrl}}) no-repeat;background-size: cover;background-position: center;'>
-  <view class="name">{{paperDetail.realname}}</view>
+  <view class="name">{{paperDetail.realname||''}}</view>
   <view class="age">
-    <text wx:if='{{paperDetail.age}}'>{{paperDetail.age}}</text>
-    <text  wx:if='{{paperDetail.sex}}'>{{paperDetail.sex}}</text>
+    <text wx:if='{{paperDetail.age}}'>{{paperDetail.age||''}}</text>
+    <text  wx:if='{{paperDetail.sex}}'>{{paperDetail.sex||''}}</text>
     <text  wx:if='{{paperDetail.resultName}}'>{{paperDetail.resultName1+"-"+paperDetail.resultName}}</text>
   </view>
   <view class="programmeDetail">
     <view>
-      <text class="lineOne">{{doPaperId}}</text><text>报告版本</text>
+      <text class="lineOne">{{doPaperId||''}}</text><text>报告版本</text>
     </view>
     <view>
-      <text class="lineOne">{{paperDetail.questionnaireTime}}</text><text>报告时间</text>
+      <text class="lineOne">{{paperDetail.questionnaireTime||''}}</text><text>报告时间</text>
     </view>
   </view>
 
@@ -34,16 +34,16 @@
         <view class="detailContentOne">
           <text>背景资料</text>
           <view>
-            <text>可规划资产：</text><text>{{paperDetail.keGuiHuaZiChan}}</text>
+            <text>可规划资产：</text><text>{{paperDetail.keGuiHuaZiChan||''}}</text>
           </view>
           <view>
-            <text>财富规划目标：</text><text>{{paperDetail.caiFuGuiHuaMuBiao}}</text>
+            <text>财富规划目标：</text><text>{{paperDetail.caiFuGuiHuaMuBiao||''}}</text>
           </view>
           <view>
-            <text>财富规划年限：</text><text>{{paperDetail.caiFuGuiHuaNianXian}}</text>
+            <text>财富规划年限：</text><text>{{paperDetail.caiFuGuiHuaNianXian||''}}</text>
           </view>
           <view>
-            <text>家庭收支状况：</text><text>{{paperDetail.jiaTingShouZhiZhuangKuang}}</text>
+            <text>家庭收支状况：</text><text>{{paperDetail.jiaTingShouZhiZhuangKuang||''}}</text>
           </view>
         </view>
         <!-- <image lazy-load='true' mode='widthFix' src="../icon/one.png"></image> -->

@@ -1,0 +1,16 @@
+/* pages/canvas/canvas.wxss */
+
+.canvasShow>button{
+  padding: 0 !important;
+  width: 200rpx !important;
+  height: 80rpx !important;
+  border-radius: 5rpx !important;
+  background: #fff !important;
+  color: #333 !important;
+  font-size: 30rpx !important;
+  line-height: 80rpx !important;
+  text-align: center !important;
+  margin: 30rpx 275rpx 0 !important;
+  background:#1890FF !important;
+  color: #fff !important;
+}
