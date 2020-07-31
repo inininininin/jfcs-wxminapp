@@ -1,6 +1,6 @@
 //app.js
 App({
-  version:'20.0731.1433',
+  version:'20.0731.1804',
   versionNote:'修复了一些BUG , 优化了用户体验 .',
   onLaunch: function () {
     // 展示本地存储能力

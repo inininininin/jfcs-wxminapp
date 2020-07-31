@@ -333,8 +333,8 @@ margin-top: 26rpx;
 
 .shareFont{
   background: #fff;
-  width: 80rpx;
-  height: 80rpx;
+  width: 65rpx;
+  height: 65rpx;
   border-radius: 40rpx;
   position: fixed;
   right: 30rpx;
@@ -349,8 +349,8 @@ margin-top: 26rpx;
   width: 38rpx;
   height: 38rpx;
   float: left;
-  /* margin-top: -8rpx; */
-margin-left: 21rpx;
+  margin-top: -6rpx; 
+  margin-left: 15rpx;
 }
 .font{
   width: 40rpx;
