@@ -338,9 +338,8 @@ margin-top: 26rpx;
   border-radius: 40rpx;
   position: fixed;
   right: 30rpx;
-  bottom: 130rpx;
+  top: 200rpx;
   z-index: 2;
-  box-shadow: 2rpx 4rpx 12rpx #e5e5e5;
 }
 .shareFont>view{
   width: 130rpx;
