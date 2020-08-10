@@ -125,7 +125,7 @@ App({
       },
       method: 'get',
       success: function (res) {
-        vm.globalData.userProtocol='https://test.inininininin.com'+res.data.data.userProtocol
+        vm.globalData.userProtocol='https://kefu.jfcs11.com'+res.data.data.userProtocol
       }
     })
     wx.request({
@@ -137,7 +137,7 @@ App({
       method: 'get',
       success: function (res) {
         if(res.data.data.example!=''&&res.data.data.example!=null&&res.data.data.example!=undefined){
-          vm.globalData.example='https://test.inininininin.com'+res.data.data.example
+          vm.globalData.example='https://kefu.jfcs11.com'+res.data.data.example
         }
       }
     })
@@ -156,7 +156,7 @@ App({
   cover(_cover){
     var that=this
     if(_cover&&_cover.slice(0,1)!='h'){
-      _cover='https://test.inininininin.com'+_cover
+      _cover='https://kefu.jfcs11.com'+_cover
     }
     return _cover
   },
@@ -165,9 +165,9 @@ App({
     userInfoDetail:[],
     statusBarHeight:'',
     titleBarHeight:'',
-    domain:'https://test.inininininin.com',
-    url:'https://test.inininininin.com/jfcs',
-    version:'2020.0717.1718',
+    domain:'https://kefu.jfcs11.com',
+    url:'https://kefu.jfcs11.com',
+    version:'1.0.0.2008101759',
     areaJson:'',
     example:'',
     userProtocol:'',
