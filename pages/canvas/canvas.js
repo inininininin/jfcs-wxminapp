@@ -58,18 +58,18 @@ Page({
         } else if (res.data.code == 0) {
           if (res.data.data.score1 < 40) {
             res.data.data.resultName = '低风险承受能力'
-          } else if (40 <= res.data.data.score1 < 60) {
+          } else if (40 <= res.data.data.score1&&res.data.data.score1 < 60) {
             res.data.data.resultName = '中等风险承受能力'
-          } else if (60 <= res.data.data.score1 <= 79) {
+          } else if (60 <= res.data.data.score1 &&res.data.data.score1<= 79) {
             res.data.data.resultName = '中高风险承受能力'
           } else {
             res.data.data.resultName = '高风险承受能力'
           }
           if (res.data.data.score2 < 40) {
             res.data.data.resultName1 = '保守型'
-          } else if (40 <= res.data.data.score2 < 60) {
+          } else if (40 <= res.data.data.score2&&res.data.data.score2 < 60) {
             res.data.data.resultName1 = '稳健型'
-          } else if (60 <= res.data.data.score2 <= 79) {
+          } else if (60 <= res.data.data.score2&&res.data.data.score2 <= 79) {
             res.data.data.resultName1 = '积极型'
           } else {
             res.data.data.resultName1 = '冒险型'
