@@ -263,9 +263,9 @@ Page({
   onlyBg(e) {
     console.log(12312)
     var that = this
-    that.setData({
-      showThisBg: false
-    })
+    // that.setData({
+    //   showThisBg: false
+    // })
     app.globalData.questionListNum = 0
     wx.showToast({
       title: '请稍等',
@@ -284,6 +284,60 @@ Page({
         console.log(11)
         if (res.data.code == 0) {
           app.globalData.userInfoDetail = res.data.data
+          if (app.globalData.userInfoDetail.realnameCertificationIs == 1) {
+            if (app.globalData.userInfoDetail.beiJingZiLiaoIs == 0) {
+              // clearInterval(timer);
+              wx.showToast({
+                title: '请稍等',
+                icon: 'none',
+                duration: 2000,
+                mask: true,
+                complete: function complete(res) {
+                  setTimeout(function () {
+                    wx.navigateTo({
+                      url: '../information/information',
+                    })
+                  }, 500);
+                }
+              });
+            } else if (app.globalData.userInfoDetail.questionnaireIs == 0) {
+              // clearInterval(timer);
+              wx.showToast({
+                title: '请稍等',
+                icon: 'none',
+                duration: 2000,
+                mask: true,
+                complete: function complete(res) {
+                  setTimeout(function () {
+                    wx.navigateTo({
+                      url: '../assess/assess',
+                    })
+                  }, 500);
+                }
+              });
+            } else {
+              // clearInterval(timer);
+              wx.navigateTo({
+                url: '../programme/programme',
+              })
+            }
+          } else if (app.globalData.userInfoDetail.realnameCertificationIs == 0) {
+            // clearInterval(timer);
+            wx.showToast({
+              title: '请先实名认证',
+              icon: 'none',
+              duration: 2000,
+              mask: true,
+              complete: function complete(res) {
+                console.log(123123)
+                setTimeout(function () {
+                  wx.navigateTo({
+                    url: '../authentication/authentication',
+                  })
+                }, 500);
+              }
+            });
+          }
         } else {
           console.log(22)
           wx.navigateTo({
@@ -294,60 +348,7 @@ Page({
     })
     // app.globalData.userInfoDetail
     // var timer = setInterval(function () {
-      if (app.globalData.userInfoDetail.realnameCertificationIs == 1) {
-        if (app.globalData.userInfoDetail.beiJingZiLiaoIs == 0) {
-          // clearInterval(timer);
-          wx.showToast({
-            title: '请稍等',
-            icon: 'none',
-            duration: 2000,
-            mask: true,
-            complete: function complete(res) {
-              setTimeout(function () {
-                wx.navigateTo({
-                  url: '../information/information',
-                })
-              }, 500);
-            }
-          });
-        } else if (app.globalData.userInfoDetail.questionnaireIs == 0) {
-          // clearInterval(timer);
-          wx.showToast({
-            title: '请稍等',
-            icon: 'none',
-            duration: 2000,
-            mask: true,
-            complete: function complete(res) {
-              setTimeout(function () {
-                wx.navigateTo({
-                  url: '../assess/assess',
-                })
-              }, 500);
-            }
-          });
-        } else {
-          // clearInterval(timer);
-          wx.navigateTo({
-            url: '../programme/programme',
-          })
-        }
-      } else if (app.globalData.userInfoDetail.realnameCertificationIs == 0) {
-        // clearInterval(timer);
-        wx.showToast({
-          title: '请先实名认证',
-          icon: 'none',
-          duration: 2000,
-          mask: true,
-          complete: function complete(res) {
-            console.log(123123)
-            setTimeout(function () {
-              wx.navigateTo({
-                url: '../authentication/authentication',
-              })
-            }, 500);
-          }
-        });
-      }
+   
 
     // }, 500)
 
