@@ -1,5 +1,14 @@
 <!--pages/authentication/authentication.wxml-->
-<view class="authLine" style="margin-top:20rpx">
+<view class="container" style="padding-top:{{statusBarHeight+titleBarHeight}}px">
+  <view class="header" style="background:{{background}}">
+    <view class="status-bar" style="height:{{statusBarHeight}}px"></view>
+    <view class="title-bar" style="height:{{titleBarHeight}}px">
+      <image  mode="aspectFill" lazy-load="true" class="back" bindtap="backHistory" src="../icon/backArrow.png"></image>
+      <text class="evahospital">{{navtitle}}</text>
+    </view>
+  </view>
+</view>
+<view class="authLine" style="margin-top:{{statusBarHeight+titleBarHeight+10}}px;border-top:0">
   <text>姓名：</text>
   <input bindinput="nameSure" placeholder="请输入真实姓名" type="text" maxlength="12" placeholder-class="placeholderClass"></input>
 </view>

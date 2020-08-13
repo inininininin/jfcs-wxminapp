@@ -25,6 +25,7 @@ Page({
     if (e.detail.value == 0) {
       wx.showToast({
         title: '您当前尚未选择',
+        icon: 'none'
       })
       this.setData({
         index: e.detail.value,

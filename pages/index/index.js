@@ -272,12 +272,31 @@ Page({
       icon: 'loading',
       duration: 10000,
     })
-
+    wx.request({
+      url: app.globalData.url + '/login-refresh',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        'cookie': wx.getStorageSync('cookie')
+      },
+      method: 'post',
+      success: function (res) {
+        wx.hideToast()
+        console.log(11)
+        if (res.data.code == 0) {
+          app.globalData.userInfoDetail = res.data.data
+        } else {
+          console.log(22)
+          wx.navigateTo({
+            url: '../login/login',
+          })
+        }
+      }
+    })
     // app.globalData.userInfoDetail
-    var timer = setInterval(function () {
+    // var timer = setInterval(function () {
       if (app.globalData.userInfoDetail.realnameCertificationIs == 1) {
         if (app.globalData.userInfoDetail.beiJingZiLiaoIs == 0) {
-          clearInterval(timer);
+          // clearInterval(timer);
           wx.showToast({
             title: '请稍等',
             icon: 'none',
@@ -292,7 +311,7 @@ Page({
             }
           });
         } else if (app.globalData.userInfoDetail.questionnaireIs == 0) {
-          clearInterval(timer);
+          // clearInterval(timer);
           wx.showToast({
             title: '请稍等',
             icon: 'none',
@@ -307,19 +326,20 @@ Page({
             }
           });
         } else {
-          clearInterval(timer);
+          // clearInterval(timer);
           wx.navigateTo({
             url: '../programme/programme',
           })
         }
       } else if (app.globalData.userInfoDetail.realnameCertificationIs == 0) {
-        clearInterval(timer);
+        // clearInterval(timer);
         wx.showToast({
           title: '请先实名认证',
           icon: 'none',
           duration: 2000,
           mask: true,
           complete: function complete(res) {
+            console.log(123123)
             setTimeout(function () {
               wx.navigateTo({
                 url: '../authentication/authentication',
@@ -329,7 +349,7 @@ Page({
         });
       }
 
-    }, 500)
+    // }, 500)
 
 
     // 备份留着
@@ -681,24 +701,24 @@ Page({
       }
     })
 
-    wx.request({
-      url: app.globalData.url + '/login-refresh',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        'cookie': wx.getStorageSync('cookie')
-      },
-      method: 'post',
-      success: function (res) {
-        wx.hideToast()
-        if (res.data.code == 0) {
-          app.globalData.userInfoDetail = res.data.data
-        } else {
-          wx.navigateTo({
-            url: '../login/login',
-          })
-        }
-      }
-    })
+    // wx.request({
+    //   url: app.globalData.url + '/login-refresh',
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //     'cookie': wx.getStorageSync('cookie')
+    //   },
+    //   method: 'post',
+    //   success: function (res) {
+    //     wx.hideToast()
+    //     if (res.data.code == 0) {
+    //       app.globalData.userInfoDetail = res.data.data
+    //     } else {
+    //       wx.navigateTo({
+    //         url: '../login/login',
+    //       })
+    //     }
+    //   }
+    // })
 
 
     // wx.request({
