@@ -1,5 +1,5 @@
 // pages/canvas/canvas.js
-var app=getApp()
+var app = getApp()
 Page({
 
   /**
@@ -7,9 +7,9 @@ Page({
    */
   data: {
     picList: [],
-    close:'none',
-    imglist:[],
-    canvasShow:false,
+    close: 'none',
+    imglist: [],
+    canvasShow: false,
     hidden: true,
   },
 
@@ -20,11 +20,11 @@ Page({
     var that = this
     wx.showToast({
       title: '请稍等',
-      icon:'none',
-      duration:10000
+      icon: 'none',
+      duration: 10000
     })
     that.setData({
-      backgroundUrl:app.globalData.url+'/wxminapp/blackbg.png',
+      backgroundUrl: app.globalData.url + '/wxminapp/blackbg.png',
     })
     wx.request({
       url: app.globalData.url + '/get-user-questionnaire-result',
@@ -33,7 +33,7 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded",
         // 'cookie': wx.getStorageSync('cookie')
       },
-      data:'userId='+app.globalData.userInfoDetail.userId,
+      data: 'userId=' + app.globalData.userInfoDetail.userId,
       success: function (res) {
         console.log(res)
         if (res.data.codeMsg) {
@@ -58,25 +58,26 @@ Page({
         } else if (res.data.code == 0) {
           if (res.data.data.score1 < 40) {
             res.data.data.resultName = '低风险承受能力'
-          } else if (40 <= res.data.data.score1&&res.data.data.score1 < 60) {
+          } else if (40 <= res.data.data.score1 && res.data.data.score1 < 60) {
             res.data.data.resultName = '中等风险承受能力'
-          } else if (60 <= res.data.data.score1 &&res.data.data.score1<= 79) {
+          } else if (60 <= res.data.data.score1 && res.data.data.score1 <= 79) {
             res.data.data.resultName = '中高风险承受能力'
           } else {
             res.data.data.resultName = '高风险承受能力'
           }
+          debugger
           if (res.data.data.score2 < 40) {
             res.data.data.resultName1 = '保守型'
-          } else if (40 <= res.data.data.score2&&res.data.data.score2 < 60) {
+          } else if (40 <= res.data.data.score2 && res.data.data.score2 < 60) {
             res.data.data.resultName1 = '稳健型'
-          } else if (60 <= res.data.data.score2&&res.data.data.score2 <= 79) {
+          } else if (60 <= res.data.data.score2 && res.data.data.score2 <= 79) {
             res.data.data.resultName1 = '积极型'
           } else {
             res.data.data.resultName1 = '冒险型'
           }
-            if (res.data.data.resultPic1) {
-              res.data.data.resultPic1 = app.cover(res.data.data.resultPic1)
-            }
+          if (res.data.data.resultPic1) {
+            res.data.data.resultPic1 = app.cover(res.data.data.resultPic1)
+          }
           if (res.data.data.resultPic2) {
             res.data.data.resultPic2 = app.cover(res.data.data.resultPic2)
           }
@@ -86,18 +87,18 @@ Page({
 
           console.log(res.data.data.questionnaireTime)
           console.log(res.data.data.questionnaireTime.split('-')[2])
-          res.data.data.doPaperId=res.data.data.questionnaireTime.split('-')[0] + res.data.data.questionnaireTime.split('-')[1] + res.data.data.questionnaireTime.split('-')[2].split(' ')[0]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[0]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[1]+res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[2].split('.')[0]
+          res.data.data.doPaperId = res.data.data.questionnaireTime.split('-')[0] + res.data.data.questionnaireTime.split('-')[1] + res.data.data.questionnaireTime.split('-')[2].split(' ')[0] + res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[0] + res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[1] + res.data.data.questionnaireTime.split('-')[2].split(' ')[1].split(':')[2].split('.')[0]
           res.data.data.questionnaireTime = res.data.data.questionnaireTime.split(' ')[0]
           // if(res.data.data.sex==1){
           //   res.data.data.sex='男'
           // }else{
           //   res.data.data.sex='女'
           // }
-          res.data.data.sex=res.data.data.sex==1?'男':'女'
+          res.data.data.sex = res.data.data.sex == 1 ? '男' : '女'
           that.data.picList.push(res.data.data.resultPic1)
           that.data.picList.push(res.data.data.resultPic2)
           that.data.picList.push(res.data.data.resultPic3)
-          
+
           that.setData({
             doPaperId: res.data.data.doPaperId,
             // doPaperId:res.data.data.doPaperId.substring(0,15),
@@ -108,10 +109,10 @@ Page({
           // var imglist = []
           // imglist.push(app.globalData.url+'/wxminapp/blackbg.png')
           that.setData({
-            tcode: app.globalData.url+'/wxminapp/blackbg.png',
+            tcode: app.globalData.url + '/wxminapp/blackbg.png',
             // imglist: imglist,
           })
-          
+
           var param = encodeURIComponent('pages/programmeShare/programmeShare?id=' + app.globalData.userInfoDetail.userId)
           wx.getImageInfo({
             src: app.globalData.url + '/wxminqrcode?path=' + param + '&width=200',
@@ -124,7 +125,7 @@ Page({
               console.log(res.path)
               imglist.push(res.path)
               that.setData({
-                tcode: app.globalData.url+'/wxminapp/blackbg.png',
+                tcode: app.globalData.url + '/wxminapp/blackbg.png',
                 imglist: imglist,
               })
               that.lookCode()
@@ -133,14 +134,14 @@ Page({
               console.log(res)
             }
           })
-          
+
           // console.log(that.data.paperDetail)
         }
       }
     })
-    
+
   },
-  shareIs: function() {
+  shareIs: function () {
     var that = this
     wx.showLoading({
       title: '努力生成中...'
@@ -156,14 +157,14 @@ Page({
       destWidth: 705,
       destHeight: 639,
       canvasId: 'canvas',
-      success: function(res) {
+      success: function (res) {
         that.setData({
           prurl: res.tempFilePath,
           hidden: false
         })
         wx.hideLoading()
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res)
       }
     })
@@ -172,7 +173,7 @@ Page({
   /**
    * 保存到相册
    */
-  saveIs: function() {
+  saveIs: function () {
     console.log(123123123)
     var that = this
     console.log(that.data.urls)
@@ -184,24 +185,24 @@ Page({
           console.log(12)
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
-            success (res) {
+            success(res) {
               console.log(res)
               // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
-              
+
             },
-            fail(res){
+            fail(res) {
               console.log(res)
               console.log(res)
               wx.showModal({
                 content: '检测到您没打开下载图片功能权限，是否去设置打开？',
                 confirmText: "确认",
                 cancelText: "取消",
-                success: function(res) {
+                success: function (res) {
                   console.log(res);
                   //点击“确认”时打开设置页面
                   if (res.confirm) {
                     wx.openSetting({
-                      success: (res) => {}
+                      success: (res) => { }
                     })
                   } else {
                     console.log('用户点击取消')
@@ -210,7 +211,7 @@ Page({
               });
             }
           })
-        }else{
+        } else {
           wx.saveImageToPhotosAlbum({
             filePath: that.data.urls,
             success(res) {
@@ -229,19 +230,19 @@ Page({
                 }
               });
             },
-            error:function(res){
+            error: function (res) {
               console.log(res)
             },
-            fail(res){
-             
+            fail(res) {
+
             }
           })
         }
       }
     })
-   
+
   },
-  drawText: function(ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, lineHeight, lineMax) {
+  drawText: function (ctx, str, leftWidth, initHeight, titleHeight, canvasWidth, lineHeight, lineMax) {
     var lineWidth = 0;
     var lastSubStrIndex = 0; //每次开始截取的字符串的索引
     for (let i = 0; i < str.length; i++) {
@@ -261,7 +262,7 @@ Page({
     titleHeight = titleHeight + 10;
     return titleHeight
   },
-  dealWords: function(options) {
+  dealWords: function (options) {
     options.ctx.setFontSize(options.fontSize); //设置字体大小
     var allRow = Math.ceil(options.ctx.measureText(options.word).width / options.maxWidth); //实际总共能分多少行
     var count = allRow >= options.maxLine ? options.maxLine : allRow; //实际能分多少行与设置的最大显示行数比，谁小就用谁做循环次数
@@ -290,131 +291,131 @@ Page({
   },
 
 
-// canvas绘图部分
-sys: function () {
-  var that = this;
-  wx.getSystemInfo({
-    success: function (res) {
-      that.setData({
-        windowW: res.windowWidth,
-        windowH:res.windowHeight,
-        windowTop:(res.windowHeight-res.windowWidth)/2
-      })
-    },
-  })
-},
-getImageInfo() {
-  var  that=this
-  wx.getImageInfo({
-    src: this.data.avatorShare,
-    complete: (res) => {
-      console.log(res)
-      var windowW = that.data.windowW;
-      var nbei=res.width/windowW
-      var avatorShareHeight=parseInt(res.height/nbei)
-      that.setData({
-        avatorShareHeight:avatorShareHeight,
-        avatorShareWidth: windowW
-      })
-      console.log(that.data.avatorShareHeight)
-    }
-  })
-},
+  // canvas绘图部分
+  sys: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowW: res.windowWidth,
+          windowH: res.windowHeight,
+          windowTop: (res.windowHeight - res.windowWidth) / 2
+        })
+      },
+    })
+  },
+  getImageInfo() {
+    var that = this
+    wx.getImageInfo({
+      src: this.data.avatorShare,
+      complete: (res) => {
+        console.log(res)
+        var windowW = that.data.windowW;
+        var nbei = res.width / windowW
+        var avatorShareHeight = parseInt(res.height / nbei)
+        that.setData({
+          avatorShareHeight: avatorShareHeight,
+          avatorShareWidth: windowW
+        })
+        console.log(that.data.avatorShareHeight)
+      }
+    })
+  },
   canvasdraw: function (canvas) {
     var that = this;
-   
+
     // console.log(that.data.testImg)
     that.setData({
-      canvasShow:true
+      canvasShow: true
     })
     console.log(1212)
     wx.downloadFile({
       url: that.data.tcode,//注意公众平台是否配置相应的域名
       success: function (res) {
-        console.log( res.tempFilePath)
+        console.log(res.tempFilePath)
         that.setData({
           avatorShare: res.tempFilePath
         })
-        var leftW=(that.data.windowW-140)
+        var leftW = (that.data.windowW - 140)
         var windowW = that.data.windowW;
         var windowH = that.data.windowH;
-        console.log(windowW,windowH)
+        console.log(windowW, windowH)
         // that.getImageInfo()
         wx.getImageInfo({
           src: that.data.avatorShare,
           complete: (res) => {
             console.log(res)
             var windowW = that.data.windowW;
-            var nbei=res.height/176
-            var avatorShareHeight=parseInt(windowW/nbei)
+            var nbei = res.height / 176
+            var avatorShareHeight = parseInt(windowW / nbei)
 
             that.setData({
-              avatorShareHeight:res.height,
+              avatorShareHeight: res.height,
               avatorShareWidth: res.width
             })
             console.log(that.data.avatorShareHeight)
-            console.log(windowW,that.data.avatorShareHeight)
+            console.log(windowW, that.data.avatorShareHeight)
             canvas.drawImage('../icon/fang.png', 0, 0, windowW, windowW);
-            canvas.drawImage(that.data.avatorShare, 0, 0,  that.data.avatorShareWidth, that.data.avatorShareHeight,0, 0, windowW, 200);
-       
-            canvas.font="20px Georgia";
-            canvas.fillStyle='#fff';
-            canvas.width=windowW-100
-              canvas.fillText(app.globalData.userInfoDetail.realname, 27, 27,200)
-              canvas.font="15px Georgia";
-              canvas.fillText(app.globalData.userInfoDetail.age, 27, 51,200)
-              canvas.fillText(app.globalData.userInfoDetail.sex==1?'男':'女', 72, 51,200)
-              canvas.fillText(that.data.paperDetail.resultName1+"-"+that.data.paperDetail.resultName, 115, 51,200)
-              canvas.font="12px Georgia";
-              canvas.fillText(that.data.doPaperId, 40, 111,200)
-              canvas.fillText(that.data.paperDetail.questionnaireTime, 185, 111,200)
-              canvas.fillText('报告版本', 55, 135,200)
-              canvas.fillText('报告时间', 195, 135,200)
-              // canvas.fillStyle='#F5F5F5';
-              canvas.fillStyle='#fff';
-              canvas.fillRect(0,154,windowW,windowW-154);
-              canvas.fillStyle='#333333';
-              canvas.font="16px Georgia";
-              canvas.fillText('背景资料', 34, 190,200)
-              canvas.fillStyle='#333333';
-              canvas.font="12px Georgia";
-              canvas.fillText('可规划资产：'+that.data.paperDetail.keGuiHuaZiChan, 24, 220,200)
-              canvas.fillText('财富规划目标：'+that.data.paperDetail.caiFuGuiHuaMuBiao, 24, 240,200)
-              canvas.fillText('财富规划年限：'+that.data.paperDetail.caiFuGuiHuaNianXian, 24, 260,200)
-              canvas.fillText('家庭收支状况：'+that.data.paperDetail.jiaTingShouZhiZhuangKuang, 24, 280,200)
-              canvas.drawImage(that.data.imglist[0], leftW,190, 120, 120);
-            canvas.draw(true,setTimeout(function(){
-              
+            canvas.drawImage(that.data.avatorShare, 0, 0, that.data.avatorShareWidth, that.data.avatorShareHeight, 0, 0, windowW, 200);
+
+            canvas.font = "20px Georgia";
+            canvas.fillStyle = '#fff';
+            canvas.width = windowW - 100
+            canvas.fillText(app.globalData.userInfoDetail.realname, 27, 27, 200)
+            canvas.font = "15px Georgia";
+            canvas.fillText(app.globalData.userInfoDetail.age, 27, 51, 200)
+            canvas.fillText(app.globalData.userInfoDetail.sex == 1 ? '男' : '女', 72, 51, 200)
+            canvas.fillText(that.data.paperDetail.resultName1 + "-" + that.data.paperDetail.resultName, 115, 51, 200)
+            canvas.font = "12px Georgia";
+            canvas.fillText(that.data.doPaperId, 40, 111, 200)
+            canvas.fillText(that.data.paperDetail.questionnaireTime, 185, 111, 200)
+            canvas.fillText('报告版本', 55, 135, 200)
+            canvas.fillText('报告时间', 195, 135, 200)
+            // canvas.fillStyle='#F5F5F5';
+            canvas.fillStyle = '#fff';
+            canvas.fillRect(0, 154, windowW, windowW - 154);
+            canvas.fillStyle = '#333333';
+            canvas.font = "16px Georgia";
+            canvas.fillText('背景资料', 34, 190, 200)
+            canvas.fillStyle = '#333333';
+            canvas.font = "12px Georgia";
+            canvas.fillText('可规划资产：' + that.data.paperDetail.keGuiHuaZiChan, 24, 220, 200)
+            canvas.fillText('财富规划目标：' + that.data.paperDetail.caiFuGuiHuaMuBiao, 24, 240, 200)
+            canvas.fillText('财富规划年限：' + that.data.paperDetail.caiFuGuiHuaNianXian, 24, 260, 200)
+            canvas.fillText('家庭收支状况：' + that.data.paperDetail.jiaTingShouZhiZhuangKuang, 24, 280, 200)
+            canvas.drawImage(that.data.imglist[0], leftW, 190, 120, 120);
+            canvas.draw(true, setTimeout(function () {
+
               that.saveCanvas()
-             
+
               // setTimeout(function(){
-                
+
               // },200)
-            },100));
+            }, 100));
 
           }
         })
 
-        
-        
+
+
       }
     })
-   
-    console.log(that.data.avatorShare,that.data.imglist[0])
-  
-   
-   
+
+    console.log(that.data.avatorShare, that.data.imglist[0])
+
+
+
     // canvas.draw();
   },
   saveCanvas: function () {
-  
+
     var that = this;
-   
+
     var windowW = that.data.windowW;
     var windowH = that.data.windowH;
-    console.log(windowW,windowH);
+    console.log(windowW, windowH);
     that.setData({
-      canvasShow:true
+      canvasShow: true
     })
     wx.canvasToTempFilePath({
       x: 0,
@@ -431,13 +432,13 @@ getImageInfo() {
           // canvasShow:false
         })
         that.setData({
-          urls:res.tempFilePath
+          urls: res.tempFilePath
         })
       },
-      error:function(res){
+      error: function (res) {
         console.log(res)
       },
-      fail:function(res){
+      fail: function (res) {
         console.log(res)
       }
     })
@@ -461,10 +462,10 @@ getImageInfo() {
   closeCanvas: function () {
     var that = this;
     that.setData({
-      canvasShow:false
+      canvasShow: false
     })
   },
-   
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
