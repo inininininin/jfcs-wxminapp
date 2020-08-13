@@ -7,6 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    statusBarHeight: app.globalData.statusBarHeight,
+    titleBarHeight: app.globalData.titleBarHeight,
+    navtitle: '实名认证',
     sendCode: true,
     phoneIf:false,
     sendtext: '获取验证码',
@@ -29,7 +32,11 @@ Page({
     region: ['北京省', '北京市', '东城区'],
     customItem: '',
   },
-
+  backHistory(){
+    wx.reLaunch({
+      url: '../index/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

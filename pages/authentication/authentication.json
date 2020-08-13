@@ -1,6 +1,7 @@
 {
+  "navigationStyle":"custom",
   "usingComponents": {},
   "navigationBarTitleText": "实名认证",
   "navigationBarTextStyle": "black",
-  "navigationBarBackgroundColor": "#EEEEEE"
+  "navigationBarBackgroundColor": "#EDEDED"
 }

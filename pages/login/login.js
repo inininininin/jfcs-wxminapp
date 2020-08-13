@@ -64,7 +64,7 @@ Page({
                     success: function (res) {
                       wx.hideToast()
                       if (res.data.code == 0) {
-                        debugger
+                        // debugger
                         app.globalData.userInfoDetail = res.data.data
                         // wx.setStorageSync('loginHospitalId', res.data.data.hospitalId)
                         // wx.setStorageSync('loginHpitalName', res.data.data.hospitalName)
@@ -76,11 +76,14 @@ Page({
                           duration: 2000,
                           mask: true,
                           complete: function complete(res) {
-                            setTimeout(function () {                          
-                                wx.navigateBack({
-                                  complete: (res) => {},
-                                })
-                            }, 500);
+                            setTimeout(function () {   
+                                wx.reLaunch({
+                                  url: '../index/index',
+                                })                       
+                                // wx.navigateBack({
+                                //   complete: (res) => {},
+                                // })
+                            }, 100);
                           }
                         });
     
