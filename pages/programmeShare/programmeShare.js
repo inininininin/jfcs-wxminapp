@@ -130,7 +130,7 @@ Page({
   
   backHistory(e) {
     wx.reLaunch({
-      url: '../projectsE/projectsE',
+      url: '../index/index',
     })
   },
   /**

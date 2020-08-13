@@ -1,13 +1,92 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view id='scrollHeight' style="padding-bottom:120rpx">
+	<!--pages/projects/projects.wxml-->
+	<view class="bigIntro">
+		<view class="bigIntroBoxAvator">
+			<image src="../icon/avator.svg"></image>
+		</view>
+		<view class="bigIntroBox">
+			<view class="bigIntroBoxTop" style="background:url({{bigIntroBoxTopBg}}) no-repeat;background-size:cover;background-position:center">
+				<view class="title">财富规划团队</view>
+				<view class="intro">通过对您财富管理和目标深入了解，定制财富计划和投资策略</view>
+				<view class="projectTitle">
+					<image class="projectTitleLf" src="../icon/zuo.svg"></image>
+					<view class="projectTitleMd">我们如何为您做专属财富规划</view>
+					<image class="projectTitleRt" src="../icon/you.svg"></image>
+				</view>
+				<view class="content">运用严格科学的产品筛选策略，依托专业研发团队的研究资源及成果、由理财师团队严谨按照一定服务流程与方法，为您量身定制资产配置报告。</view>
+			</view>
+			<view wx:if='{{showThisBg}}' class="bigIntroBoxBottom" style="margin-top:20rpx" bindtap="onlyBg">
+				<image class="projectTitleLfThis projectTitleLfThisEve" src="../icon/jiantou1.svg"></image>
+				<!-- <text class="projectTitleLfThisEve">》》</text> -->
+				<view class="projectTitleMd yy projectTitleMdEve" style="margin:0 39rpx;"> 定制我的专属报告</view>
+				<!-- <image class="projectTitleRtThis" src="../icon/youjian.svg"></image> -->
+			</view>
+			<view wx:if='{{!showThisBg}}' class="bigIntroBoxBottom" style="margin-top:20rpx">
+				<image class="projectTitleLfThis projectTitleLfThisEve" src="../icon/jiantou1.svg"></image>
+				<view class="projectTitleMd yy projectTitleMdEve" style="margin:0 39rpx;">定制我的专属报告</view>
+				<!-- <image class="projectTitleRtThis" src="../icon/youjian.svg"></image> -->
+			</view>
+			<view class="lookFg" bindtap="lookFg" style="margin-top:20rpx">
+				<!-- <image class="projectTitleLfEve" src="../icon/xian.svg"></image> -->
+				<view class="yy">查 看 范 稿</view>
+				<!-- <image class="projectTitleRtEve" src="../icon/xian.svg"></image>  -->
+
+			</view>
+
+			<!-- <view class="bigIntroBoxBottom"  bindtap="onlyBg">定制我的专属报告</view> -->
+		</view>
+	</view>
+	<view class="talkBox">
+		<view class="talkBoxTop">
+			<view>
+				<image src="../icon/callSis2.svg"></image>
+			</view>
+			<text class="">Hi～娜娜</text>
+		</view>
+		<view class="talkBoxBottom">我是嘉富财商~ 理财就找我，很高兴为您服务！</view>
+	</view>
+	<view class="question">
+		<view>
+			<text>常见问题：</text>
+			<text  wx:for='{{question}}' bindtap="reply"  data-question='{{item.name}}' data-reply='{{item.reply}}'>{{item.number}}.{{item.name}}</text>
+			<!-- <text>{{item.reply}}</text> -->
+		</view>
+	</view>
+	<view class="answerBoxList">
+    <view wx:for='{{answerList}}' class="answerQueBox">
+		<view class="answerThis huanhang">{{item.question}}</view>
+		<view class="talkBoxThis">
+
+			<view class="talkBoxTopThis">
+				<view>
+					<image src="../icon/callSis2.svg"></image>
+				</view>
+				<text  class="">Hi～娜娜</text>
+			</view>
+			<view class="talkBoxBottomThis">{{item.answer}}</view>
+		</view>
+	</view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+	<view class="concatPeople">
+		<button open-type="contact" bindcontact="handleContact">
+			<view>
+				<image src="../icon/callSis2.svg"></image>
+			</view>
+			<text>转人工客服</text>
+		</button>
+	</view>
+	<!-- <view class="kefu">
+  <image src="../icon/callSis.svg"></image>
+  <text>客服</text>
+</view> -->
+
+	<view style="clear:both"></view>
+	<view class="tabbarBtn">
+		<view>
+			<input bindinput="sendMsg" value="{{sendMsg}}" placeholder="在这里写下您想说的话"></input>
+			<image bindtap="sendMsgAll" src="../icon/send.svg"></image>
+		</view>
+		<!-- <button open-type="contact" bindcontact="handleContact"><text>在这里写下您想说的话</text><image src="../icon/send.svg"></image></button> -->
+		<!-- <view></view> -->
+	</view>
 </view>
