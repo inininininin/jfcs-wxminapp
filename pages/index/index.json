@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarTitleText": "嘉富财商",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EDEDED"
 }

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/projectsE/projectsE",
     "pages/projects/projects",
     "pages/information/information",
@@ -10,7 +11,7 @@
     "pages/programme/programme",
     "pages/webview/webview",
     "pages/assessment/assessment",
-    "pages/index/index",
+  
     "pages/logs/logs",
     "pages/components/navigationBar/navigationBar",
     "pages/programmeShare/programmeShare",

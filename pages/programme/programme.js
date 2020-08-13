@@ -155,7 +155,7 @@ Page({
   
   backHistory(e) {
     wx.reLaunch({
-      url: '../projectsE/projectsE',
+      url: '../index/index',
     })
   },
 
@@ -288,7 +288,7 @@ Page({
    */
   onShareAppMessage: function () {
     console.log(121321111)
-    var path = '/pages/projectsE/projectsE?isShare=1&id='+app.globalData.userInfoDetail.userId;
+    var path = '/pages/index/index?isShare=1&id='+app.globalData.userInfoDetail.userId;
     return {
       title: '欢迎使用嘉富财商小程序', 
       path: path, 
