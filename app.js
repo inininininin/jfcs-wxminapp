@@ -1,6 +1,6 @@
 //app.js
 App({
-  version:'1.0.0.2008120945',
+  version:'1.0.0.2008130307',
   versionNote:'修复了一些BUG , 优化了用户体验 .',
   onLaunch: function () {
     // 展示本地存储能力
