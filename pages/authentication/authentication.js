@@ -248,13 +248,13 @@ makeSureOk(e){
       icon:'none',
       duration:5000
     })
-    // wx.login({
-    //   success(res) {
-    //     var jscode = res.code
+    wx.login({
+      success(res) {
+        var jscode = res.code
         wx.request({
           url: app.globalData.url+'/update-my-realname-info',
           data:'realname='+that.data.name+'&age='+that.data.age+'&sex='+that.data.sex
-          +'&area1Id='+that.data.area1Id+'&area1Name='+that.data.area1Name+'&area2Id='+that.data.area2Id+'&area2Name='+that.data.area2Name+'&area3Id='+that.data.area3Id+'&area3Name='+that.data.area3Name+'&wxMinappIv='+that.data.iv+'&wxMinAppEncryptedDataOfPhoneNumber='+that.data.encryptedData,//+'&jscode='+jscode,
+          +'&area1Id='+that.data.area1Id+'&area1Name='+that.data.area1Name+'&area2Id='+that.data.area2Id+'&area2Name='+that.data.area2Name+'&area3Id='+that.data.area3Id+'&area3Name='+that.data.area3Name+'&wxMinappIv='+that.data.iv+'&wxMinAppEncryptedDataOfPhoneNumber='+that.data.encryptedData+'&jscode='+jscode,
           method:'post',
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -318,8 +318,8 @@ makeSureOk(e){
             }
           }
         })
-    //   }
-    // })
+      }
+    })
     
   },
 
@@ -339,43 +339,43 @@ makeSureOk(e){
       iv:encodeURIComponent(e.detail.iv)
     })
 
-    if(e.detail.encryptedData!=null&&e.detail.encryptedData!=''&&e.detail.encryptedData!=undefined){
-      wx.request({
-        url: app.globalData.url + '/get-wx-minapp-phone',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          'cookie': wx.getStorageSync('cookie')
-        },
-        data:'wxMinAppEncryptedDataOfPhoneNumber='+encodeURIComponent(e.detail.encryptedData)+'&wxMinappIv='+encodeURIComponent(e.detail.iv),//+'&jscode='+jscode,
-        method: 'post',
-        success: function (res) {
-          wx.hideToast()
-          if (res.data.code == 0) {
-            that.setData({
-              phone:res.data.data.phone
+    
+    wx.login({
+        success(res) {
+          var jscode = res.code
+          if(e.detail.encryptedData!=null&&e.detail.encryptedData!=''&&e.detail.encryptedData!=undefined){
+            wx.request({
+              url: app.globalData.url + '/get-wx-minapp-phone',
+              header: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                'cookie': wx.getStorageSync('cookie')
+              },
+              data:'wxMinAppEncryptedDataOfPhoneNumber='+encodeURIComponent(e.detail.encryptedData)+'&wxMinappIv='+encodeURIComponent(e.detail.iv)+'&jscode='+jscode,
+              method: 'post',
+              success: function (res) {
+                wx.hideToast()
+                if (res.data.code == 0) {
+                  that.setData({
+                    phone:res.data.data.phone
+                  })
+                  that.makeSureOk()
+                } else {
+                  wx.showToast({
+                    title: res.data.codeMsg,
+                    icon: 'none'
+                  })
+                }
+              }
             })
-            that.makeSureOk()
-          } else {
+          }else{
             wx.showToast({
-              title: res.data.codeMsg,
-              icon: 'none'
+              title: '获取失败请重试',
+              icon:'none',
+              duration:1000
             })
           }
         }
       })
-    }else{
-      wx.showToast({
-        title: '获取失败请重试',
-        icon:'none',
-        duration:1000
-      })
-    }
-    // wx.login({
-    //     success(res) {
-    //       var jscode = res.code
-        
-        // }
-      // })
    
     // wx.login({
     //   success(res) {
