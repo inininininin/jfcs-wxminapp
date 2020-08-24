@@ -1,6 +1,6 @@
 //app.js
 App({
-  version:'1.0.0.2008131919',
+  version:'1.0.0.2008241808',
   versionNote:'修复了一些BUG , 优化了用户体验 .',
   onLaunch: function () {
     // 展示本地存储能力
@@ -168,7 +168,6 @@ App({
     titleBarHeight:'',
     domain:'https://kefu.jfcs11.com',
     url:'https://kefu.jfcs11.com',
-    version:'1.0.0.2008101759',
     areaJson:'',
     example:'',
     userProtocol:'',

@@ -7,7 +7,8 @@
 		<view class="bigIntroBox">
 			<view class="bigIntroBoxTop" style="background:url({{bigIntroBoxTopBg}}) no-repeat;background-size:cover;background-position:center">
 				<view class="title">财富规划团队</view>
-				<view class="intro">通过对您财富管理和目标深入了解，定制财富计划和投资策略</view>
+				<view class="intro">通过对您财富管理和目标深入了解</view>
+				<view class="intro">定制财富计划和投资策略</view>
 				<view class="projectTitle">
 					<image class="projectTitleLf" src="../icon/zuo.svg"></image>
 					<view class="projectTitleMd">我们如何为您做专属财富规划</view>

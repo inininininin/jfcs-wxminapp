@@ -7,7 +7,7 @@ Page({
    */
   data: {
     showIs:false,
-    version:app.globalData.version
+    version:app.version
   },
 
   /**
