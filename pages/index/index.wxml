@@ -41,9 +41,9 @@
 			<view>
 				<image src="../icon/callSis2.svg"></image>
 			</view>
-			<text class="">Hi～娜娜</text>
+			<text class="">Hi，我是嘉富财商</text>
 		</view>
-		<view class="talkBoxBottom">我是嘉富财商~ 理财就找我，很高兴为您服务！</view>
+		<view class="talkBoxBottom">很高兴为您服务，您有什么需求？</view>
 	</view>
 	<view class="question">
 		<view>
