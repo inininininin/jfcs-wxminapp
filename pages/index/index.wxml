@@ -62,8 +62,8 @@
 				<view>
 					<image src="../icon/callSis2.svg"></image>
 				</view>
-				<text  class="">Hi～娜娜</text>
-			</view>
+					<text class="">Hi，我是嘉富财商</text>
+		</view>
 			<view class="talkBoxBottomThis">{{item.answer}}</view>
 		</view>
 	</view>
