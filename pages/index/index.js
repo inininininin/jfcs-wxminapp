@@ -297,7 +297,7 @@ Page({
                     wx.navigateTo({
                       url: '../information/information',
                     })
-                  }, 500);
+                  }, 100);
                 }
               });
             } else if (app.globalData.userInfoDetail.questionnaireIs == 0) {
@@ -312,7 +312,7 @@ Page({
                     wx.navigateTo({
                       url: '../assess/assess',
                     })
-                  }, 500);
+                  }, 100);
                 }
               });
             } else {
@@ -329,17 +329,15 @@ Page({
               duration: 2000,
               mask: true,
               complete: function complete(res) {
-                console.log(123123)
                 setTimeout(function () {
                   wx.navigateTo({
                     url: '../authentication/authentication',
                   })
-                }, 500);
+                }, 100);
               }
             });
           }
         } else {
-          console.log(22)
           wx.navigateTo({
             url: '../login/login',
           })
