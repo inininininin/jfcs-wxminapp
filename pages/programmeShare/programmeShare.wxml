@@ -61,8 +61,10 @@
 
 </view>
 
-<view  class="askbg">
+<view class="btnBottom">
+  <view  class="askbg">
   <button  open-type="contact" bindcontact="handleContact">报告咨询</button>
 </view>
 <view  class="askbgEve" bindtap="askbgEve">订购专家顾问服务</view>
+</view>
 <!-- <view class="askbg">报告咨询</view> -->
