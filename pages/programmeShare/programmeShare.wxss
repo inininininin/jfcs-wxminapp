@@ -169,7 +169,7 @@ margin:0 32rpx 24rpx;
 
 .askbg{
   position: fixed;
-  bottom: 0;
+  bottom: 100rpx;
   left: 0;
   margin: 0;
   width: 750rpx;
@@ -231,12 +231,12 @@ line-height: 100rpx;
   height: 100rpx;
   line-height: 100rpx;
   position: fixed;
-  bottom: 100rpx;
+  bottom: 0;
   text-align: center;
-  color: #000000;
+  color: #0f0f0d;
   font-size: 36rpx;
   /* background: #ffffff; */
   background: #feeab6;
-  border-bottom: 1rpx solid #999999;
+ border-top: 1rpx solid #999999;
   /* opacity: 0.5; */
 }
