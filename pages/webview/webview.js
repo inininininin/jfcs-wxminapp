@@ -18,7 +18,7 @@ Page({
   onLoad: function (options) {
     var href = options.href
     this.setData({
-      href:'https://kefu.jfcs11.com/oss/jfcs/20200721150545431155334759819171.html'//decodeURIComponent(href),
+      href:decodeURIComponent(options.href)//decodeURIComponent(href),
     })
   },
 
