@@ -164,7 +164,7 @@ height: auto;
 margin:0 32rpx 24rpx;
 }
 .detailContent>image:last-child{
-  margin-bottom: 100rpx;
+  margin-bottom: 200rpx;
 }
 
 .askbg{
@@ -224,4 +224,16 @@ line-height: 100rpx;
 }
 .detailContentOne>view text:nth-child(1){
   color: rgb(66,66,66);
+}
+/* 后补 */
+.askbgEve{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: fixed;
+  bottom: 120rpx;
+  text-align: center;
+  color: #666666;
+  font-size: 36rpx;
+  background: #ffffff;
 }

@@ -16,7 +16,12 @@ Page({
     navtitle: '财富规划方案',
     picList: [],
   },
-
+// 补充的
+askbgEve(e){
+  wx.navigateTo({
+    url: '../webview/webview?href='+encodeURIComponent('https://www.jfcs11.com/m/course/Detail?no=507949'),
+  })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -164,7 +164,7 @@ height: auto;
 margin:0 32rpx 24rpx;
 }
 .detailContent>image:last-child{
-  margin-bottom: 100rpx;
+  margin-bottom: 200rpx;
 }
 
 .askbg{
@@ -473,4 +473,17 @@ canvas{
 .readShare text:last-child{
   display: inline-block;
   margin-left: 40rpx;
+}
+
+/* 后补 */
+.askbgEve{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  position: fixed;
+  bottom: 120rpx;
+  text-align: center;
+  color: #666666;
+  font-size: 36rpx;
+  background: #ffffff;
 }
