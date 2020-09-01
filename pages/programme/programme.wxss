@@ -167,7 +167,7 @@ margin:0 32rpx 24rpx;
   margin-bottom: 200rpx;
 }
 
-.askbg{
+.askbg,.askbgEve{
   position: fixed;
   bottom: 74rpx;
 
@@ -188,13 +188,13 @@ background: linear-gradient(89deg,#6baffa 0%, #3a90f0 100%);
 
 }
 
-.askbg button{
+.askbg button,.askbgEve button{
   height: 64rpx !important;
   width: 686rpx;
   margin: 0 32rpx;
   border-radius: 20rpx;
 }
-.askbg button:not([size='mini']){
+.askbg button:not([size='mini']),.askbgEve button:not([size='mini']){
   width: 686rpx;
   height: 64rpx;
   line-height: 64rpx;

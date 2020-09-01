@@ -1,71 +1,75 @@
 <!--pages/programme/programme.wxml-->
 <view class="container" style="padding-top:{{statusBarHeight+titleBarHeight}}px">
-  <view class="header" style="background:{{background}}">
-    <view class="status-bar" style="height:{{statusBarHeight}}px"></view>
-    <view class="title-bar" style="height:{{titleBarHeight}}px">
-      <image  mode="aspectFill" lazy-load="true" class="back" bindtap="backHistory" src="../icon/backArrow.png"></image>
-      <text class="evahospital">{{navtitle}}</text>
-    </view>
-  </view>
+	<view class="header" style="background:{{background}}">
+		<view class="status-bar" style="height:{{statusBarHeight}}px"></view>
+		<view class="title-bar" style="height:{{titleBarHeight}}px">
+			<image mode="aspectFill" lazy-load="true" class="back" bindtap="backHistory" src="../icon/backArrow.png"></image>
+			<text class="evahospital">{{navtitle}}</text>
+		</view>
+	</view>
 </view>
 <view class="topbg" style='margin-top:{{statusBarHeight+titleBarHeight}}px;background:url({{backgroundUrl}}) no-repeat;background-size: cover;background-position: center;'>
-  <view class="name">{{realname||''}}</view>
-  <view class="age">
-    <text wx:if='{{age}}'>{{age||''}}</text>
-    <text  wx:if='{{sex}}'>{{sex||''}}</text>
-    <text  wx:if='{{paperDetail.resultName}}'>{{paperDetail.resultName1+"-"+paperDetail.resultName}}</text>
-  </view>
-  <view class="programmeDetail">
-    <view>
-      <text class="lineOne">{{doPaperId||''}}</text><text>报告版本</text>
-    </view>
-    <view>
-      <text class="lineOne">{{paperDetail.questionnaireTime||''}}</text><text>报告时间</text>
-    </view>
-  </view>
+	<view class="name">{{realname||''}}</view>
+	<view class="age">
+		<text wx:if='{{age}}'>{{age||''}}</text>
+		<text  wx:if='{{sex}}'>{{sex||''}}</text>
+		<text  wx:if='{{paperDetail.resultName}}'>{{paperDetail.resultName1+"-"+paperDetail.resultName}}</text>
+	</view>
+	<view class="programmeDetail">
+		<view>
+			<text class="lineOne">{{doPaperId||''}}</text><text>报告版本</text>
+		</view>
+		<view>
+			<text class="lineOne">{{paperDetail.questionnaireTime||''}}</text><text>报告时间</text>
+		</view>
+	</view>
 
 
-  <view class="details">
-    <view class="navbar">
-        <view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view>
+	<view class="details">
+		<view class="navbar">
+			<view wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</view>
 
-      </view>
-      <view class="detailContent"  wx:if='{{currentTab==0}}' >
-        <view class="detailContentOne">
-          <text>背景资料</text>
-          <view>
-            <text>可规划资产：</text><text>{{keGuiHuaZiChan||''}}</text>
-          </view>
-          <view>
-            <text>财富规划目标：</text><text>{{caiFuGuiHuaMuBiao||''}}</text>
-          </view>
-          <view>
-            <text>财富规划年限：</text><text>{{caiFuGuiHuaNianXian||''}}</text>
-          </view>
-          <view>
-            <text>家庭收支状况：</text><text>{{jiaTingShouZhiZhuangKuang||''}}</text>
-          </view>
-        </view>
-        <!-- <image lazy-load='true' mode='widthFix' src="../icon/one.png"></image> -->
-         <image  lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic1}}' mode='widthFix' src="{{paperDetail.resultPic1}}"></image>
-        <image  lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic2}}' mode='widthFix' src="{{paperDetail.resultPic2}}"></image>
-        <image  lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic3}}' mode='widthFix' src="{{paperDetail.resultPic3}}"></image>
-      </view>
-      <view class="detailContent" wx:if='{{currentTab!=0}}'>
-        
-        <image  wx:if='{{currentTab==1}}'  bindtap="lookPic" data-url='{{paperDetail.resultPic1}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic1}}"></image>
-        <image  wx:if='{{currentTab==2}}' bindtap="lookPic" data-url='{{paperDetail.resultPic2}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic2}}"></image>
-        <image  wx:if='{{currentTab==3}}' bindtap="lookPic" data-url='{{paperDetail.resultPic3}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic3}}"></image>
-      </view>
-  </view>
+		</view>
+		<view class="detailContent" wx:if='{{currentTab==0}}'>
+			<view class="detailContentOne">
+				<text>背景资料</text>
+				<view>
+					<text>可规划资产：</text><text>{{keGuiHuaZiChan||''}}</text>
+				</view>
+				<view>
+					<text>财富规划目标：</text><text>{{caiFuGuiHuaMuBiao||''}}</text>
+				</view>
+				<view>
+					<text>财富规划年限：</text><text>{{caiFuGuiHuaNianXian||''}}</text>
+				</view>
+				<view>
+					<text>家庭收支状况：</text><text>{{jiaTingShouZhiZhuangKuang||''}}</text>
+				</view>
+			</view>
+			<!-- <image lazy-load='true' mode='widthFix' src="../icon/one.png"></image> -->
+			<image lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic1}}' mode='widthFix' src="{{paperDetail.resultPic1}}"></image>
+			<image lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic2}}' mode='widthFix' src="{{paperDetail.resultPic2}}"></image>
+			<image lazy-load='true' bindtap="lookPicAll" data-url='{{paperDetail.resultPic3}}' mode='widthFix' src="{{paperDetail.resultPic3}}"></image>
+		</view>
+		<view class="detailContent" wx:if='{{currentTab!=0}}'>
+
+			<image wx:if='{{currentTab==1}}' bindtap="lookPic" data-url='{{paperDetail.resultPic1}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic1}}"></image>
+			<image wx:if='{{currentTab==2}}' bindtap="lookPic" data-url='{{paperDetail.resultPic2}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic2}}"></image>
+			<image wx:if='{{currentTab==3}}' bindtap="lookPic" data-url='{{paperDetail.resultPic3}}' lazy-load='true' mode='widthFix' src="{{paperDetail.resultPic3}}"></image>
+		</view>
+	</view>
 
 </view>
 
 <view class="btnBottom">
-  <view  class="askbg">
-  <button  open-type="contact" bindcontact="handleContact">报告咨询</button>
-</view>
-<view  class="askbgEve" bindtap="askbgEve">订购专家顾问服务</view>
+	<view class="askbg">
+		<button open-type="contact" bindcontact="handleContact">报告咨询</button>
+	</view>
+<view class="askbgEve">
+		<button open-type="contact" bindcontact="handleContact">订购专家顾问服务</button>
+	</view>
+
+	<!-- <view class="askbgEve" bindtap="askbgEve">订购专家顾问服务</view> -->
 </view>
 <!-- <view class="askbg">报告咨询</view> -->
 
@@ -80,14 +84,14 @@
               <button open-type='share'>分享到微信</button>
             </view> -->
 				<button open-type='share'>
-					<image  mode="aspectFill"  bindtap='sharewx' class='wx' src='../icon/weixin@2x.png'></image>
+					<image mode="aspectFill" bindtap='sharewx' class='wx' src='../icon/weixin@2x.png'></image>
 					<text>分享到微信</text>
 				</button>
 				<!-- bindtap='shareIs' -->
-				<button  bindtap='sharepyq'>
-              <image  mode="aspectFill"  class='pyq' src='../icon/pengyouquan@2x.png'></image>
-              <text>分享到朋友圈</text>
-            </button>
+				<button bindtap='sharepyq'>
+					<image mode="aspectFill" class='pyq' src='../icon/pengyouquan@2x.png'></image>
+					<text>分享到朋友圈</text>
+				</button>
 
 				<!-- <button>
               <image  mode="aspectFill"  bindtap='shareWb' class='wb' src='../../img/weibo@2x.png'></image>
@@ -99,9 +103,9 @@
 	</view>
 </view>
 
-<view class='shareFont'  bindtap='share'>
+<view class='shareFont' bindtap='share'>
 	<view>
-		<image  mode="aspectFill"  class='share' src='../icon/share.png'></image>
+		<image mode="aspectFill" class='share' src='../icon/share.png'></image>
 	</view>
 	<!-- <view>
 		<image  mode="aspectFill"  class='font' bindtap='changefont' src='../icon/share.png'></image>
@@ -111,13 +115,13 @@
 
 
 <!-- 画布大小按需定制 这里我按照背景图的尺寸定的  -->
-<view class="canvasShow" wx-if='{{canvasShow}}'   style="opacity:1;border-bottom:1px solid #e5e5e5" bindtap="closeCanvas">
-<canvas canvas-id='canvas'   style='width:{{windowW}}px;height:{{windowW}}px;margin-top:{{windowTop}}px;border:2rpx solid #e5e5e5' catchlongtap="saveCanvas"></canvas>
+<view class="canvasShow" wx-if='{{canvasShow}}' style="opacity:1;border-bottom:1px solid #e5e5e5" bindtap="closeCanvas">
+	<canvas canvas-id='canvas' style='width:{{windowW}}px;height:{{windowW}}px;margin-top:{{windowTop}}px;border:2rpx solid #e5e5e5' catchlongtap="saveCanvas"></canvas>
 	<button type='primary' size='mini' bindtap='saveIs'>保存分享图</button>
 </view>
 
 <!-- 预览区域  -->
 <view hidden='{{hidden}}' class='preview'>
-	<image  mode="aspectFill"  src='{{prurl}}' mode='widthFix'></image>
+	<image mode="aspectFill" src='{{prurl}}' mode='widthFix'></image>
 	<button type='primary' size='mini' bindtap='saveIs'>保存分享图</button>
 </view>
